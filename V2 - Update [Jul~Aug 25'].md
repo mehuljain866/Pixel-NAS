@@ -1,0 +1,81 @@
+# Pixel-NAS V2
+
+**An intervention-free, automated photo backup system using legacy Google Pixel hardware for infinite, free Google Photos storage.**,
+
+***
+
+## 🚀 The V2 Evolution: "Intervention-Free"
+While V1 proved the concept of using a salvaged Pixel 2 XL as a middleman for cloud storage, **V2 focuses on full automation and hardware longevity.** This update moves away from manual charging and storage management toward a system that runs perpetually in the background without user input.
+
+## 🧠 Key Features
+*   📸 **Unlimited Legacy Backup:** Continues to leverage Google Photos' promise for Pixel 1 (Original Quality) or Pixel 2-5 (Storage Saver).
+*   🔋 **No-Required-to-Charge Protocol:** Uses a low-power 5W (1.55A) charger combined with a high-resistance USB hub to keep the device at a stable ~50% battery indefinitely. This avoids battery swelling and eliminates the need for manual unplugging.
+*   🔁 **Auto-Overwrite Logic:** Implemented a new system that automatically manages the Pixel's 64GB internal buffer by deleting older, backed-up files to make room for new ones, preventing the "storage full" crashes of V1.
+*   🔔 **Partner Sharing Notifications:** By enabling Google Photos Partner Sharing, the system now sends real-time notifications to your main device when the Pixel finishes an upload.
+*   ❄️ **Thermal Management:** Introduced the "Aluminum Heat Sink" hack—using aluminum foil to passively cool the device during high-intensity bulk uploads (e.g., 80GB+ trips).
+
+## 🛠️ Hardware Required
+| Item | V2 Recommendation | Purpose |
+| :--- | :--- | :--- |
+| **Google Pixel** | Pixel 1 (128GB) or Pixel 2 XL | The backup engine. 128GB is preferred for a larger buffer. |
+| **Power Supply** | 5W (1.55A) Charger | Low-wattage charging for battery stability. |
+| **Resistance Hub** | 4-Port USB Hub / Long USB Extension | Adds resistance to slow charging to "Trickle" levels. |
+| **Cooling** | Aluminum Foil | Emergency heat sink for bulk backup sessions. |
+
+## 📋 Software Stack
+*   **Google Photos:** Legacy backup engine.
+*   **Resilio Sync (Free):** P2P real-time syncing between your main phone/tablet and the Pixel NAS.
+*   **Android Settings:** "Unoptimized" battery mode for Resilio Sync and "Adaptive Charging" enabled.
+
+## 📦 Step-by-Step Setup (V2 Optimized)
+1.  **Prepare the Device:** Factory reset your Pixel and uninstall all non-essential apps (YouTube, etc.) to maximize internal storage for the buffer.
+2.  **Configure Backup:** Set Google Photos to "Storage Saver" (Pixel 2-5) or "Original" (Pixel 1). Enable backup for **all** folders synced via Resilio.
+3.  **Install Resilio Sync:** Link your main device's "Camera" and "Downloads" folders to the Pixel. Turn off "Selective Sync" on both devices to ensure files transfer automatically.
+4.  **Battery Hack:** Plug the Pixel into the 5W charger through the USB hub. This maintains the battery at ~45-50% in a "Charging Slowly" state, which is the optimum for battery stability while plugged in 24/7.
+5.  **Automate Deletion:** Enable the 30-day auto-purge in Google Photos or use the V2 **Auto-Overwrite** logic to ensure the internal storage never hits 100% capacity.
+
+## 🔍 Why it Works
+This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or tablet pours data into the "Pixel Funnel" via Resilio Sync. The Pixel then "spoofs" the source of the data, allowing it to flow into the infinite ocean of Google Photos for free.
+
+## 🧪 The User Experience: From "Paperweight" to 42,000+ Memories
+
+This section details the real-world evolution of the Pixel NAS, as experienced since its inception in **April/May 2025** [User Query]. What began as a manual struggle with salvaged hardware has evolved into a seamless, high-capacity cloud pipeline.
+
+### 📈 Evolution Timeline
+*   **Version 1 (The "Figure It Out" Phase):** Started with a Pixel 2 XL found in a school recycling bin. It initially served as an **"expensive paper weight"** due to a boot loop and a Google account lock. Early use was "cumbersome" because it required manual offloading of photos to a laptop before shoving them into the phone.
+*   **Version 2 (The Automation Phase):** Transitioned to a "fluid" system using **Resilio Sync**. This phase proved the system's power by successfully backing up over **80GB of 4K/60fps and 2.7K footage** from a trip to Thailand with "no labor whatsoever".
+*   **Version 3 (The Finalization Phase):** Currently moving into V3, focusing on a **"No-Required-to-Charge" protocol** and sophisticated **auto-overwrite logic** to ensure the system never requires manual intervention.
+
+### 🛠️ Personal Nitpicks & Realities
+While the system is powerful, the journey revealed several technical "stumbling blocks" that users should be aware of:
+*   **The 64GB Bottleneck:** The Pixel 2 XL’s limited internal storage acts as a tight buffer. If you dump a 30GB+ folder at once, the phone can run into **"maximum storage" errors** and stall the pipeline, making the **128GB model** a significant quality-of-life recommendation.
+*   **Battery Degradation:** In V1/V2, the battery became so degraded that it required a recharge every three days, which was **"getting a little annoying"** before the permanent power-bank solution was implemented.
+*   **App "Naps":** Occasionally, Android's background management may put Resilio Sync to sleep. You might need to **manually refresh the app** if you notice a backup hasn't triggered within the usual 2-minute window.
+*   **Hardware Quirks:** Using a salvaged device meant dealing with a **cracked, non-functional touch screen** and moisture/condensation issues when using cooling gel pads for bulk backups.
+
+### 💬 Project Testimony
+> "It is honestly one of the **best projects that I've done till date** and it does have a real-world impact... I can look through the most recent photo I was in and I can just go back to somewhere in the 2010s. I have been able to view photos that honestly **I would have never seen** because it’s usually an event to open an album or a hard drive."
+
+### 📊 Performance Summary
+*   **Current Load:** Over **58,000 photos** successfully backed up.
+*   **Latency:** Standard photos typically appear on all devices in **under 2 minutes**, with large videos taking roughly 15 minutes.
+*   **Storage Impact:** Reduced a main phone's storage usage from **127GB full to 100GB** in a single month by offloading physical copies.
+
+***
+
+**Analogy for Understanding:**
+Using the Pixel NAS is like moving from **carrying buckets of water** (manual V1 backups) to installing a **home filtration system** (automated V2/V3). You might have to clear a clogged filter occasionally (the 64GB buffer nitpick), but for the most part, the clean water (your data) just flows where you need it without you ever thinking about the pipes.
+
+## 📄 License
+**MIT License** for code and **Creative Commons BY-NC 4.0** for documentation.
+*Use it, hack it, and never pay for cloud storage again.*
+
+📣 Author
+Mehul Jain — GitHub Profile
+JEE aspirant • Tinkerer • Tech Humanist
+
+Feel free to fork, share, and build your own version of Pixel NAS. If this helps preserve your digital memories — mission accomplished!
+***
+
+**Analogy for Understanding:**
+V1 was like a bucket you had to empty manually and refill. **V2 is a self-cleaning pipe.** You turn it on once, and the data flows through it forever without the bucket ever overflowing or the battery ever running dry.
