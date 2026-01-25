@@ -3,7 +3,7 @@ An offline-to-cloud automated photo backup system using old Google Pixel phones 
 
 # Pixel NAS: A Low-Cost, Automated Cloud Backup System using Legacy Google Pixel
 
-Welcome to **Pixel NAS**, a DIY project that turns a legacy Google Pixel device into a low-power, automated, wireless photo and video backup system — completely free from monthly cloud storage charges.
+Welcome to **Pixel NAS**, a DIY project that turns a legacy Google Pixel device into a low-power, automated, wireless photo and video backup system — completely free from monthly cloud storage charges. [Please refer to the newest version VX to get the latest updates regarding this project.]
 
 ---
 
