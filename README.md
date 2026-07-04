@@ -113,6 +113,26 @@ Here is the exact breakdown of Google's legacy backup policies across generation
 
 ---
 
+## Alternative: Spoofing a Pixel (No Hardware Required)
+
+If you cannot acquire a physical Google Pixel device, you can use any spare Android phone as your backup node by "spoofing" its device signature to mimic a Pixel 1. By tricking Google's servers into believing your device is a first-generation Pixel, the Google Photos app will grant you the unlimited **Original Quality** backup entitlement.
+
+There are two main ways to achieve this:
+
+### 1. Custom ROMs (e.g., Pixel Experience)
+Many custom ROMs inherently include Google Photos spoofing. For example, flashing a ROM like **Pixel Experience** (or Evolution X) on a compatible device modifies the system's `build.prop` file out of the box to identify as a Pixel XL. 
+* *Note: The official Pixel Experience project is discontinued, but you can still flash archived builds or use other maintained custom ROMs that explicitly advertise unlimited Google Photos spoofing.*
+
+### 2. Magisk Modules (Root Required)
+If you are comfortable rooting your Android device with Magisk (or KernelSU/APatch), you can install Zygisk-based spoofing modules. 
+* **GPhotosUnlimited (by Rev4N1):** One of the most actively maintained modules. 
+* **Pixelify:** An alternative module that brings Pixel features, including photo spoofing, to any rooted device.
+* *How it works:* You install the module, enable Zygisk, clear the data of your Google Photos app, and reboot. Google Photos will suddenly recognize your phone as a Pixel 1.
+
+**⚠️ Disclaimer for Spoofing:** While wildly popular, spoofing your device signature technically violates Google's Terms of Service. Although account bans are extremely rare for this, this method relies heavily on third-party developers maintaining the spoofing modules against Google's updates. The most bulletproof, zero-maintenance method is always to buy an actual physical Pixel 1.
+
+---
+
 ## Setup Guide
 
 **1. Prepare the Device**
