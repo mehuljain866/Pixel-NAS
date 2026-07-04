@@ -119,9 +119,13 @@ If you cannot acquire a physical Google Pixel device, you can use any spare Andr
 
 There are two main ways to achieve this:
 
-### 1. Custom ROMs (e.g., Pixel Experience)
-Many custom ROMs inherently include Google Photos spoofing. For example, flashing a ROM like **Pixel Experience** (or Evolution X) on a compatible device modifies the system's `build.prop` file out of the box to identify as a Pixel XL. 
-* *Note: The official Pixel Experience project is discontinued, but you can still flash archived builds or use other maintained custom ROMs that explicitly advertise unlimited Google Photos spoofing.*
+### 1. Custom ROMs (Built-in Spoofing vs Lightweight)
+Many custom ROMs include Google Photos spoofing out of the box by modifying the `build.prop` file to identify the device as a Pixel XL. Depending on how old your spare device is, you'll need to choose between features and weight:
+
+*   **crDroid:** *Highly Recommended.* Extremely lightweight, based on LineageOS, and boasts massive official/unofficial device compatibility. It includes an easy toggle for unlimited Photos storage right in its "Miscellaneous" settings. Ideal for older, low-spec phones.
+*   **Evolution X:** Replicates the complete Pixel software experience and includes spoofing by default. It has excellent device support but is heavily feature-packed, making it slightly heavier to run on very old hardware compared to crDroid.
+*   **Pixel Experience (Discontinued):** The classic choice. While official development has ended, you can still flash archived builds for older devices. It includes the spoofing natively.
+*   **ArrowOS / LineageOS:** The absolute lightest and fastest ROMs with the widest device support. However, they **do not** include built-in spoofing. You must use them in combination with Magisk modules (see below) to get unlimited backups.
 
 ### 2. Magisk Modules (Root Required)
 If you are comfortable rooting your Android device with Magisk (or KernelSU/APatch), you can install Zygisk-based spoofing modules. 
