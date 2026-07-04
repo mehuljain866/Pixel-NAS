@@ -90,15 +90,26 @@ Leaving a phone plugged in 24/7 destroys the battery. V3 uses a **5W (1A) charge
 
 ## Hardware Bill of Materials
 
+### 📱 Choosing the Right Pixel (Which generation to buy?)
+If you are buying a device specifically for this project, the most straightforward and highly recommended option is the **Google Pixel 1 (128 GB)**. The 128GB model gives you a massive internal buffer to prevent "Storage Full" bottlenecks during large bulk uploads, and the Pixel 1 is the *only* generation that retains **Original Quality** backup for life.
+
+Here is the exact breakdown of Google's legacy backup policies across generations:
+*   **Pixel 1 (2016):** Unlimited backup at **Original Quality** (Uncompressed), forever. *(The Holy Grail).*
+*   **Pixel 2 (2017) & Pixel 3 (2018):** Their Original Quality promo expired. They now offer unlimited backup at **Storage Saver (High) Quality** for life.
+*   **Pixel 3a, 4, 4a, 5:** Unlimited backup at **Storage Saver (High) Quality** for life.
+*   **Pixel 5a & newer (6, 7, 8, etc.):** No unlimited backup benefit. Do not buy these for this project.
+
+### 🛠️ Hardware List
+
 | Component | Recommendation | Purpose |
 |---|---|---|
-| **Google Pixel** | Pixel 1 (128GB) or Pixel 2 XL | The backup engine. (Pixel 1 offers Original Quality; Pixel 2-5 offer Storage Saver). |
+| **Google Pixel** | **Pixel 1 (128GB)** | The ultimate backup engine (Original Quality for life). |
 | **Power Supply** | 5W (1A) Charger | Low-wattage charging for battery stability. |
 | **Resistance Hub** | 4-Port USB Hub | Adds electrical resistance for trickle charging. |
 | **Smart Plug** | Google Home/Alexa compatible | Required for Geofencing & Voice triggers. |
 | **Cooling** | Aluminum Foil | A passive heat sink across the back glass for massive 80GB+ bulk uploads. |
 
-*Estimated cost from scratch: $15–$30 (mostly the smart plug). The Pixel itself can often be salvaged for free.*
+*Estimated cost from scratch: $15–$30 (mostly the smart plug). The Pixel itself can often be sourced for $30-$50 on eBay or salvaged for free.*
 
 ---
 
