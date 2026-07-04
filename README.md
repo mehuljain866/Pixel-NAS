@@ -17,8 +17,14 @@ This project was born out of frustration. Our digital memories were scattered ac
   <img src="assets/old_workflow.jpg" alt="The bleak reality of the V1 wired nightmare" align="right" width="35%" style="border-radius: 12px; margin: 0 0 15px 20px;" />
   Started with a salvaged Pixel 2 XL. Backing up was an agonizingly manual and monotonous chore. It required tethering the main phone to a laptop, manually indexing and moving files, and then trickling them down to the Pixel. Because the legacy Pixels only have **USB 2.0 ports**, transferring files meant suffering through abysmal USB 2.0 speeds *twice* (Phone → Laptop → Pixel). This turned a simple backup into an unreliable, hours-long headache that heavily relied on pristine cables. Furthermore, using pen drives or external hard drives for these extended transfer sessions caused them to overheat and severely throttle. The system required constant human babysitting and was essentially an "expensive paperweight." *(If you ever see a photo of a laptop connected to a mouse and a Pixel sitting on a desk—that was the bleak reality of V1.)*
   <br clear="all" />
+<table align="left" style="margin: 0 20px 10px 0; text-align: center; border: 1px solid #ddd; border-radius: 12px; background-color: #f6f8fa; padding: 10px; border-collapse: separate; border-spacing: 10px;">
+  <tr><td><img src="assets/new_workflow.jpg" alt="V2 and V3 Setup" width="350" style="border-radius: 8px;" /></td></tr>
+  <tr><td style="font-size: 0.85em; color: #555; max-width: 350px;"><em>Three devices wirelessly backing up to the Pixel over Wi-Fi, which then seamlessly uploads to the cloud.</em></td></tr>
+</table>
+
 * **V2 (The Automation Phase):** We introduced a fluid system using Resilio Sync over Wi-Fi. This proved the concept by effortlessly backing up 80GB of 4K drone/camera footage without any cables.
 * **V3 (The Intervention-Free Phase):** The current architecture. Leveraging Smart Home integrations, geofencing, and advanced automation, the system now runs perpetually without any human intervention. Data flows like a self-cleaning pipe.
+<br clear="all" />
 
 ---
 
