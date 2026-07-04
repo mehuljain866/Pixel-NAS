@@ -15,7 +15,7 @@ This project was born out of frustration. Our digital memories were scattered ac
 ### The Journey
 * **V1 (The Cumbersome Phase - The Wired Nightmare):** Started with a salvaged Pixel 2 XL. Backing up was an agonizingly manual and monotonous chore. It required tethering the main phone to a laptop, manually indexing and moving files, and then trickling them down to the Pixel. Because the legacy Pixels only have **USB 2.0 ports**, transferring files meant suffering through abysmal USB 2.0 speeds *twice* (Phone → Laptop → Pixel). This turned a simple backup into an unreliable, hours-long headache that heavily relied on pristine cables. Furthermore, using pen drives or external hard drives for these extended transfer sessions caused them to overheat and severely throttle. The system required constant human babysitting and was essentially an "expensive paperweight." 
   <br>
-  ![The bleak reality of the V1 wired nightmare](assets/old_workflow.jpg)
+  <img src="assets/old_workflow.jpg" alt="The bleak reality of the V1 wired nightmare" width="45%" />
 * **V2 (The Automation Phase):** We introduced a fluid system using Resilio Sync over Wi-Fi. This proved the concept by effortlessly backing up 80GB of 4K drone/camera footage without any cables.
 * **V3 (The Intervention-Free Phase):** The current architecture. Leveraging Smart Home integrations, geofencing, and advanced automation, the system now runs perpetually without any human intervention. Data flows like a self-cleaning pipe.
 
