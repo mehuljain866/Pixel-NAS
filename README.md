@@ -10,12 +10,26 @@ Pixel-NAS transforms a legacy Google Pixel device into an always-on, invisible b
 
 ---
 
+## Current Status
+
+| What | Status | Notes |
+|---|---|---|
+| Pixel 1 unlimited Original Quality backup | ✅ STILL ACTIVE (July 2026) | No announced end date |
+| Pixel 2–5 unlimited Storage Saver backup | ✅ STILL ACTIVE | Compressed but free |
+| Pixel 5a+ unlimited backup | ❌ GONE | Do not use for this project |
+| Magisk spoofing modules | ⚠️ WORKS (with caveats) | Android 16 has issues; requires maintenance after updates |
+| crDroid / Evolution X built-in spoof | ✅ WORKS | Can reset after OTA update; re-enable in ROM settings |
+
+> **Critical rule:** The free unlimited quota **only** applies to files uploaded directly from the physical Pixel's Google Photos app. Uploading via browser, a different phone, or desktop — even to the same Google account — **will count against your 15 GB quota.**
+
+---
+
 ## The Philosophy & Evolution
 
 This project was born out of frustration. Our digital memories were scattered across old phones, SD cards, and hard drives, creating an unmanageable mess that was vulnerable to hardware failure. While cloud storage solves this, paying a permanent monthly rent to keep memories alive felt flawed.
 
 ### The Journey
-* **V1 (The Cumbersome Phase - The Wired Nightmare):** 
+* **V1 (The Cumbersome Phase - The Wired Nightmare):**
   <img src="assets/old_workflow.jpg" alt="The bleak reality of the V1 wired nightmare" align="right" width="35%" style="border-radius: 12px; margin: 0 0 15px 20px;" />
   Started with a salvaged Pixel 2 XL. Backing up was an agonizingly manual and monotonous chore. It required tethering the main phone to a laptop, manually indexing and moving files, and then trickling them down to the Pixel. Because the legacy Pixels only have **USB 2.0 ports**, transferring files meant suffering through abysmal USB 2.0 speeds *twice* (Phone → Laptop → Pixel). This turned a simple backup into an unreliable, hours-long headache that heavily relied on pristine cables. Furthermore, using pen drives or external hard drives for these extended transfer sessions caused them to overheat and severely throttle. The system required constant human babysitting and was essentially an "expensive paperweight." *(Pictured right: The bleak, wired reality of V1—a laptop connected to a mouse and a Pixel sitting on a desk.)*
   <br clear="all" />
@@ -29,15 +43,18 @@ This project was born out of frustration. Our digital memories were scattered ac
 
 This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or tablet securely pours data into the "Pixel Funnel" over your local Wi-Fi. The Pixel then "spoofs" the source of the data, allowing it to flow into the infinite ocean of Google Photos using its legacy unlimited backup benefit.
 
-1. **Secure Transfer:** Your phone's camera roll syncs to the Pixel via **Resilio Sync** (an End-to-End Encrypted, P2P protocol that eliminates the need to build a custom solution).
-2. **Infinite Cloud:** Google Photos on the Pixel detects the new files and uploads them in the background.
-3. **Auto-Purging (The Pixel Buffer):** The Pixel's internal storage acts as a temporary buffer. Thanks to Android's Smart Storage, it automatically empties itself every 30/60/90 days. It never fills up.
+1. **Secure Transfer:** Your phone's camera roll syncs to the Pixel via **Resilio Sync** — a P2P protocol with full End-to-End Encryption on the local transfer leg.
+2. **Infinite Cloud:** Google Photos on the Pixel detects the new files and uploads them in the background using the device's legacy unlimited backup entitlement.
+3. **Auto-Purging (The Pixel Buffer):** The Pixel's internal storage acts as a temporary buffer. Android's Smart Storage automatically clears backed-up files every 30/60/90 days — it self-cleans without any user action.
 4. **Passive Confirmation:** Real-time push notifications alert your main device when a batch finishes uploading via Google Photos Partner Sharing.
-5. **Freeing Up Main Device Space:** Because your photos are now safely on the infinite cloud, you can confidently open the Google Photos app on your *main daily driver phone* and manually tap **"Free up space"** to reclaim gigabytes of local storage. 
+5. **Freeing Up Main Device Space:** Because your photos are safely in the cloud, you can open Google Photos on your *main daily driver* and manually tap **"Free up space"** to reclaim gigabytes of local storage.
+
 <div align="center">
   <img src="assets/free_space_regular.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="Regular free up space" />
   <img src="assets/free_space_max.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="Max free up space" />
 </div>
+
+> **Important distinction:** Step 3 (auto-purge) happens automatically on the Pixel buffer only. Your **main phone's** Google Photos cannot auto-delete — that always requires a manual tap from you. This is intentional — auto-deleting photos from your primary device would be dangerous.
 
 ### The Pipeline Flowchart
 
@@ -48,7 +65,7 @@ This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or 
           ▼
           ├─► [ ⚡ Optional: Geofencing/Wi-Fi/Voice triggers Smart Plug to power Pixel-NAS ]
           │
-          │ (2. Wi-Fi / Resilio Sync E2E Transfer)
+          │ (2. Wi-Fi / Resilio Sync — E2E Encrypted Transfer)
           ▼
 [ 📱 Pixel-NAS Internal Buffer (64GB/128GB) ]
           │
@@ -57,13 +74,12 @@ This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or 
 [ ☁️ Google Photos Cloud (Unlimited Upload) ]
           │
           │ (4. Upload finishes)
-          ├─► [ 🗑️ Pixel Auto-purges buffer to free space ]
+          ├─► [ 🗑️ Pixel Auto-purges buffer on schedule — automatic ]
           │
           │ (5. Partner Sharing Notification)
           ▼
 [ 📱 Main Phone ] (Receives notification that backup is complete)
 ```
-
 
 ---
 
@@ -78,6 +94,8 @@ Through rigorous pipeline optimization, wireless syncing is now effectively as f
 1. **5GHz Wi-Fi:** Both the source device and the Pixel-NAS must be connected to a clean 5GHz network.
 2. **Direct Connection:** Ensure Resilio Sync is using "LAN Sync" and a direct P2P connection (no relay servers).
 3. **Advanced Tweaks:** For trusted local networks, disabling `lan_encrypt_data` in Resilio's advanced settings reduces CPU overhead, allowing the devices to focus purely on disk I/O and transfer speed.
+
+> **VPN & DNS Note:** Turn off your VPN entirely during sync sessions. VPN interferes with both Resilio Sync's local peer discovery *and* Google Photos' device identity verification — both require a direct connection. Custom DNS servers (e.g., 1.1.1.1, 8.8.8.8) are fine and do not break the pipeline.
 
 ---
 
@@ -95,20 +113,25 @@ Using an automation app like **MacroDroid**, you can configure the Pixel to forc
 If a sync stalls, or if you need to force a backup remotely, you can map the smart plug to a voice command (e.g., *"Alexa, turn on Pixel NAS"*). Because the plug is connected to your smart home ecosystem, you can trigger backups from anywhere in the world.
 
 ### 4. Hardware Battery Management
-Leaving a phone plugged in 24/7 destroys the battery. V3 uses a **5W (1A) charger** routed through a **4-port USB hub**. The hub acts as a resistor, creating a permanent "Charging Slowly" state. The battery stabilizes at ~45-50% and holds there indefinitely without heat cycles or swelling.
+Leaving a phone plugged in 24/7 destroys the battery. V3 uses a **5W (1A) charger** routed through a **4-port USB hub**. The hub acts as a resistor, creating a permanent "Charging Slowly" state. The battery stabilizes at ~45–50% and holds there indefinitely without heat cycles or swelling.
+
+For users without smart home integration, a simpler approach works well: manually plug the Pixel in for **30 minutes to 1 hour per day**. That is enough to keep it running while protecting battery health. A Wi-Fi smart plug (Google Home / Alexa / Apple Home compatible) with a scheduled on/off routine is the recommended upgrade — it makes this fully automatic.
 
 ---
 
 ## Hardware Bill of Materials
 
 ### 📱 Choosing the Right Pixel (Which generation to buy?)
+
 If you are buying a device specifically for this project, the most straightforward and highly recommended option is the **Google Pixel 1 (128 GB)**. The 128GB model gives you a massive internal buffer to prevent "Storage Full" bottlenecks during large bulk uploads, and the Pixel 1 is the *only* generation that retains **Original Quality** backup for life.
 
+> **Storage Capacity Warning:** The Pixel's internal storage is a live buffer. If it fills up, the pipeline stalls. With a 64GB Pixel, try to keep storage usage below **55–60GB** at most — beyond that, the pipeline tends to break and requires manual intervention. Heavy users (100–300+ photos/day, regular videos) are strongly advised to get the **128GB model**, where Smart Storage's auto-purge will keep up automatically without any manual attention.
+
 Here is the exact breakdown of Google's legacy backup policies across generations:
-*   **Pixel 1 (2016):** Unlimited backup at **Original Quality** (Uncompressed), forever. *(The Holy Grail).*
-*   **Pixel 2 (2017) & Pixel 3 (2018):** Their Original Quality promo expired. They now offer unlimited backup at **Storage Saver (High) Quality** for life.
-*   **Pixel 3a, 4, 4a, 5:** Unlimited backup at **Storage Saver (High) Quality** for life.
-*   **Pixel 5a & newer (6, 7, 8, etc.):** No unlimited backup benefit. Do not buy these for this project.
+* **Pixel 1 (2016):** Unlimited backup at **Original Quality** (Uncompressed), forever. *(The Holy Grail).*
+* **Pixel 2 (2017) & Pixel 3 (2018):** Their Original Quality promo expired. They now offer unlimited backup at **Storage Saver (High) Quality** for life.
+* **Pixel 3a, 4, 4a, 5:** Unlimited backup at **Storage Saver (High) Quality** for life.
+* **Pixel 5a & newer (6, 7, 8, etc.):** No unlimited backup benefit. Do not buy these for this project.
 
 ### 🛠️ Hardware List
 
@@ -118,9 +141,22 @@ Here is the exact breakdown of Google's legacy backup policies across generation
 | **Power Supply** | 5W (1A) Charger | Low-wattage charging for battery stability. |
 | **Resistance Hub** | 4-Port USB Hub | Adds electrical resistance for trickle charging. |
 | **Smart Plug** | Google Home/Alexa compatible | Required for Geofencing & Voice triggers. |
-| **Cooling** | Aluminum Foil | A passive heat sink across the back glass for massive 80GB+ bulk uploads. |
+| **Cooling** | Aluminum Foil / Heat Sink | Passive heat dissipation across the back glass for 80GB+ bulk uploads. |
 
-*Estimated cost from scratch: $15–$30 (mostly the smart plug). The Pixel itself can often be sourced for $30-$50 on eBay or salvaged for free.*
+*Estimated cost from scratch: $15–$30 (mostly the smart plug). The Pixel itself can often be sourced for $30–$50 on eBay or salvaged for free.*
+
+#### Battery Safety — Warning Signs (Pixel 1 is ~9 years old)
+The Pixel 1's battery is aging hardware. If you observe any of the following, **power off and disconnect the device immediately**:
+- Screen lifting away from the frame at any corner
+- Back cover visibly bulging outward
+- Unusual heat at idle (not during a sync — just sitting there warm)
+
+Run the phone in a well-ventilated, visible location. Never in a closed box, drawer, or shelf compartment. Check it physically once a week.
+
+#### Cooling for Heavy Loads
+During large batch uploads, the Pixel 1 (Snapdragon 821) can thermally throttle, which slows uploads or pauses Google Photos backup entirely. Beyond the aluminum foil heat sink, additional options:
+- **Active gaming cooler** — a clip-on Peltier/fan cooler attached to the back during heavy sync sessions
+- **Fan automation** — add a second smart plug controlling a desk fan; when the Pixel's charging smart plug turns ON, the fan also turns ON via a smart home routine. Fully automatic, zero effort.
 
 ---
 
@@ -130,63 +166,183 @@ If you cannot acquire a physical Google Pixel device, you can use any spare Andr
 
 There are two main ways to achieve this:
 
-### 1. Custom ROMs (Built-in Spoofing vs Lightweight)
-Many custom ROMs include Google Photos spoofing out of the box by modifying the `build.prop` file to identify the device as a Pixel XL. Depending on how old your spare device is, you'll need to choose between features and weight:
+### 1. Custom ROMs (Built-in Spoofing)
+Many custom ROMs include Google Photos spoofing out of the box by modifying the `build.prop` file to identify the device as a Pixel XL:
 
-*   **crDroid:** *Highly Recommended.* Extremely lightweight, based on LineageOS, and boasts massive official/unofficial device compatibility. It includes an easy toggle for unlimited Photos storage right in its "Miscellaneous" settings. Ideal for older, low-spec phones.
-*   **Evolution X:** Replicates the complete Pixel software experience and includes spoofing by default. It has excellent device support but is heavily feature-packed, making it slightly heavier to run on very old hardware compared to crDroid.
-*   **Pixel Experience (Discontinued):** The classic choice. While official development has ended, you can still flash archived builds for older devices. It includes the spoofing natively.
-*   **ArrowOS / LineageOS:** The absolute lightest and fastest ROMs with the widest device support. However, they **do not** include built-in spoofing. You must use them in combination with Magisk modules (see below) to get unlimited backups.
+* **crDroid:** *Highly Recommended.* Extremely lightweight, based on LineageOS, massive device compatibility. Includes an easy toggle for unlimited Photos storage in its "Miscellaneous" settings. Ideal for older, low-spec hardware.
+* **Evolution X:** Replicates the complete Pixel software experience with spoofing by default. More feature-packed than crDroid, so slightly heavier on very old hardware.
+* **Pixel Experience (Discontinued):** Official development has ended, but archived builds are available for older devices. Includes spoofing natively.
+* **ArrowOS / LineageOS:** The lightest ROMs with the widest device support. **Do not** include built-in spoofing — must be paired with a Magisk module (see below).
+
+> **⚠️ OTA Reset:** On crDroid and Evolution X, the spoofing toggle can reset to OFF after a system (OTA) update. After every update, go back into the ROM's Miscellaneous settings and verify the toggle is still enabled.
 
 ### 2. Magisk Modules (Root Required)
-If you are comfortable rooting your Android device with Magisk (or KernelSU/APatch), you can install Zygisk-based spoofing modules. 
-* **GPhotosUnlimited (by Rev4N1):** One of the most actively maintained modules. 
-* **Pixelify:** An alternative module that brings Pixel features, including photo spoofing, to any rooted device.
-* *How it works:* You install the module, enable Zygisk, clear the data of your Google Photos app, and reboot. Google Photos will suddenly recognize your phone as a Pixel 1.
+If you are comfortable rooting with Magisk (or KernelSU/APatch), Zygisk-based modules inject the spoof only into the Google Photos process — leaving banking apps, Play Integrity, and the rest of your system completely untouched.
 
-**⚠️ Disclaimer for Spoofing:** While wildly popular, spoofing your device signature technically violates Google's Terms of Service. Although account bans are extremely rare for this, this method relies heavily on third-party developers maintaining the spoofing modules against Google's updates. The most bulletproof, zero-maintenance method is always to buy an actual physical Pixel 1.
+> **Build.prop vs Zygisk:** Some guides suggest editing `build.prop` directly to spoof at the ROM level. Avoid this — it changes device identity system-wide and can break banking apps and Play Integrity attestation. Zygisk modules are app-isolated and safer.
+
+**Recommended modules (ranked by community preference, 2026):**
+
+| Module | Repo | Notes |
+|---|---|---|
+| GPhotosUnlimited | github.com/Rev4N1/GPhotosUnlimited | Most actively maintained, most recommended |
+| Unlimited-Photos-Storage | github.com/MeowDump/Unlimited-Photos-Storage | Strong KernelSU Next 3.0+ compatibility |
+| Unlimited-GooglePhotosBackupMod | github.com/Kolass2004/Unlimited-GooglePhotosBackupMod | Alternative fork |
+| Pixelify | github.com/Kingsman44/Pixelify | Full Pixel feature suite; includes GPhotos unlimited |
+
+> **Android 16 note:** Many modules have reported compatibility issues on Android 16 (2026). If backup breaks after an Android 16 update, a reliable workaround is to downgrade Google Photos to **v6.6** via APKMirror and disable auto-update for it.
+
+> **Module conflicts:** If you run both GPhotosUnlimited and Pixelify simultaneously, they can conflict. Fix: create a `custom.app_replace_list.txt` in `/data/adb/modules/unlimitedphotos/` to specify which module handles Google Photos exclusively.
+
+**Installation steps:**
+1. Root with Magisk / KernelSU / APatch and enable Zygisk (`Magisk Settings → Zygisk = ON`)
+2. *(KernelSU Next 3.0+ only)* Install `magic_mount_rs` or `Mountify` metamount module first, then reboot — KSU Next 3.0 removed built-in module mounting
+3. Flash the spoofing module `.zip` via Magisk Manager
+4. Clear Google Photos data: Settings → Apps → Google Photos → Storage → **Clear Storage**
+5. Reboot
+6. Verify: Photos → Profile → Backup → correct quality tier + **"doesn't count against storage"**
+
+> **Note on AI editing features:** After spoofing as Pixel 1, AI features like Magic Eraser, Magic Editor, and Photo Unblur will stop working in Google Photos — the app believes it is running on 2016 hardware with no AI chip. This is expected and not a concern: the spoofed device is used only as a backup node. AI editing features live on your daily driver, which is not spoofed.
+
+**⚠️ Disclaimer for Spoofing:** Spoofing your device signature technically violates Google's Terms of Service. Account bans are extremely rare for this specific use case, but the method relies on third-party developers maintaining modules against Google's updates. The most bulletproof, zero-maintenance method is always a physical Pixel 1.
 
 ---
 
 ## Setup Guide
 
 **1. Prepare the Device**
-Factory reset the Pixel. Use Android Universal Debloater (ADB) to remove all bloatware, maximizing the internal storage buffer and freeing up CPU cycles.
+Factory reset the Pixel. Use Android Universal Debloater (ADB) to strip bloatware, maximizing the internal buffer and freeing up CPU cycles for the sync and upload tasks.
 
 **2. Configure Google Photos**
-Log in with a dedicated backup account. Enable backup for all folders that Resilio will sync. Turn on the 30-day auto-purge for the trash.
+Log in with a **dedicated backup Google account** — not your main personal account. Then:
+
+- **Enable backup for ALL folders.** By default, Google Photos only backs up the device's Camera folder. Since Resilio Sync delivers files into a separate synced folder (not the camera roll), you must manually enable backup for every folder Resilio syncs into: Library → scroll down to your folder → tap the ☁️ cloud icon to enable backup for that folder.
+- **Set backup quality.** On first setup (or after a factory reset), verify the backup quality setting:
+  - Pixel 1: leave at **"Original quality"** — this is the whole point.
+  - Pixel 2–5: switch to **"Storage Saver"** — it still receives the free unlimited perk, just compressed. Once set, it does not revert on its own.
+  - Path: Profile → Backup → Backup quality
+- Turn on the **30-day auto-purge** for the trash.
 
 **3. Setup Resilio Sync**
-Install Resilio on both devices. You can sync the entire `DCIM` folder to back up everything, but in practice, cherry-picking specific folders is highly recommended to avoid syncing cache or junk files. **Disable Selective Sync** so files move instantly, and enable **LAN Sync** for maximum speeds.
+
+Install Resilio on both the source device and the Pixel. Cherry-pick specific folders rather than the entire `DCIM` root — this avoids syncing cache files, thumbnails, and other junk. **Disable Selective Sync** so files transfer immediately, and enable **LAN Sync** for maximum speed.
+
+**Critical Resilio settings on the Pixel:**
+
+> **⚠️ Set folder to "Receive Only":** In Resilio Sync on the Pixel, set the synced folder mode to **Receive Only**. This is non-negotiable. Without it, when Google Photos runs "Free Up Space" and deletes backed-up files from local storage, Resilio detects them as "missing" and re-downloads them from your source — an infinite loop that continuously refills the Pixel's storage.
+
+> **⚠️ Set battery to "Unrestricted":** Go to Android Settings → Apps → Resilio Sync → Battery → set to **Unrestricted**. On Android 14 and 15, the system can kill Resilio via Doze mode or the 6-hour foreground service wall. The app may appear connected while silently not syncing anything. Unrestricted battery + keeping the foreground notification visible prevents this.
+
+> **⚠️ Disable Resilio Auto-Sleep:** Inside Resilio Sync settings, find **Auto-sleep** and turn it off (or set a short wakeup interval of 15–30 minutes). Auto-Sleep hibernates the app between transfers. For an always-on node, this means newly arrived files won't be detected until the app wakes up — which could be hours later.
+
 <div align="center">
   <img src="assets/resilio_dcim.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="DCIM setup" />
   <img src="assets/resilio_specific.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="Specific folders setup" />
 </div>
 
 **4. The Hardware Hack**
-Connect: Wall Outlet → Smart Plug → 5W Charger → USB Hub → Pixel. Verify it says "Charging Slowly." 
+Connect: Wall Outlet → Smart Plug → 5W Charger → USB Hub → Pixel. Verify it says "Charging Slowly."
 
 **5. Set up Automations**
-Use Samsung Routines, Apple Shortcuts, or MacroDroid to create a trigger: `IF Location = Home -> THEN Turn On Smart Plug`.
+Use Samsung Routines, Apple Shortcuts, or MacroDroid to create a trigger: `IF Location = Home → THEN Turn On Smart Plug`.
 
-**6. Setup Partner Sharing (For Notifications)**
-To get push notifications and access on your main phone whenever the Pixel finishes an upload:
-* On the **Pixel NAS** (which should be logged into a secondary, dedicated backup Google account), open Google Photos.
-* Go to **Photos Settings > Sharing > Partner Sharing**.
-* Invite your **Main Google Account** (the one you use on your daily driver phone) and choose to share "All photos".
-* On your **Main Phone**, accept the invitation.
-* *Note: While Google Photos doesn't always send a loud system push notification for every single photo sync, new backups will automatically populate in your main phone's "Sharing" tab. Ensure notifications for Google Photos are enabled in your main phone's system settings to catch any batch update alerts.*
+**6. Setup Partner Sharing (For Backup Notifications)**
+
+Partner Sharing is not a core requirement — the backup works entirely without it. Its purpose is to give you a push notification on your main phone when the Pixel finishes backing up a batch.
+
+> **Note:** Google Photos only supports **one active Partner Sharing relationship at a time.** If you already have one set up, you'll need to remove it first.
+
+* On the **Pixel NAS** (logged into its dedicated backup account), open Google Photos.
+* Go to: **Profile → Photos settings → Sharing → Partner Sharing → Get started**
+* Invite your **main Google account email** → set to share **"All photos"**
+* On your **main phone**, open Google Photos and accept the invitation
+* Enable notifications: main phone → Google Photos → Profile → Photos settings → Notifications → **Sharing = ON**
+* Also verify at system level: Settings → Apps → Google Photos → Notifications → all ON
+* **How it works:** When the Pixel backs up a new batch, those photos populate in your main phone's "Sharing" tab, and you receive a batch push notification confirming the backup cycle completed.
+* **For third-party media** (screenshots, WhatsApp photos, etc.): enable **Photos settings → Sharing → Partner Sharing → "Include content from other Android apps"** (added in early 2025).
+* *If notifications stop: remove the partner, wait 10 minutes, re-invite.*
+
+> **⚠️ Disconnecting Partner Sharing:** If you have auto-saved partner photos into your main account's library and then disconnect Partner Sharing, those saved copies may suddenly start counting against your 15 GB quota. Be aware of this before removing the relationship.
+
+---
+
+## How to Verify Your Backup is Working
+
+You need to confirm photos are being uploaded by the **Pixel** (free, no quota used), not silently by your main phone.
+
+**Step 1 — Disable backup on your main device.** Google Photos on main phone → Profile → Backup → **Backup OFF**. This is mandatory. If both devices have backup enabled simultaneously, you cannot determine which one is actually doing the uploading.
+
+**Step 2 — Check the cloud icon.** On your main phone, open Google Photos and look at recent photos. A small **☁️ cloud icon** on or next to a photo means it has been backed up.
+
+**Step 3 — Deep verification.** Open a recently taken photo → swipe up (or tap the ⓘ info button). You should see both:
+- **"Backed up"** — it's in the cloud
+- **"This item doesn't take up space in your Google Account storage"** — this is the confirmation that it was uploaded by the Pixel's legacy entitlement, not by your main device eating your 15 GB quota
+
+<div align="center">
+  <img src="assets/photos_metadata.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Proof: item doesn't take up storage space" />
+  <img src="assets/metadata_with_loc.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Metadata preserved with GPS location" />
+  <img src="assets/metadata_without_loc.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Metadata preserved without GPS location" />
+</div>
+
+**Step 4 — Cross-check.** Open [photos.google.com](https://photos.google.com) in a desktop browser while logged into the backup account. Confirm recent photos are visibly present.
+
+**What backup quality should show:**
+- Pixel 1: **"Original quality"** + "doesn't count against storage" ✅
+- Pixel 2–5: **"Storage Saver"** + "doesn't count against storage" ✅ (still free, just compressed)
+- **Any device — bad state:** Any quality + "counts against storage" ❌ — something is misconfigured
+
+> **Note:** Google removed the "Unlimited storage" badge from the Google Photos home screen in 2024. Verification must be done via Profile → Backup settings, not the home screen.
+
+**Troubleshooting — "Getting ready to backup" is stuck:**
+
+A single corrupted or incompletely transferred file can block the entire upload queue. Google Photos processes one file at a time, so one bad file stalls everything. Fix sequence:
+1. Turn Backup OFF → reboot the Pixel → turn Backup back ON
+2. Clear Google Photos cache and data (Settings → Apps → Google Photos → Storage → Clear Cache, then Clear Storage)
+3. Check the most recently added files — temporarily remove any you suspect are corrupt
+4. Keep the app open in the foreground, phone on charger, and wait 30 minutes
+
+Usually just waiting works. There is no guaranteed instant fix — sometimes it resolves on its own.
+
+**Troubleshooting — "Free up space" shows 0 items despite a large library:**
+
+Google Photos hasn't finished indexing which files are safely in the cloud. Clear Photos cache, reopen the app, wait 5 minutes. If still 0, wait 24–48 hours after a large batch upload — the count may increase the next day as indexing completes. It is annoying but harmless.
 
 ---
 
 ## Advanced: Arbitrary File Backup (BitStream)
 
 Pixel-NAS handles media natively. For documents, code, and zip files, we use [BitStream](https://github.com/mehuljain866/BitStream).
-BitStream losslessly encodes any arbitrary file into an FFV1 `.AVI` video file. 
+BitStream losslessly encodes any arbitrary file into an FFV1 `.AVI` video file.
 1. Compress your files.
 2. Run BitStream to turn the ZIP into a Video.
 3. Pixel-NAS uploads the "video" to Google Photos.
 4. Download the video later and decode it to retrieve your exact files, byte-for-byte.
+
+---
+
+## Advanced: Headless Node (Broken Screen / No-Touch Operation)
+
+If your Pixel's screen is cracked, unresponsive, or you simply want to run it as a pure background node with zero physical interaction, you can control it entirely over Wi-Fi via ADB — no display or touch needed.
+
+> **Note:** Pixel 1–5 do not support DisplayPort over USB-C, so Samsung DeX-style desktop output is not possible. ADB over Wi-Fi is the alternative.
+
+**One-time setup (requires USB for the first connection only):**
+```bash
+# With Pixel connected via USB:
+adb tcpip 5555
+
+# Disconnect the USB cable. Find the Pixel's local IP in Settings → About → Status → IP address.
+adb connect <pixel-local-ip>:5555
+
+# All future control is now wireless — no USB needed.
+```
+
+**What you can do once connected:**
+- Full screen mirror + touch control via **scrcpy** (free, open source): `scrcpy --tcpip=<pixel-ip>`
+- Run any ADB command wirelessly — install APKs, toggle settings, reboot, etc.
+- Set up **Tasker** on the Pixel to auto-restart Resilio Sync or Google Photos if either crashes, keeping the node fully self-healing
+
+**Caveat:** Android blocks certain privacy-sensitive screens during remote casting (e.g., notification shade on some builds, some system settings menus). Test with scrcpy before going fully screenless to confirm all the controls you need are accessible remotely.
 
 ---
 
@@ -199,18 +355,94 @@ BitStream losslessly encodes any arbitrary file into an FFV1 `.AVI` video file.
 
 ---
 
-## Known Limitations
+## Known Limitations & Heads-Ups
 
-- **The 64GB Bottleneck:** The Pixel 2 XL’s limited internal storage acts as a tight buffer. Heavy dumps (30GB+) can cause "maximum storage" errors, stalling the pipeline. A 128GB Pixel 1 is highly recommended for larger loads.
-- **Battery Degradation (Without Hack):** If you don't use the V3 smart plug or USB hub resistance hack, the battery will degrade, eventually requiring manual recharges every few days or risking battery swell.
-- **App "Naps":** Android background management might sometimes put Resilio Sync to sleep. You may occasionally need to manually refresh the app or rely on a forced MacroDroid launch if syncing stalls.
-- **Hardware Quirks:** Using salvaged hardware means you might deal with cracked screens or moisture issues if using crude cooling methods (like gel pads).
-- **Metadata Preservation:** Resilio Sync preserves metadata perfectly. GPS location (if enabled), exact timestamps, and device origin data (e.g., "Shot on iPhone") survive the E2E transfer completely intact. Furthermore, Google Photos will explicitly recognize that the upload came from a Pixel, stating: *"This item doesn't take up space in your account storage."*
-<div align="center">
-  <img src="assets/photos_metadata.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Unlimited Storage Proof" />
-  <img src="assets/metadata_with_loc.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Metadata with Location" />
-  <img src="assets/metadata_without_loc.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Metadata without Location" />
-</div>
+- **The 64GB Bottleneck:** The Pixel's internal storage is a live buffer. Heavy dumps (30GB+) can cause "maximum storage" errors, stalling the pipeline. A **128GB Pixel 1** is highly recommended. With a 64GB model, keep usage below 55–60GB.
+- **Occasional Manual Purge:** Android Smart Storage won't delete files newer than 30 days, even if they're backed up. If the Pixel fills up faster than the auto-purge cycle, manually trigger "Free up space" on the Pixel (Google Photos → Library → Free up space). This is the only recurring manual task for heavy users.
+- **Battery Degradation (Without Hack):** Without the smart plug + USB hub trickle charging setup, the battery will degrade from continuous 100% charging, eventually risking battery swelling.
+- **App "Naps":** Android background management may put Resilio Sync to sleep despite Unrestricted battery settings. Occasional manual refresh or a MacroDroid watchdog trigger can recover this.
+- **Hardware Quirks:** Salvaged hardware may have cracked screens or other physical quirks. See the Headless Node section for no-touch operation.
+- **Metadata Preservation:** Resilio Sync preserves metadata perfectly. GPS coordinates (if enabled at capture), exact timestamps, and device origin (e.g., "Shot on iPhone") survive the E2E transfer completely intact. Google Photos will confirm: *"This item doesn't take up space in your account storage."*
+- **Android System Backup (July 2026):** As of July 7, 2026, Android's device backup (SMS, call logs, app data, settings) now counts toward your 15 GB Google quota — even if your photos are uploading for free via the Pixel. Manage via Android Settings → Google → Backup. The data is mostly text-based and typically under 1 GB, but check it if you notice unexpected storage consumption.
+- **Google Photos Auto-Update:** Auto-updates for Google Photos have generally been fine — the Pixel receives updates on day one and continues working without issue. As a precaution, you can disable auto-update via Play Store → Google Photos → ⋮ → Don't auto-update and update manually. If backup ever breaks after an update, clear Google Photos app data and re-verify backup settings as the first step.
+
+---
+
+## Future: V4 — Parallel True Data Ownership
+
+The current V3 pipeline gives you free cloud storage via Google. V4 extends this by adding a **simultaneous local copy** — true ownership that doesn't depend on Google at all.
+
+**The Architecture:**
+
+```text
+[ 📱 Main Phone / Multiple Devices ]
+            │
+            │  (Resilio Sync — sends to ALL peers simultaneously)
+            ├──────────────────────────┐
+            ▼                          ▼
+[ 📱 Pixel-NAS Buffer ]        [ 💻 Local PC / Home Server ]
+            │                          │
+            │  (Google Photos upload)   │  (Raw files — true local ownership)
+            ▼                          │
+[ ☁️ Google Cloud (Free) ] ◄───────────┘
+```
+
+**Why this is powerful:**
+- Google Photos gives you free cloud + AI search + facial recognition + editing tools — all still working
+- The local PC gives **true ownership** — if Google changes the free policy or closes your account, every photo is still safe locally
+- You can confidently run "Free up space" on your main phone knowing files exist in **two independent places**
+- Resilio Sync distributes to both destinations simultaneously, with E2E encryption on the local leg
+
+**What you need:**
+- A PC, old laptop, mini PC, or Raspberry Pi with a large external drive running Resilio Sync
+- Set the PC's folder to **"Receive Only"** — it receives files but does not propagate deletions back to source
+- Resilio share with 3 peers: Main Phone (Send), Pixel (Receive), PC (Receive)
+
+**Taking it further — Immich:**
+
+[Immich](https://immich.app) is a self-hosted, open-source Google Photos replacement that runs on your own hardware via Docker. If you already have the local PC from the V4 architecture, you can run Immich on it to get a full-featured photo management interface — face recognition, AI-powered search, mobile app, memories — all on hardware you own and control.
+
+| Feature | Google Photos (Pixel-NAS) | Immich |
+|---|---|---|
+| Cost | Free (Pixel-NAS) | Free (self-hosted) |
+| Storage | Google's servers | Your own hardware |
+| AI search & face recognition | ✅ Google's AI | ✅ Local AI |
+| Mobile app | ✅ Official Google | ✅ Immich app (iOS + Android) |
+| E2E Encryption | Google holds keys | Fully yours |
+| Requires hardware | ❌ | ✅ Docker / server |
+
+```text
+Stage 1 (Current): Pixel-NAS → Google Photos (free cloud)
+Stage 2 (Add):     Resilio also syncs to local PC → cloud + local redundancy
+Stage 3 (Future):  Immich on local PC → full Google Photos feature parity, self-hosted
+Stage 4 (Ideal):   If Google changes policy → already migrated, zero panic
+```
+
+---
+
+## Privacy & Encryption
+
+**The local transfer leg (Resilio Sync → Pixel)** is fully End-to-End Encrypted using AES-256. Traffic between your devices is encrypted on the sending device and decrypted only on the receiving device. Nobody — not Resilio, not your ISP, not anyone on your local network — can read it in transit.
+
+**The cloud upload leg (Pixel → Google Photos)** is encrypted in transit (TLS/HTTPS) and encrypted at rest on Google's servers (AES-256). However, Google holds the decryption keys. This means Google's systems can technically access your photo content — and they do, intentionally, for the following features:
+
+- **Face Grouping** — grouping photos by person
+- **AI-powered search** — searching by object, location, scene, text in image
+- **Memories & highlights** — auto-generated albums and anniversary cards
+- **Gemini integration** — natural language photo queries
+
+This is by design. True End-to-End Encryption on the cloud leg would make all of these features technically impossible. Google's official position (via safety.google) is that server-side AI processing requires access to image content.
+
+**Key privacy facts from Google's own documentation:**
+- Face Groups are **private to your account only** — never shared with third parties for identification
+- Google **does not use your photos for advertising targeting**
+- You can disable Face Grouping entirely; Google states it deletes the underlying face models when you do
+
+**For users who need stricter privacy:**
+- **[Ente Photos](https://ente.io)** — E2E encrypted cloud storage for photos; self-hostable; photos are encrypted on your device before upload so even Ente cannot access them. Trade-off: no server-side AI features.
+- **[Immich](https://immich.app)** — fully self-hosted; your server, your keys, no external access at all.
+
+For most users, the Pixel-NAS pipeline is an excellent pragmatic balance — the local transfer is fully E2E encrypted, and Google's photo privacy policy is among the stronger ones in the industry.
 
 ---
 
