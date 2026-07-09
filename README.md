@@ -4,7 +4,7 @@
 
 Pixel-NAS transforms a legacy Google Pixel device into an always-on, invisible backup node. It silently syncs photos, videos, and files from your daily devices directly to Google Photos' infinite cloud storage—for free. No monthly subscriptions, no expensive NAS hardware, and zero manual maintenance.
 
-*Currently managing a pipeline of **~80,000 photos and videos (~1.5 TB)** across multiple devices seamlessly.* *(Pictured right: ~10,500 items successfully backed up in 2026 alone as of July 9th.)*
+*Currently managing a pipeline of **~80,000 photos and videos (~1.5 TB)** across multiple devices seamlessly.*
 <img src="assets/stats_2026.jpg" align="right" width="40%" style="border-radius: 12px; margin: 10px 0 15px 20px;" alt="Proof of 80,000+ photos backed up" />
 <br clear="all" />
 
@@ -34,9 +34,10 @@ This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or 
 3. **Auto-Purging (The Pixel Buffer):** The Pixel's internal storage acts as a temporary buffer. Thanks to Android's Smart Storage, it automatically empties itself every 30/60/90 days. It never fills up.
 4. **Passive Confirmation:** Real-time push notifications alert your main device when a batch finishes uploading via Google Photos Partner Sharing.
 5. **Freeing Up Main Device Space:** Because your photos are now safely on the infinite cloud, you can confidently open the Google Photos app on your *main daily driver phone* and manually tap **"Free up space"** to reclaim gigabytes of local storage. 
-| <img src="assets/free_space_regular.jpg" width="100%" style="border-radius: 12px;" /> | <img src="assets/free_space_max.jpg" width="100%" style="border-radius: 12px;" /> |
-| :---: | :---: |
-| *Regular "Free up space" prompt* | *A massive "Free up space" prompt* |
+<div align="center">
+  <img src="assets/free_space_regular.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="Regular free up space" />
+  <img src="assets/free_space_max.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="Max free up space" />
+</div>
 
 ### The Pipeline Flowchart
 
@@ -157,9 +158,10 @@ Log in with a dedicated backup account. Enable backup for all folders that Resil
 
 **3. Setup Resilio Sync**
 Install Resilio on both devices. You can sync the entire `DCIM` folder to back up everything, but in practice, cherry-picking specific folders is highly recommended to avoid syncing cache or junk files. **Disable Selective Sync** so files move instantly, and enable **LAN Sync** for maximum speeds.
-| <img src="assets/resilio_dcim.jpg" width="100%" style="border-radius: 12px;" /> | <img src="assets/resilio_specific.jpg" width="100%" style="border-radius: 12px;" /> |
-| :---: | :---: |
-| *Syncing the entire DCIM folder (Mass method)* | *Cherry-picking specific folders (Recommended)* |
+<div align="center">
+  <img src="assets/resilio_dcim.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="DCIM setup" />
+  <img src="assets/resilio_specific.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="Specific folders setup" />
+</div>
 
 **4. The Hardware Hack**
 Connect: Wall Outlet → Smart Plug → 5W Charger → USB Hub → Pixel. Verify it says "Charging Slowly." 
@@ -204,9 +206,11 @@ BitStream losslessly encodes any arbitrary file into an FFV1 `.AVI` video file.
 - **App "Naps":** Android background management might sometimes put Resilio Sync to sleep. You may occasionally need to manually refresh the app or rely on a forced MacroDroid launch if syncing stalls.
 - **Hardware Quirks:** Using salvaged hardware means you might deal with cracked screens or moisture issues if using crude cooling methods (like gel pads).
 - **Metadata Preservation:** Resilio Sync preserves metadata perfectly. GPS location (if enabled), exact timestamps, and device origin data (e.g., "Shot on iPhone") survive the E2E transfer completely intact. Furthermore, Google Photos will explicitly recognize that the upload came from a Pixel, stating: *"This item doesn't take up space in your account storage."*
-| <img src="assets/photos_metadata.jpg" width="100%" style="border-radius: 12px;" /> | <img src="assets/metadata_with_loc.jpg" width="100%" style="border-radius: 12px;" /> | <img src="assets/metadata_without_loc.jpg" width="100%" style="border-radius: 12px;" /> |
-| :---: | :---: | :---: |
-| *Storage exemption proof* | *Metadata preserved (with location)* | *Metadata preserved (without location)* |
+<div align="center">
+  <img src="assets/photos_metadata.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Unlimited Storage Proof" />
+  <img src="assets/metadata_with_loc.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Metadata with Location" />
+  <img src="assets/metadata_without_loc.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Metadata without Location" />
+</div>
 
 ---
 
