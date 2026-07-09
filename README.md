@@ -5,6 +5,8 @@
 Pixel-NAS transforms a legacy Google Pixel device into an always-on, invisible backup node. It silently syncs photos, videos, and files from your daily devices directly to Google Photos' infinite cloud storage—for free. No monthly subscriptions, no expensive NAS hardware, and zero manual maintenance.
 
 *Currently managing a pipeline of **~80,000 photos and videos (~1.5 TB)** across multiple devices seamlessly.*
+<img src="assets/stats_2026.jpg" align="right" width="40%" style="border-radius: 12px; margin: 10px 0 15px 20px;" alt="Proof of 80,000+ photos backed up" />
+<br clear="all" />
 
 ---
 
@@ -29,8 +31,13 @@ This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or 
 
 1. **Secure Transfer:** Your phone's camera roll syncs to the Pixel via **Resilio Sync** (an End-to-End Encrypted, P2P protocol that eliminates the need to build a custom solution).
 2. **Infinite Cloud:** Google Photos on the Pixel detects the new files and uploads them in the background.
-3. **Auto-Purging (The Self-Cleaning Pipe):** The Pixel's internal storage (64GB/128GB) acts as a temporary buffer. Older, already-backed-up files are overwritten as new ones arrive. It never fills up.
+3. **Auto-Purging (The Pixel Buffer):** The Pixel's internal storage acts as a temporary buffer. Thanks to Android's Smart Storage, it automatically empties itself every 30/60/90 days. It never fills up.
 4. **Passive Confirmation:** Real-time push notifications alert your main device when a batch finishes uploading via Google Photos Partner Sharing.
+5. **Freeing Up Main Device Space:** Because your photos are now safely on the infinite cloud, you can confidently open the Google Photos app on your *main daily driver phone* and manually tap **"Free up space"** to reclaim gigabytes of local storage. 
+<div align="center">
+  <img src="assets/free_space_regular.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="Regular free up space" />
+  <img src="assets/free_space_max.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="Max free up space" />
+</div>
 
 ### The Pipeline Flowchart
 
@@ -150,7 +157,11 @@ Factory reset the Pixel. Use Android Universal Debloater (ADB) to remove all blo
 Log in with a dedicated backup account. Enable backup for all folders that Resilio will sync. Turn on the 30-day auto-purge for the trash.
 
 **3. Setup Resilio Sync**
-Install Resilio on both devices. Link your Camera folder. **Disable Selective Sync** so files move instantly. (Enable LAN Sync for maximum speeds).
+Install Resilio on both devices. You can sync the entire `DCIM` folder to back up everything, but in practice, cherry-picking specific folders is highly recommended to avoid syncing cache or junk files. **Disable Selective Sync** so files move instantly, and enable **LAN Sync** for maximum speeds.
+<div align="center">
+  <img src="assets/resilio_dcim.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="DCIM setup" />
+  <img src="assets/resilio_specific.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="Specific folders setup" />
+</div>
 
 **4. The Hardware Hack**
 Connect: Wall Outlet → Smart Plug → 5W Charger → USB Hub → Pixel. Verify it says "Charging Slowly." 
@@ -194,7 +205,12 @@ BitStream losslessly encodes any arbitrary file into an FFV1 `.AVI` video file.
 - **Battery Degradation (Without Hack):** If you don't use the V3 smart plug or USB hub resistance hack, the battery will degrade, eventually requiring manual recharges every few days or risking battery swell.
 - **App "Naps":** Android background management might sometimes put Resilio Sync to sleep. You may occasionally need to manually refresh the app or rely on a forced MacroDroid launch if syncing stalls.
 - **Hardware Quirks:** Using salvaged hardware means you might deal with cracked screens or moisture issues if using crude cooling methods (like gel pads).
-- **Metadata Preservation:** Resilio Sync preserves metadata for over 95% of transfers, but it is not formally guaranteed to be 100% perfect in every edge case.
+- **Metadata Preservation:** Resilio Sync preserves metadata perfectly. GPS location (if enabled), exact timestamps, and device origin data (e.g., "Shot on iPhone") survive the E2E transfer completely intact. Furthermore, Google Photos will explicitly recognize that the upload came from a Pixel, stating: *"This item doesn't take up space in your account storage."*
+<div align="center">
+  <img src="assets/photos_metadata.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Unlimited Storage Proof" />
+  <img src="assets/metadata_with_loc.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Metadata with Location" />
+  <img src="assets/metadata_without_loc.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Metadata without Location" />
+</div>
 
 ---
 
