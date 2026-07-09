@@ -4,7 +4,7 @@
 
 Pixel-NAS transforms a legacy Google Pixel device into an always-on, invisible backup node. It silently syncs photos, videos, and files from your daily devices directly to Google Photos' infinite cloud storage—for free. No monthly subscriptions, no expensive NAS hardware, and zero manual maintenance.
 
-*Currently managing a pipeline of **~80,000 photos and videos (~1.5 TB)** across multiple devices seamlessly.* *(Pictured right: Proof of 80,000+ items successfully backed up.)*
+*Currently managing a pipeline of **~80,000 photos and videos (~1.5 TB)** across multiple devices seamlessly.* *(Pictured right: ~10,500 items successfully backed up in 2026 alone as of July 9th.)*
 <img src="assets/stats_2026.jpg" align="right" width="40%" style="border-radius: 12px; margin: 10px 0 15px 20px;" alt="Proof of 80,000+ photos backed up" />
 <br clear="all" />
 
