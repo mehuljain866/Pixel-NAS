@@ -249,7 +249,7 @@ Install Resilio on both the source device and the Pixel. Cherry-pick specific fo
 
 > **⚠️ Set folder to "Receive Only":** In Resilio Sync on the Pixel, set the synced folder mode to **Receive Only**. This is non-negotiable. Without it, when Google Photos runs "Free Up Space" and deletes backed-up files from local storage, Resilio detects them as "missing" and re-downloads them from your source — an infinite loop that continuously refills the Pixel's storage.
 
-> **⚠️ Set battery to "Unrestricted":** Go to Android Settings → Apps → Resilio Sync → Battery → set to **Unrestricted**. On Android 14 and 15, the system can kill Resilio via Doze mode or the 6-hour foreground service wall. The app may appear connected while silently not syncing anything. Unrestricted battery + keeping the foreground notification visible prevents this.
+> **⚠️ Set battery to "Unrestricted":** Go to Android Settings → Apps → Resilio Sync → Battery → set to **Unrestricted**. On Android 14+, the system can kill Resilio via aggressive Doze mode, and on Android 15, it hits a strict 6-hour foreground service wall. The app may appear connected while silently not syncing anything. Unrestricted battery + keeping the foreground notification visible prevents this.
 
 > **⚠️ Disable Resilio Auto-Sleep:** Inside Resilio Sync settings, find **Auto-sleep** and turn it off (or set a short wakeup interval of 15–30 minutes). Auto-Sleep hibernates the app between transfers. For an always-on node, this means newly arrived files won't be detected until the app wakes up — which could be hours later.
 
