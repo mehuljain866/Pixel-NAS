@@ -4,8 +4,8 @@
 
 Pixel-NAS transforms a legacy Google Pixel device into an always-on, invisible backup node. It silently syncs photos, videos, and files from your daily devices directly to Google Photos' infinite cloud storage—for free. No monthly subscriptions, no expensive NAS hardware, and zero manual maintenance.
 
-*Currently managing a pipeline of **~80,000 photos and videos (~1.5 TB)** across multiple devices seamlessly. (10,451 in 2026 itself as off July 9th*
-<img src="assets/stats_2026.jpg" align="right" width="40%" style="border-radius: 12px; margin: 10px 0 15px 20px;" alt="Proof of 80,000+ photos backed up" />
+*Currently managing a pipeline of **84,902 photos and videos (~1.5 TB)** across multiple devices seamlessly, with archives going back to the 2007–2008 era and older.*
+<img src="assets/stats_84k.png" align="right" width="40%" style="border-radius: 12px; margin: 10px 0 15px 20px;" alt="Proof of 84,902 photos and videos backed up" />
 <br clear="all" />
 
 ---
@@ -122,7 +122,7 @@ Production usage statistics gathered over extended operational testing show the 
 | Metric | Value |
 | :--- | :--- |
 | **Runtime** | 14 months |
-| **Backups** | 80,000+ photos/videos |
+| **Backups** | 84,902 photos/videos |
 | **Failures** | 2 |
 | **Recovery Time** | 5 minutes |
 
@@ -321,6 +321,20 @@ You need to confirm photos are being uploaded by the **Pixel** (free, no quota u
 - **Any device — bad state:** Any quality + "counts against storage" ❌ — something is misconfigured
 
 > **Note:** Google removed the "Unlimited storage" badge from the Google Photos home screen in 2024. Verification must be done via Profile → Backup settings, not the home screen.
+
+### The Pixel 2–5 "Original Quality" Upload Anomaly
+
+While Google's official policy dictates that Pixel 2–5 devices only receive free unlimited backup for **Storage Saver** quality (compressing photos over 16MP and videos over 1080p), real-world testing has revealed a highly beneficial anomaly. 
+
+Certain files from high-resolution external cameras or action cams can trigger an upload in **Original Quality** (uncompressed, full resolution) without consuming any Google Account storage space:
+
+* **High-Megapixel Photos:** Photos taken on a **Sony DSC-HX300** (20.2 MP, 3888 x 5184 resolution) or **Sony DSC-WX80** (16.2 MP) bypass the 16MP Storage Saver limit. Google Photos flags them as *"Not eligible for Storage saver"* but still backs them up at **Original Quality** for free (0 bytes of account storage used).
+* **High-Resolution Videos:** Footage shot in **2.7K 60fps** from a **DJI Action 2** similarly backs up at full 2.7K resolution and 60fps without counting against the account quota.
+* **Note on 4K:** While 2.7K 60fps and high-MP images succeed, 4K footage has not yet shown success and is typically compressed or counted. The anomaly appears to depend on specific camera metadata, file formats, or resolution flags.
+
+<div align="center">
+  <img src="assets/pixel2xl_og_proof.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="Proof: Original Quality free upload on Pixel 2 XL" />
+</div>
 
 **Troubleshooting — "Getting ready to backup" is stuck:**
 
