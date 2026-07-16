@@ -119,6 +119,8 @@ Production usage statistics gathered over extended operational testing show the 
 
 The beauty of V3 is that the Pixel-NAS only works when it needs to. Using Smart Plugs and Automation apps, we control the power and sync cycles dynamically.
 
+> 💡 **Detailed Automation Guide:** For step-by-step instructions on how to build these automations in MacroDroid and Tasker, see the [AUTOMATION_MACROS.md](AUTOMATION_MACROS.md) guide.
+
 ### 1. Geofencing (Samsung Routines / Apple Shortcuts)
 When you enter a ~15-meter radius of your home, a location-based routine triggers your Smart Plug to turn on. The Pixel receives power, wakes up, and immediately begins pulling the day's photos over Wi-Fi. No manual tapping required.
 
@@ -392,7 +394,7 @@ If you have a massive media library (e.g., 500GB) but your Pixel node only has 3
 1. **The Dump:** You send all 500GB to your High Capacity Buffer device.
 2. **The Fill:** Resilio Sync on the Buffer device starts syncing to the Pixel. Once the Pixel reaches 100% capacity (e.g., 30GB), Resilio naturally pauses because there is no more space.
 3. **The Backup:** Google Photos on the Pixel diligently backs up that 30GB batch to the cloud.
-4. **The Ghost Purge (UI Automation):** Because Google does not provide an API to trigger "Free Up Space," you must use an automation app like **MacroDroid** or **Tasker (with AutoInput)** on the Pixel. The app listens for the Google Photos "Backup Complete" notification. When it fires, the automation wakes the screen, launches Google Photos, and simulates physical screen taps (like a ghost) to click Profile ➡️ Free Up Space ➡️ Confirm. 
+4. **The Ghost Purge (UI Automation):** Because Google does not provide an API to trigger "Free Up Space," you must use an automation app like **MacroDroid** or **Tasker (with AutoInput)** on the Pixel. The app listens for the Google Photos "Backup Complete" notification. When it fires, the automation wakes the screen, launches Google Photos, and simulates physical screen taps (like a ghost) to click Profile ➡️ Free Up Space ➡️ Confirm. *(See [AUTOMATION_MACROS.md](AUTOMATION_MACROS.md) for the exact step-by-step build).*
 5. **The Trickle Down Resumes:** Once the 30GB is purged from the Pixel's local storage, Resilio Sync immediately detects the new free space and automatically resumes sending the next 30GB batch from the Buffer device.
 
 This creates an autonomous, self-cleaning pipeline that can trickle terabytes of data through a 32GB phone without human intervention.
