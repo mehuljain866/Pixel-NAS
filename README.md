@@ -5,6 +5,7 @@
 Pixel-NAS transforms a legacy Google Pixel device into an always-on, invisible backup node. It silently syncs photos, videos, and files from your daily devices directly to Google Photos' infinite cloud storage—for free. No monthly subscriptions, no expensive NAS hardware, and zero manual maintenance.
 
 *Currently managing a pipeline of **84,902 photos and videos (~1.5 TB)** across multiple devices seamlessly, with archives going back to the 2007–2008 era and older.*
+*(Calculated volume based on an estimated 70/30 split: ~59,431 photos at an average of 3.5 MB each [~208 GB] and ~25,471 videos at an average of 50 MB each [~1.27 TB] for a total of ~1.48 TB).*
 <img src="assets/stats_84k.png" align="right" width="40%" style="border-radius: 12px; margin: 10px 0 15px 20px;" alt="Proof of 84,902 photos and videos backed up" />
 <br clear="all" />
 
@@ -329,8 +330,8 @@ While Google's official policy dictates that Pixel 2–5 devices only receive fr
 Certain files from high-resolution external cameras or action cams can trigger an upload in **Original Quality** (uncompressed, full resolution) without consuming any Google Account storage space:
 
 * **High-Megapixel Photos:** Photos taken on a **Sony DSC-HX300** (20.2 MP, 3888 x 5184 resolution) or **Sony DSC-WX80** (16.2 MP) bypass the 16MP Storage Saver limit. Google Photos flags them as *"Not eligible for Storage saver"* but still backs them up at **Original Quality** for free (0 bytes of account storage used).
-* **High-Resolution Videos:** Footage shot in **2.7K 60fps** from a **DJI Action 2** similarly backs up at full 2.7K resolution and 60fps without counting against the account quota.
-* **Note on 4K:** While 2.7K 60fps and high-MP images succeed, 4K footage has not yet shown success and is typically compressed or counted. The anomaly appears to depend on specific camera metadata, file formats, or resolution flags.
+* **Video Resolution Scaling & Aspect Ratios:** High-resolution videos (like 2.7K 60fps shot on a **DJI Action 2**) do not bypass Storage Saver compression to keep their original 2.7K resolution. Instead, Google Photos scales them to **1920 x 1440** (preserving the 4:3 aspect ratio rather than forcing a standard 16:9 1080p crop/scale) and maintains 60fps frame rate for free, without consuming storage.
+* **Note on 4K:** True 4K footage (3840x2160 or 4096x2160) does not bypass compression and has not yet shown success in uploading at original resolution without consuming account storage. It is either compressed to 1080p or counted.
 
 <div align="center">
   <img src="assets/pixel2xl_og_proof.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="Proof: Original Quality free upload on Pixel 2 XL" />
