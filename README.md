@@ -410,6 +410,14 @@ This creates an autonomous, self-cleaning pipeline that can trickle terabytes of
 
 ---
 
+## Pixel-NAS Dashboard (New!)
+
+We have recently introduced a **Progressive Web App (PWA) Dashboard** to monitor the live telemetry of your Pixel-NAS! Since standard Android background notifications for Google Photos uploads can be highly unreliable, the dashboard queries actual Android logs (`logcat`) via a Termux background server to track backup status and battery levels with 100% accuracy.
+
+Check out the source code and setup instructions in the [`dashboard/`](dashboard/) directory.
+
+---
+
 ## Current Status
 
 | What | Status | Notes |
