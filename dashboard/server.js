@@ -98,7 +98,6 @@ const fetchTelemetry = async () => {
 
         // 4. Storage Auto-Kill Switch (The 55GB Limit)
         // If storage goes above 55GB, we ping MacroDroid to kill Resilio Sync.
-        // If it drops below 50GB, we ping MacroDroid to start it back up.
         if (lastData.storageUsedGB >= 55 && lastData.status !== 'storage_full') {
             console.log("CRITICAL: Storage exceeded 55GB. Triggering MacroDroid to STOP Resilio Sync.");
             try {
@@ -106,12 +105,14 @@ const fetchTelemetry = async () => {
                 await fetch('http://localhost:5000/webhook/stop-resilio').catch(() => {});
             } catch(e) {}
             lastData.status = 'storage_full';
-        } else if (lastData.storageUsedGB < 50 && lastData.status === 'storage_full') {
-            console.log("Storage cleared. Triggering MacroDroid to START Resilio Sync.");
-            try {
-                await fetch('http://localhost:5000/webhook/start-resilio').catch(() => {});
-            } catch(e) {}
-            // Status will be updated on the next tick by the logcat checks
+        }
+
+        // We removed the auto-restart webhook here because the user relies on
+        // existing MacroDroid hooks (like charger plug-in or Google Photos notifications)
+        // to handle the restart logic natively.
+        if (lastData.storageUsedGB < 50 && lastData.status === 'storage_full') {
+            // Just clear the status so it can trigger the kill switch again next time it fills up
+            lastData.status = 'idle'; 
         }
 
         lastData.lastUpdated = new Date().toISOString();
