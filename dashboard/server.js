@@ -96,6 +96,24 @@ const fetchTelemetry = async () => {
             lastData.status = 'idle';
         }
 
+        // 4. Storage Auto-Kill Switch (The 55GB Limit)
+        // If storage goes above 55GB, we ping MacroDroid to kill Resilio Sync.
+        // If it drops below 50GB, we ping MacroDroid to start it back up.
+        if (lastData.storageUsedGB >= 55 && lastData.status !== 'storage_full') {
+            console.log("CRITICAL: Storage exceeded 55GB. Triggering MacroDroid to STOP Resilio Sync.");
+            try {
+                // Hitting local MacroDroid webhook
+                await fetch('http://localhost:5000/webhook/stop-resilio').catch(() => {});
+            } catch(e) {}
+            lastData.status = 'storage_full';
+        } else if (lastData.storageUsedGB < 50 && lastData.status === 'storage_full') {
+            console.log("Storage cleared. Triggering MacroDroid to START Resilio Sync.");
+            try {
+                await fetch('http://localhost:5000/webhook/start-resilio').catch(() => {});
+            } catch(e) {}
+            // Status will be updated on the next tick by the logcat checks
+        }
+
         lastData.lastUpdated = new Date().toISOString();
     } catch (e) {
         console.error("Error fetching telemetry:", e);
