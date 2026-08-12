@@ -1,9 +1,12 @@
 #!/bin/bash
 echo "🚀 Starting Pixel-NAS Dashboard Setup..."
 
-echo "📦 Installing required packages (Node.js, Git, Termux-API)..."
+echo "📦 Installing required packages (Node.js, Git, Termux-API, OpenSSH)..."
 pkg update -y
-pkg install -y nodejs git termux-api
+pkg install -y nodejs git termux-api openssh
+
+echo "🔒 Starting SSH Server (Port 8022)..."
+sshd
 
 echo "📥 Fetching latest dashboard from GitHub..."
 # Clean up old directory if it exists
