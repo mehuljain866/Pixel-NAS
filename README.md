@@ -8,8 +8,7 @@ Pixel-NAS transforms a legacy Google Pixel device into an always-on, invisible b
 *(Calculated volume based on empirical data: A real-world sample of 5,722 items represented 91.74 GB [~16.03 MB/item] due to high-resolution phone media, RAW camera captures, and long 1080p/DJI video footage, projecting to ~1.6–2.0 TB for 100,000 items).* (as of August 15th 2026)
 
 <div align="center">
-  <img src="assets/stats_100k.jpg" width="48%" style="border-radius: 12px; margin: 5px;" alt="Proof of 100,000+ photos and videos backed up (August 2026)" />
-  <img src="assets/stats_84k.png" width="48%" style="border-radius: 12px; margin: 5px;" alt="Proof of 84,902 photos and videos milestone (April 2026)" />
+  <img src="assets/stats_100k.jpg" width="45%" style="border-radius: 12px; margin: 10px auto;" alt="Proof of 100,000+ photos and videos backed up (August 2026)" />
 </div>
 <br clear="all" />
 
@@ -159,13 +158,14 @@ The physical build transforms the salvaged Pixel 2 XL into a completely self-con
   - ⚡ **Local Termux Node:** Runs our background Node.js telemetry server for the PWA dashboard.
 
 <div align="center">
-  <img src="assets/hardware_wall_mount_plugged.jpg" width="31%" style="border-radius: 12px; margin: 4px;" alt="All-in-one wall mounted setup" />
-  <img src="assets/hardware_plugged_backing_up.jpg" width="31%" style="border-radius: 12px; margin: 4px;" alt="Device backing up while plugged in" />
-  <img src="assets/hardware_stand_photo_frame.jpg" width="31%" style="border-radius: 12px; margin: 4px;" alt="Angled stand mode as photo frame" />
+  <!-- Prioritized Hero Views: Active Screen & Mounting -->
+  <img src="assets/hardware_stand_photo_frame.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Angled stand mode as ambient photo frame (Screen active)" />
+  <img src="assets/hardware_plugged_backing_up.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Device suspended on wall socket actively backing up" />
 </div>
 <div align="center">
-  <img src="assets/hardware_charger_velcro_cable.jpg" width="47%" style="border-radius: 12px; margin: 4px;" alt="Velcro attachment on charger and coiled cable" />
-  <img src="assets/hardware_back_velcro_protection.jpg" width="47%" style="border-radius: 12px; margin: 4px;" alt="Rear velcro strips and camera protection riser" />
+  <!-- Hardware Construction & Protection Details -->
+  <img src="assets/hardware_charger_velcro_cable.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Velcro attachment on charger and coiled cable" />
+  <img src="assets/hardware_back_velcro_protection.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Rear velcro strips and camera protection riser" />
 </div>
 
 ---
@@ -179,9 +179,13 @@ To eliminate the need to constantly open Android Settings or terminal sessions j
 * **Hardware Screen Compensation:** Salvaged Pixel 2 XL OLED panels often develop minor artifacts around the top status bar icons; a large center-screen battery widget ensures percentage legibility at all times.
 
 <div align="center">
-  <img src="assets/pixel_homescreen_widgets.png" width="40%" style="border-radius: 12px; margin: 5px;" alt="Pixel-NAS Home Screen Widgets" />
-  <img src="assets/battery_temp_widget_charge.jpg" width="28%" style="border-radius: 12px; margin: 5px;" alt="Battery charging and temperature telemetry" />
-  <img src="assets/battery_temp_widget_discharge.jpg" width="28%" style="border-radius: 12px; margin: 5px;" alt="Battery discharge telemetry" />
+  <!-- Primary Home Screen Dashboard View -->
+  <img src="assets/pixel_homescreen_widgets.png" width="36%" style="border-radius: 12px; margin: 10px auto;" alt="Pixel-NAS Home Screen Widgets" />
+</div>
+<div align="center">
+  <!-- Matching Notification Shade & Charging Telemetry Cards -->
+  <img src="assets/battery_temp_widget_charge.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Battery charging and temperature telemetry" />
+  <img src="assets/battery_temp_widget_discharge.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Battery discharge telemetry" />
 </div>
 
 ---
