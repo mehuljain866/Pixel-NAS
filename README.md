@@ -4,9 +4,13 @@
 
 Pixel-NAS transforms a legacy Google Pixel device into an always-on, invisible backup node. It silently syncs photos, videos, and files from your daily devices directly to Google Photos' infinite cloud storage—for free. No monthly subscriptions, no expensive NAS hardware, and zero manual maintenance.
 
-*Currently managing a pipeline of **84,902 photos and videos (~1.5 TB)** across multiple devices seamlessly, with archives going back to the 2007–2008 era and older.*
-*(Calculated volume based on an estimated 70/30 split: ~59,431 photos at an average of 3.5 MB each [~208 GB] and ~25,471 videos at an average of 50 MB each [~1.27 TB] for a total of ~1.48 TB).* (as of April 27th 2026)
-<img src="assets/stats_84k.png" align="right" width="40%" style="border-radius: 12px; margin: 10px 0 15px 20px;" alt="Proof of 84,902 photos and videos backed up" />
+*Currently managing an active archive of **100,000+ photos and videos (~1.8–2.0 TB)** across multiple devices seamlessly, with archives going back to the 2007–2008 era and older.*
+*(Calculated volume based on empirical data: A real-world sample of 5,722 items represented 91.74 GB [~16.03 MB/item] due to high-resolution phone media, RAW camera captures, and long 1080p/DJI video footage, projecting to ~1.6–2.0 TB for 100,000 items).* (as of August 15th 2026)
+
+<div align="center">
+  <img src="assets/stats_100k.jpg" width="48%" style="border-radius: 12px; margin: 5px;" alt="Proof of 100,000+ photos and videos backed up (August 2026)" />
+  <img src="assets/stats_84k.png" width="48%" style="border-radius: 12px; margin: 5px;" alt="Proof of 84,902 photos and videos milestone (April 2026)" />
+</div>
 <br clear="all" />
 
 ---
@@ -44,10 +48,12 @@ This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or 
 3. **Auto-Purging (The Pixel Buffer):** The Pixel's internal storage acts as a temporary buffer. Android's Smart Storage automatically clears backed-up files every 30/60/90 days — it self-cleans without any user action.
 4. **Passive Confirmation:** Real-time push notifications alert your main device when a batch finishes uploading via Google Photos Partner Sharing.
 5. **Freeing Up Main Device Space:** Because your photos are safely in the cloud, you can open Google Photos on your *main daily driver* and manually tap **"Free up space"** to reclaim gigabytes of local storage.
+   - *Real-world benchmark:* A single cleanup session safely reclaimed **91.74 GB of storage** (purging 5,722 items in batches of 2,000 / 2,000 / 1,722), reducing the primary daily driver's storage from 253.3 GB (98% full) down to 161.1 GB (63% used).
 
 <div align="center">
-  <img src="assets/free_space_regular.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="Regular free up space" />
-  <img src="assets/free_space_max.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="Max free up space" />
+  <img src="assets/cleanup_91gb.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="91.74 GB freed in a single session" />
+  <img src="assets/free_space_max.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Max free up space prompt" />
+  <img src="assets/free_space_regular.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Regular free up space" />
 </div>
 
 > **Important distinction:** Step 3 (auto-purge) happens automatically on the Pixel buffer only. Your **main phone's** Google Photos cannot auto-delete — that always requires a manual tap from you. This is intentional — auto-deleting photos from your primary device would be dangerous.
@@ -108,10 +114,10 @@ Production usage statistics gathered over extended operational testing show the 
 
 | Metric | Value |
 | :--- | :--- |
-| **Runtime** | 14 months |
-| **Backups** | 84,902 photos/videos |
-| **Failures** | 2 |
-| **Recovery Time** | 5 minutes |
+| **Runtime** | 18+ months |
+| **Backups** | 100,000+ photos/videos (~2.0 TB) |
+| **Edge-Case Storage Lockdowns** | 4 (storage overfilled to 23 KB prior to auto-kill switch) |
+| **Recovery Time** | ~5 minutes (via automated setup script) |
 
 ---
 
@@ -136,6 +142,27 @@ Leaving a phone plugged in 24/7 destroys the battery. V3 uses a **5W (1A) charge
 For users without smart home integration, a simpler approach works well: manually plug the Pixel in for **30 minutes to 1 hour per day**. That is enough to keep it running while protecting battery health. A Wi-Fi smart plug (Google Home / Alexa / Apple Home compatible) with a scheduled on/off routine is the recommended upgrade — it makes this fully automatic.
 
 * **Advanced Home Assistant Integration:** Power users can link their smart plug to **Home Assistant** and configure an automation based on the Pixel's actual battery percentage (e.g., turn plug ON at 20%, OFF at 80%) rather than relying on a static time schedule.
+
+### 5. Physical Mounting & Smart Home Hub ("Budget MagSafe")
+The Pixel is mounted semi-permanently on a softboard using heavy-duty Velcro strips across the back of the phone, securing both the device and its coiled USB-C cable. 
+- **Wall Mounting:** The low-wattage charging adapter is plugged directly into a wall/switchboard socket with Velcro securing the phone directly above the power outlet.
+- **Smart Hub Node:** Utilizing the Pixel's native Google Assistant and far-field voice recognition, the device doubles as an always-on smart home control terminal and digital night clock.
+
+---
+
+## On-Device Visual Telemetry (Home Screen Widgets)
+
+To eliminate the need to constantly open Android Settings or terminal sessions just to check node health, the Pixel 2 XL home screen is configured with dedicated live widgets:
+
+* **Live Storage Bar:** Provides an instant visual gauge of buffer capacity (ensuring storage never nears the dangerous 55GB+ zone).
+* **Battery & Temperature Widget:** Displays real-time battery percentage, charging duration, discharge estimation, and live hardware temperature in Celsius (🌡️). *(Essential for monitoring thermal buildup during heavy 10GB+ bulk ingestions).*
+* **Hardware Screen Compensation:** Salvaged Pixel 2 XL OLED panels often develop minor artifacts around the top status bar icons; a large center-screen battery widget ensures percentage legibility at all times.
+
+<div align="center">
+  <img src="assets/pixel_homescreen_widgets.png" width="40%" style="border-radius: 12px; margin: 5px;" alt="Pixel-NAS Home Screen Widgets" />
+  <img src="assets/battery_temp_widget_charge.jpg" width="28%" style="border-radius: 12px; margin: 5px;" alt="Battery charging and temperature telemetry" />
+  <img src="assets/battery_temp_widget_discharge.jpg" width="28%" style="border-radius: 12px; margin: 5px;" alt="Battery discharge telemetry" />
+</div>
 
 ---
 
@@ -233,9 +260,9 @@ If you are comfortable rooting with Magisk (or KernelSU/APatch), Zygisk-based mo
 **1. Prepare the Device**
 Factory reset the Pixel. Use Android Universal Debloater (ADB) to strip bloatware, maximizing the internal buffer and freeing up CPU cycles for the sync and upload tasks.
 
-**2. Configure Google Photos**
-Log in with a **dedicated backup Google account** — not your main personal account. Then:
-
+**2. Configure Google Photos (Known-Good Build)**
+- **Tested Stable Build:** Sideload **Google Photos v7.5 / 8.0.855792468 (January 2026 build)**. Newer releases introduce memory-heavy background services and UI bloat that can choke older Snapdragon processors during prolonged ingestion. Disable auto-updates in the Play Store (`Google Photos → ⋮ → Don't auto-update`).
+- Log in with a **dedicated backup Google account** — not your main personal account.
 - **Enable backup for ALL folders.** By default, Google Photos only backs up the device's Camera folder. Since Resilio Sync delivers files into a separate synced folder (not the camera roll), you must manually enable backup for every folder Resilio syncs into: Library → scroll down to your folder → tap the ☁️ cloud icon to enable backup for that folder.
 - **Set backup quality.** On first setup (or after a factory reset), verify the backup quality setting:
   - Pixel 1: leave at **"Original quality"** — this is the whole point.
@@ -281,6 +308,14 @@ Partner Sharing is not a core requirement — the backup works entirely without 
 * **How it works:** When the Pixel backs up a new batch, those photos populate in your main phone's "Sharing" tab, and you receive a batch push notification confirming the backup cycle completed.
 * **For third-party media** (screenshots, WhatsApp photos, etc.): enable **Photos settings → Sharing → Partner Sharing → "Include content from other Android apps"** (added in early 2025).
 * *If notifications stop: remove the partner, wait 10 minutes, re-invite.*
+
+**7. NetGuard Surgical Firewall (Zero-Root Ad Blocking for Utility Widgets)**
+If using third-party Play Store widget apps for storage/battery monitoring, isolate them using **NetGuard** (open-source no-root firewall by Marcel Bokhorst / FairCode BV):
+1. Install NetGuard from GitHub / F-Droid / Play Store.
+2. In NetGuard, tap the Wi-Fi and Mobile Data icons next to the widget utility apps to turn them **RED (blocked)**.
+3. Keep Google Photos, Resilio Sync, Termux, and Google Play Services unblocked.
+4. Enable NetGuard's master switch (creates a local dummy VPN interface).
+5. *Result:* Widget apps run locally with zero ads and zero data leaks, while Google Photos maintains 100% uninhibited gigabit upload bandwidth.
 
 **Alternative Notification Method (MacroDroid / Tasker):**
 If you prefer not to use Partner Sharing, you can use automation apps like MacroDroid or Tasker directly on the Pixel. These can monitor the Google Photos app state, folder modification times, or backup status, and fire a custom webhook or push notification to your main device when the sync completes. This is often a cleaner approach, though it requires more initial setup.
@@ -434,14 +469,14 @@ Check out the source code and setup instructions in the [`dashboard/`](dashboard
 
 ## Known Limitations & Heads-Ups
 
-- **The 64GB Bottleneck:** The Pixel's internal storage is a live buffer. Heavy dumps (30GB+) can cause "maximum storage" errors, stalling the pipeline. A **128GB Pixel 1** is highly recommended. With a 64GB model, keep usage below 55–60GB.
+- **The 64GB Bottleneck & The 23 KB Critical Storage Lockdown:** The Pixel's internal storage is a live buffer. If storage usage exceeds 55–60GB and reaches absolute zero (e.g. **23 Kilobytes free** as reported by Google Files), Android's internal SQLite databases, MTP daemons, and background tasks lock down completely. In this state, even connecting the Pixel to a PC via USB cable fails to delete files because the MTP process crashes immediately. The only recovery is a full factory reset (which has occurred 4 times throughout pipeline R&D). This is why the **Termux Auto-Kill Switch at 55 GB** is strongly recommended.
 - **Occasional Manual Purge:** Android Smart Storage won't delete files newer than 30 days, even if they're backed up. If the Pixel fills up faster than the auto-purge cycle, manually trigger "Free up space" on the Pixel (Google Photos → Library → Free up space). This is the only recurring manual task for heavy users.
+- **Google Photos Version Stability (The Golden Build):** Newer Google Photos updates can introduce severe memory leaks and background synchronization freezes on legacy Snapdragon 835 hardware. Through extensive testing, **Google Photos v7.5 / 8.0.855792468 (January 2026 build)** has been proven to be the most rock-solid release for continuous high-volume ingestion. Disable auto-updates via Play Store → Google Photos → ⋮ → Don't auto-update.
 - **Battery Degradation (Without Hack):** Without the smart plug + USB hub trickle charging setup, the battery will degrade from continuous 100% charging, eventually risking battery swelling.
 - **App "Naps":** Android background management may put Resilio Sync to sleep despite Unrestricted battery settings. Occasional manual refresh or a MacroDroid watchdog trigger can recover this.
-- **Hardware Quirks:** Salvaged hardware may have cracked screens or other physical quirks. See the Headless Node section for no-touch operation.
+- **Hardware Quirks:** Salvaged hardware may have cracked screens or OLED green display artifacts around status bar icons. See the Headless Node and Home Screen Widgets sections for workarounds.
 - **Metadata Preservation:** Resilio Sync preserves metadata perfectly. GPS coordinates (if enabled at capture), exact timestamps, and device origin (e.g., "Shot on iPhone") survive the E2E transfer completely intact. Google Photos will confirm: *"This item doesn't take up space in your account storage."*
 - **Android System Backup (July 2026):** As of July 7, 2026, Android's device backup (SMS, call logs, app data, settings) now counts toward your 15 GB Google quota — even if your photos are uploading for free via the Pixel. Manage via Android Settings → Google → Backup. The data is mostly text-based and typically under 1 GB, but check it if you notice unexpected storage consumption.
-- **Google Photos Auto-Update:** Auto-updates for Google Photos have generally been fine — the Pixel receives updates on day one and continues working without issue. As a precaution, you can disable auto-update via Play Store → Google Photos → ⋮ → Don't auto-update and update manually. If backup ever breaks after an update, clear Google Photos app data and re-verify backup settings as the first step.
 
 ---
 
