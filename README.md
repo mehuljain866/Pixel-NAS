@@ -32,8 +32,9 @@ The evolution of Pixel-NAS spans several years, starting from early classroom id
 * **System Regularization & V2 (The Automation Phase - April/May 2025):** 
   <img src="assets/new_workflow.jpg" alt="V2 and V3 Setup" align="left" width="40%" style="border-radius: 12px; margin: 0 20px 15px 0;" /> 
   Moved past the fragile Version 1 wired workflow and transitioned into a more automated, stable, and fluid system. We introduced Resilio Sync over Wi-Fi, proving the concept by effortlessly syncing 80GB of 4K drone/camera footage without any cables. *(Pictured left: Three devices wirelessly backing up to the Pixel over Wi-Fi, which then seamlessly uploads to the cloud.)*
-* **V3 (The Intervention-Free Phase - Present):** 
-  The current architecture. Leveraging Smart Home integrations, geofencing, and advanced automation, the system now runs perpetually without any human intervention. Data flows like a self-cleaning pipe.
+* **V3 (The Intervention-Free Phase & All-in-One Form Factor - Present):** 
+  <img src="assets/hardware_wall_mount_plugged.jpg" alt="V3 All-in-One Plug & Play Setup" align="right" width="30%" style="border-radius: 12px; margin: 0 0 15px 20px;" />
+  The current architecture and hardware form factor. Leveraging Smart Home integrations, geofencing, and advanced automation, the system now runs perpetually without human intervention. The phone, low-wattage adapter, and coiled USB-C cable are integrated into a single self-contained unit that can simply hang on a wall outlet—eliminating cable mess and clearing desk space entirely.
 <br clear="all" />
 
 
@@ -143,10 +144,29 @@ For users without smart home integration, a simpler approach works well: manuall
 
 * **Advanced Home Assistant Integration:** Power users can link their smart plug to **Home Assistant** and configure an automation based on the Pixel's actual battery percentage (e.g., turn plug ON at 20%, OFF at 80%) rather than relying on a static time schedule.
 
-### 5. Physical Mounting & Smart Home Hub ("Budget MagSafe")
-The Pixel is mounted semi-permanently on a softboard using heavy-duty Velcro strips across the back of the phone, securing both the device and its coiled USB-C cable. 
-- **Wall Mounting:** The low-wattage charging adapter is plugged directly into a wall/switchboard socket with Velcro securing the phone directly above the power outlet.
-- **Smart Hub Node:** Utilizing the Pixel's native Google Assistant and far-field voice recognition, the device doubles as an always-on smart home control terminal and digital night clock.
+### 5. Physical Hardware & Form Factor ("All-in-One Plug & Play Node")
+
+The physical build transforms the salvaged Pixel 2 XL into a completely self-contained, modular appliance:
+
+* **All-in-One Portability & Zero Desk Footprint:** Heavy-duty Velcro strips securely bond the Pixel 2 XL, a low-wattage 7.5W charging adapter, and a coiled USB-C cable into a single integrated unit. It can be thrown anywhere or plugged into any wall socket. Even in rooms with no desk or shelf near the outlet, the entire assembly hangs securely suspended from the wall plug itself.
+* **Built-in Stand / Digital Photo Frame:** When placed on a flat desk or bedside table, the rear charger-and-cable bundle doubles as a sturdy kickstand, propping the phone up at an optimal viewing angle to function as an ambient digital photo frame.
+* **Camera Lens Scratch Protection:** A dedicated Velcro strip across the upper rear glass section acts as a physical riser, keeping the camera lens elevated away from rough table surfaces to prevent scratches.
+* **Ambient Smart Node Capabilities:** Beyond backing up terabytes of photos, the always-on node serves multiple passive utility functions:
+  - 🎵 **"Now Playing" Song Identification:** Leverages Pixel's native on-device ambient music recognition to display whatever song is playing in the room.
+  - ⏰ **Always-On Display & Night Clock:** Shows live time, date, weather, and battery health at a glance.
+  - 🎧 **Spotify Connect Controller:** Acts as a dedicated room controller for audio playback across connected speakers.
+  - 🗣️ **Google Assistant Smart Hub:** Far-field voice command control for smart plugs, routines, and alarms.
+  - ⚡ **Local Termux Node:** Runs our background Node.js telemetry server for the PWA dashboard.
+
+<div align="center">
+  <img src="assets/hardware_wall_mount_plugged.jpg" width="31%" style="border-radius: 12px; margin: 4px;" alt="All-in-one wall mounted setup" />
+  <img src="assets/hardware_plugged_backing_up.jpg" width="31%" style="border-radius: 12px; margin: 4px;" alt="Device backing up while plugged in" />
+  <img src="assets/hardware_stand_photo_frame.jpg" width="31%" style="border-radius: 12px; margin: 4px;" alt="Angled stand mode as photo frame" />
+</div>
+<div align="center">
+  <img src="assets/hardware_charger_velcro_cable.jpg" width="47%" style="border-radius: 12px; margin: 4px;" alt="Velcro attachment on charger and coiled cable" />
+  <img src="assets/hardware_back_velcro_protection.jpg" width="47%" style="border-radius: 12px; margin: 4px;" alt="Rear velcro strips and camera protection riser" />
+</div>
 
 ---
 
