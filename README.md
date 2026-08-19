@@ -4,11 +4,11 @@
 
 Pixel-NAS transforms a legacy Google Pixel device into an always-on, invisible backup node. It silently syncs photos, videos, and files from your daily devices directly to Google Photos' infinite cloud storage—for free. No monthly subscriptions, no expensive NAS hardware, and zero manual maintenance.
 
-*Currently managing an active archive of **100,000+ photos and videos (~1.8–2.0 TB)** across multiple devices seamlessly, with archives going back to the 2007–2008 era and older.*
-*(Calculated volume based on empirical data: A real-world sample of 5,722 items represented 91.74 GB [~16.03 MB/item] due to high-resolution phone media, RAW camera captures, and long 1080p/DJI video footage, projecting to ~1.6–2.0 TB for 100,000 items).* (as of August 15th 2026)
+*Currently managing an active archive of **100,826 photos and videos (~1.8–2.0 TB)** across multiple devices seamlessly, with archives going back to the 2007–2008 era and older.*
+*(Calculated volume based on empirical data: A real-world sample of 5,722 items represented 91.74 GB [~16.03 MB/item] due to high-resolution phone media, RAW camera captures, and long 1080p/DJI video footage, projecting to ~1.6–2.0 TB for 100,000 items).* (as of August 19th 2026)
 
 <div align="center">
-  <img src="assets/stats_100k.jpg" width="45%" style="border-radius: 12px; margin: 10px auto;" alt="Proof of 100,000+ photos and videos backed up (August 2026)" />
+  <img src="assets/stats_100k.jpg" width="45%" style="border-radius: 12px; margin: 10px auto;" alt="Proof of 100,826 photos and videos backed up (August 19, 2026)" />
 </div>
 <br clear="all" />
 
@@ -222,8 +222,8 @@ To verify the energy efficiency and thermal profile of the Pixel 2 XL acting as 
 
 ### 📊 Benchmark Conditions & Operational Load
 * **Initial State:** Charged to **97%** on Monday, Aug 17 at 11:07 PM.
-* **Duration:** **43.75 Hours (~1.8 Days)** continuously unplugged from the wall.
-* **Ending State:** **12% Battery** remaining on Wednesday, Aug 19 at 6:52 PM.
+* **Duration:** **45.3 Hours (~1.9 Days)** continuously unplugged from the wall.
+* **Ending State:** **12% Battery** remaining on Wednesday, Aug 19 at 8:26 PM (holding steady at 12% in post-burst idle).
 * **Active Background Load:**
   - 🌙 **Always-On Display (AOD):** Kept active 24/7 (clock, date, Now Playing music detection).
   - 📶 **Wi-Fi & P2P Connectivity:** Always-on LAN socket for Resilio Sync listening.
@@ -233,12 +233,13 @@ To verify the energy efficiency and thermal profile of the Pixel 2 XL acting as 
 * **⚡ Ambient Sync vs. Heavy Burst Video Ingestion:**
   - **Ambient Sync (Hours 0 – 41):** Routine photo batches (~500MB – 1GB) show up as tiny, subtle dips along a very gentle baseline drain curve (~1.46%/hr).
   - **Massive Video Ingestion Burst (Hours 41.1 – 43.75):** Recorded and synced an unbroken **~30-minute 1080p 30fps video (~6.4 GB)** plus a 42-second clip (~170 MB), totalling **~6.57 GB of continuous burst ingestion**. The simultaneous high-bandwidth Wi-Fi transfer, rapid flash NAND writes, and intensive Google Photos video processing caused a steep, visible discharge from **37% down to 12%** in ~2.65 hours.
+  - **Post-Burst Deep Idle (Hours 43.75 – 45.3):** Once the large video finished processing and cloud uploading, the node immediately returned to low-power idle, flatlining at **12% battery** from 6:52 PM to 8:26 PM with zero further drop.
 
 ### 📈 Discharge & Thermal Metrics
 
 | Metric | Measured Value | Operational Insight |
 | :--- | :--- | :--- |
-| **Total Runtime (Unplugged)** | **43.75 Hours** | 97% → 12% (85% consumed over ~1.8 days under mixed idle + burst load) |
+| **Total Runtime (Unplugged)** | **45.3 Hours** | 97% → 12% (85% consumed over ~1.9 days under mixed idle + burst load) |
 | **Baseline Idle / Ambient Drain** | **~1.46% / hour** | ~35% battery consumed per 24 hours under standard background sync |
 | **Heavy Video Ingestion Drain** | **~9.4% / hour** | Continuous 6.5GB+ video Wi-Fi sync, local flash writes, and cloud upload |
 | **Projected Total Battery Life** | **~50–70 Hours (~2–3 Days)** | Easily withstands extended power outages even with active data ingestion |
@@ -248,7 +249,7 @@ To verify the energy efficiency and thermal profile of the Pixel 2 XL acting as 
 ### 📊 Plotted Battery Discharge Curve
 
 <div align="center">
-  <img src="assets/battery_telemetry_graph.png" width="95%" style="border-radius: 12px; margin: 10px auto;" alt="Pixel 2 XL Battery Telemetry Plotted Discharge Curve (43.75-Hour Run)" />
+  <img src="assets/battery_telemetry_graph.png" width="95%" style="border-radius: 12px; margin: 10px auto;" alt="Pixel 2 XL Battery Telemetry Plotted Discharge Curve (45.3-Hour Run)" />
 </div>
 
 ### 🗓️ Key Milestone Telemetry Checkpoints
@@ -263,6 +264,7 @@ To verify the energy efficiency and thermal profile of the Pixel 2 XL acting as 
 | **Wed, Aug 19 · 09:31 AM** | 34.4 hrs | **45%** | 23.1 GB (38%) | — | 🧹 **Storage Purged:** 35.3 GB cleared via Google Photos Free Up Space |
 | **Wed, Aug 19 · 04:13 PM** | 41.1 hrs | **37%** | 23.2 GB (38%) | — | 📱 Routine ambient sync baseline before video burst |
 | **Wed, Aug 19 · 06:52 PM** | 43.75 hrs | **12%** | ~29.8 GB (49%) | — | 📹 **Heavy Video Burst:** Ingested **6.57 GB** (30-min 1080p video); steep 25% drain |
+| **Wed, Aug 19 · 08:26 PM** | 45.3 hrs | **12%** | ~29.8 GB (49%) | — | 💤 **Post-Burst Idle Flatline:** Upload finished; battery stabilized at 12% |
 
 <div align="center">
   <!-- Progression of the 41-hour unplugged drain test -->
