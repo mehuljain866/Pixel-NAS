@@ -406,6 +406,13 @@ When syncing media from your source phone/PC to the Pixel, you can choose betwee
   </table>
 </div>
 
+> 💡 **What I Personally Do (The Complete Catch-All Setup):**
+> Because I want to ensure *every single memory* is safely archived, I personally use the **`DCIM` root route** as my baseline. However, from real-world testing across Android devices, many essential apps store media completely outside of `DCIM`:
+> * **Social & Messaging Apps (Instagram, Beeper, etc.):** Save photos, stories, and saved chat media inside `/Pictures/` (e.g., `Pictures/Instagram`, `Pictures/Beeper`).
+> * **Direct File Transfer Utilities (LocalSend):** Saves incoming video clips and shared media inside `/Movies/` (e.g., `Movies/LocalSend`).
+> 
+> **My Production Workflow:** In addition to syncing `DCIM`, I create two additional sync pairs in Resilio for the **`Pictures`** and **`Movies`** directories. Then, on the Pixel's Google Photos app, go to **Library → Photos on device** and ensure the ☁️ cloud backup toggle is turned **ON** for both `Pictures` and `Movies`. This ensures 100% of your camera roll, social captures, and LocalSend drops are seamlessly ingested.
+
 ---
 
 #### ⚙️ Sub-Step 3B: In-App Power & Notification Settings
