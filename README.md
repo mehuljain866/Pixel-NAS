@@ -44,6 +44,14 @@ Over a 10-year horizon, a 2TB Google One plan costs approximately **₹1,56,000+
 
 **Pixel-NAS eliminates this entirely.** By exploiting Google's own legacy unlimited backup policy through a physical Pixel device, your data flows into the same Google Photos infrastructure — but without the subscription. No monthly bill, no grace periods, no deletion countdowns. The photos are simply *there*, forever, on Google's servers, backed by the same infrastructure that serves billions of users.
 
+### 🧘 The Peace of Mind: Cross-Device Accessibility
+
+Beyond the financial argument, there's a quieter benefit that only becomes obvious once you've lived with it: **you stop worrying about your devices.**
+
+Because every device in your life — phone, laptop, tablet — funnels its media into the same Pixel-NAS backup node, every photo, screenshot, and video you capture on *any* device is automatically accessible from *every* device. Take a screenshot on your laptop? It shows up on your phone. Record a video on your tablet? It's on your laptop. Capture a memory on your phone? It's everywhere.
+
+This means you are no longer tethered to any single piece of hardware. If your phone breaks, gets lost, or needs a factory reset — your memories are safe. If your laptop dies — your screenshots and downloads are safe. **The physical device becomes disposable; the memories are permanent.** You carry less anxiety about your hardware because you know that everything important has already been silently funnelled to the cloud through the Pixel, without you lifting a finger.
+
 ### The Journey & Project Timeline
 
 The evolution of Pixel-NAS spans several years, starting from early classroom ideas to a fully production-ready automated backup pipeline:
