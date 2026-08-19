@@ -1,0 +1,18 @@
+# Personal and private documentation files (never commit)
+context.md
+handoff.md
+*chat*.md
+*review*.md
+*Data*.md
+*Setup*.md
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+*.log
+
+# Node dependencies & builds
+node_modules/
+.next/
+out/
+.env*
