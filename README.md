@@ -209,11 +209,47 @@ To verify the energy efficiency and thermal profile of the Pixel 2 XL acting as 
 
 | Metric | Measured Value | Operational Insight |
 | :--- | :--- | :--- |
-| **Total Runtime (Unplugged)** | **41.1 Hours** | 97% → 37% (60% consumed) |
+| **Total Runtime (Unplugged)** | **41.1 Hours** | 97% → 37% (60% consumed over ~1.7 days) |
 | **Average Hourly Drain** | **~1.46% / hour** | ~35% battery consumed per 24 hours |
-| **Projected Total Battery Life** | **~68–72 Hours (~3 Full Days)** | Can survive multi-day power outages easily |
-| **Idle Thermal Profile (AC active)** | **67°F – 69°F (~19.4°C – 20.5°C)** | Sub-ambient cooling with room AC blasting |
-| **Standard Thermal Profile** | **77°F (~25.0°C)** | Nominal room temperature during active sync |
+| **Projected Total Battery Life** | **~68–72 Hours (~3 Full Days)** | Survives multi-day power outages with zero downtime |
+| **Idle Thermal Profile (AC active)** | **67°F – 69°F (~19.4°C – 20.5°C)** | Sub-ambient thermal dissipation with room AC active |
+| **Standard Thermal Profile** | **77°F (~25.0°C)** | Nominal room temperature during active ingestion |
+
+### 📊 Plotted Battery Discharge Curve
+
+```mermaid
+---
+config:
+  theme: dark
+---
+xychart-beta
+    title "Pixel 2 XL Battery Drain vs. Time (41-Hour Real-World Unplugged Test)"
+    x-axis ["Aug 17 11PM (0h)", "Aug 18 7:30AM (8.5h)", "Aug 18 3PM (16h)", "Aug 18 5:30PM (18.5h)", "Aug 18 11PM (24h)", "Aug 19 8:30AM (33.5h)", "Aug 19 9:30AM (34.5h)", "Aug 19 1:30PM (38.5h)", "Aug 19 4:15PM (41.1h)"]
+    y-axis "Battery Level (%)" 0 --> 100
+    line [97, 91, 79, 75, 68, 49, 45, 42, 37]
+```
+
+### 🗓️ Complete Chronological Telemetry Log
+
+| Date & Time | Elapsed | Battery % | Storage Used | Free Buffer | Temp | System Event & Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Mon, Aug 17 · 11:07 PM** | 0.0 hrs | **97%** | 56.9 GB (95%) | 2.74 GB | — | 🔌 Unplugged from 7.5W adapter; test begins |
+| **Tue, Aug 18 · 07:34 AM** | 8.5 hrs | **91%** | 56.8 GB (95%) | 2.79 GB | — | 🌙 Overnight standby with Always-On Display (0.71%/hr drain) |
+| **Tue, Aug 18 · 03:04 PM** | 16.0 hrs | **79%** | 57.7 GB (96%) | 1.95 GB | — | 🔄 Background P2P LAN sync & incoming media ingestion |
+| **Tue, Aug 18 · 03:31 PM** | 16.5 hrs | **78%** | 57.7 GB (96%) | 1.95 GB | — | ☁️ Continuous Google Photos cloud backup |
+| **Tue, Aug 18 · 04:39 PM** | 17.5 hrs | **77%** | 57.7 GB (96%) | 1.95 GB | — | 📶 Passive socket listening |
+| **Tue, Aug 18 · 05:00 PM** | 17.9 hrs | **76%** | 57.7 GB (96%) | 1.94 GB | — | 📱 Screen interaction & widget telemetry verification |
+| **Tue, Aug 18 · 05:39 PM** | 18.5 hrs | **75%** | 57.9 GB (97%) | 1.66 GB | — | 📥 Active ingestion (+0.2 GB) |
+| **Tue, Aug 18 · 10:51 PM** | 23.7 hrs | **68%** | 58.4 GB (97%) | 1.20 GB | **77°F (25°C)** | ⏱️ 24-Hour Milestone: only 29% battery consumed in 1 full day |
+| **Tue, Aug 18 · 11:22 PM** | 24.3 hrs | **66%** | 58.4 GB (97%) | 1.20 GB | **77°F (25°C)** | 🌡️ Temperature steady at 77°F in standard room climate |
+| **Wed, Aug 19 · 12:03 AM** | 24.9 hrs | **66%** | 58.4 GB (98%) | 1.18 GB | — | 🌙 Overnight standby |
+| **Wed, Aug 19 · 08:28 AM** | 33.4 hrs | **49%** | 58.4 GB (98%) | 1.18 GB | **67°F (19.4°C)** | ❄️ AC blasting at peak; temperature drops to 67°F |
+| **Wed, Aug 19 · 09:31 AM** | 34.4 hrs | **45%** | 23.1 GB (38%) | 36.5 GB | — | 🧹 **Storage Purged:** 35.3 GB cleared via Google Photos Free Up Space |
+| **Wed, Aug 19 · 11:43 AM** | 36.6 hrs | **45%** | 23.1 GB (38%) | 36.5 GB | — | 💤 Deep idle with cleared storage buffer |
+| **Wed, Aug 19 · 01:18 PM** | 38.2 hrs | **43%** | 23.1 GB (38%) | 36.5 GB | — | 📶 Standby |
+| **Wed, Aug 19 · 01:33 PM** | 38.4 hrs | **42%** | 23.1 GB (38%) | 36.5 GB | — | 📶 Standby |
+| **Wed, Aug 19 · 03:31 PM** | 40.4 hrs | **39%** | 23.1 GB (38%) | 36.5 GB | — | 📶 Standby |
+| **Wed, Aug 19 · 04:13 PM** | 41.1 hrs | **37%** | 23.2 GB (38%) | 36.5 GB | — | 🏁 **Latest Reading:** 37% remaining (~31h projected battery remaining) |
 
 <div align="center">
   <!-- Progression of the 41-hour unplugged drain test -->
@@ -222,7 +258,7 @@ To verify the energy efficiency and thermal profile of the Pixel 2 XL acting as 
   <img src="assets/battery_test_day3_37pct.png" width="31%" style="border-radius: 12px; margin: 4px;" alt="Day 3 Ending: 37% Battery with Storage Purged (Aug 19, 4:13 PM)" />
 </div>
 <div align="center">
-  <!-- Thermal Telemetry Evidence -->
+  <!-- Clean Cropped Thermal Telemetry Cards -->
   <img src="assets/battery_temp_67f_ac_blast.png" width="47%" style="border-radius: 12px; margin: 5px;" alt="Thermal readout: 67°F with AC blasting" />
   <img src="assets/battery_temp_77f_lockscreen.png" width="47%" style="border-radius: 12px; margin: 5px;" alt="Thermal readout: 77°F nominal room temperature" />
 </div>
