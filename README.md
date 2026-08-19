@@ -146,12 +146,12 @@ Through rigorous pipeline optimization, wireless syncing is now effectively as f
 
 Production usage statistics gathered over extended operational testing show the robustness of the automated V3 pipeline:
 
-| Metric | Value |
-| :--- | :--- |
-| **Runtime** | 18+ months |
-| **Backups** | 100,000+ photos/videos (~2.0 TB) |
-| **Edge-Case Storage Lockdowns** | 4 (storage overfilled to 23 KB prior to auto-kill switch) |
-| **Recovery Time** | ~5 minutes (via automated setup script) |
+| Metric | Value | Operational Details |
+| :--- | :--- | :--- |
+| **Continuous Operational Runtime** | **18+ months** | Ongoing production operation across multiple daily devices |
+| **Total Verified Backups** | **100,826 photos/videos (~1.8–2.0 TB)** | Empirical volume includes 4K/1080p video, RAW camera captures, and photos |
+| **Edge-Case Storage Lockdowns** | **4 full factory resets** | Historical incidents where storage overfilled to 23 KB before implementing the 55GB auto-kill switch |
+| **Full Disaster Recovery Time** | **~30–45 minutes** | ~5 min for automated Termux scripts; ~25–40 min for sideloading pinned APKs (APKMirror/local backup), Android permission grants, NetGuard rules, and Resilio/Partner Sharing re-linking |
 
 ---
 
