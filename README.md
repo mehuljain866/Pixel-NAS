@@ -454,6 +454,8 @@ If using third-party Play Store widget apps for storage/battery monitoring, isol
 4. Enable NetGuard's master switch (creates a local dummy VPN interface).
 5. *Result:* Widget apps run locally with zero ads and zero data leaks, while Google Photos maintains 100% uninhibited gigabit upload bandwidth.
 
+> **⚠️ Quick Share / Nearby Share Conflict:** Because NetGuard operates by establishing a local loopback VPN interface (`127.0.0.1` / `tun0`), Android's Wi-Fi Direct socket negotiation used by **Quick Share** can fail or drop connections. If you ever need to manually Quick Share large one-off files or test direct drops from your main phone/tablet directly to the Pixel, simply **toggle NetGuard OFF temporarily**, complete the transfer, and toggle it back ON.
+
 **Alternative Notification Method (MacroDroid / Tasker):**
 If you prefer not to use Partner Sharing, you can use automation apps like MacroDroid or Tasker directly on the Pixel. These can monitor the Google Photos app state, folder modification times, or backup status, and fire a custom webhook or push notification to your main device when the sync completes. This is often a cleaner approach, though it requires more initial setup.
 
