@@ -1,0 +1,113 @@
+# ==============================================================================
+# Resilio Sync IgnoreList — Media-Only / Download Folder Exclusion Template
+# ==============================================================================
+# Purpose: Prevents non-media files (documents, APKs, archives, temp files) from
+# syncing to your Google Pixel buffer node when sharing the Android /Download/
+# or mixed utility folders.
+#
+# Installation:
+# 1. Copy this file into your folder's hidden .sync/ directory:
+#    /sdcard/Download/.sync/IgnoreList (Android)
+#    C:\Users\<User>\Downloads\.sync\IgnoreList (Windows)
+# 2. Ensure the filename on disk is exactly "IgnoreList" (no .txt extension).
+# 3. Force stop and reopen Resilio Sync to reload the rules into memory.
+# ==============================================================================
+
+# --- Resilio Sync & OS Metadata ---
+.sync
+.sync/Archive
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# --- Android System, Gallery, & Download Temp Files ---
+.trashed*
+.pending-*
+*.tmp
+*.temp
+*.part
+*.crdownload
+*.download
+
+# --- Android Application Packages & Bundles ---
+*.apk
+*.APK
+*.xapk
+*.XAPK
+*.apkm
+*.APKM
+*.aab
+*.AAB
+
+# --- Documents, E-books & Office Formats ---
+*.pdf
+*.PDF
+*.doc
+*.docx
+*.DOC
+*.DOCX
+*.xls
+*.xlsx
+*.XLS
+*.XLSX
+*.ppt
+*.pptx
+*.PPT
+*.PPTX
+*.txt
+*.TXT
+*.rtf
+*.RTF
+*.csv
+*.CSV
+*.epub
+*.EPUB
+*.mobi
+*.MOBI
+*.azw3
+*.AZW3
+
+# --- Compressed Archives & Disk Images ---
+*.zip
+*.ZIP
+*.rar
+*.RAR
+*.7z
+*.7Z
+*.tar
+*.TAR
+*.gz
+*.GZ
+*.tgz
+*.TGZ
+*.bz2
+*.xz
+*.iso
+*.ISO
+*.dmg
+*.DMG
+*.img
+*.IMG
+
+# --- Executables, Installers & Scripts ---
+*.exe
+*.EXE
+*.msi
+*.MSI
+*.bin
+*.BIN
+*.sh
+*.bat
+*.cmd
+*.deb
+*.rpm
+
+# --- Web Files, Code & Torrents ---
+*.html
+*.htm
+*.json
+*.xml
+*.torrent
+*.TORRENT
+*.log

@@ -424,78 +424,12 @@ If you sync the entire `/Download/` folder to catch these Quick Share drops, you
 > **Resilio Sync `IgnoreList` Behavior:** Unlike `.gitignore`, Resilio Sync does not support `!` negation/whitelisting. It operates as a strict exclusion blacklist. To sync only media from `Download/`, you place an exclusion list of non-media extensions in the folder's `.sync/IgnoreList` file.
 
 **How to Set Up the `Download/` Folder Filter:**
-1. **Access the Hidden `.sync` Directory:**
-   - Open a file manager with "Show hidden files" enabled (e.g., Material Files, Solid Explorer, MiXplorer) and navigate to `/sdcard/Download/.sync/`.
-   - *Or via Termux:* Run `cd ~/storage/shared/Download/.sync && nano IgnoreList`.
-   - *Or via ADB from PC:* `adb push IgnoreList /sdcard/Download/.sync/IgnoreList`.
-2. **Populate `IgnoreList`:** Open the `IgnoreList` text file (create it if missing) and paste the following rules:
-
-```text
-# === Resilio Sync IgnoreList for Download Folder ===
-# Exclude non-media files to protect the Pixel buffer
-
-# Documents & E-books
-*.pdf
-*.PDF
-*.doc
-*.docx
-*.DOC
-*.DOCX
-*.xls
-*.xlsx
-*.XLS
-*.XLSX
-*.ppt
-*.pptx
-*.PPT
-*.PPTX
-*.txt
-*.TXT
-*.epub
-*.EPUB
-*.csv
-*.CSV
-
-# Android Packages & Compressed Archives
-*.apk
-*.APK
-*.xapk
-*.XAPK
-*.apkm
-*.APKM
-*.zip
-*.ZIP
-*.rar
-*.RAR
-*.7z
-*.7Z
-*.tar
-*.TAR
-*.gz
-*.GZ
-*.iso
-*.ISO
-
-# Executables & Web Code
-*.exe
-*.EXE
-*.msi
-*.MSI
-*.bin
-*.BIN
-*.html
-*.htm
-*.json
-*.torrent
-
-# Android System & Temp Files
-.trashed*
-.pending-*
-*.tmp
-*.temp
-*.crdownload
-```
-
+1. **Get the Template:** Download or copy the pre-configured [**`config/IgnoreList.txt`**](config/IgnoreList.txt) template from this repository.
+2. **Place in `.sync` Directory:**
+   - Copy the file into `/sdcard/Download/.sync/IgnoreList` on your phone (ensure the filename is named exactly `IgnoreList` with no `.txt` extension).
+   - *Via File Manager:* Open an Android file manager with "Show hidden files" enabled (e.g. Material Files, Solid Explorer) and paste into `/sdcard/Download/.sync/`.
+   - *Via Termux CLI:* `curl -sL https://raw.githubusercontent.com/mehuljain866/Pixel-NAS/main/config/IgnoreList.txt -o ~/storage/shared/Download/.sync/IgnoreList`
+   - *Via ADB:* `adb push config/IgnoreList.txt /sdcard/Download/.sync/IgnoreList`
 3. **Restart Resilio Sync:** Force Stop Resilio Sync on your phone and reopen it to reload the `IgnoreList` into active memory.
 4. **Result:** Any Quick Share photo (`.jpg`, `.png`, `.heic`, `.dng`) or video (`.mp4`, `.mov`, `.mkv`) in your `Download` folder instantly syncs to the Pixel, while PDFs, APKs, and documents are completely ignored.
 
