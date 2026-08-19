@@ -374,8 +374,17 @@ Install Resilio Sync on both your source device (phone/PC) and the Pixel NAS nod
 
 ---
 
-#### 📁 Sub-Step 3A: Folder Selection & Mode Configuration
-* **Select Specific Media Folders:** Cherry-pick specific folders (e.g., `DCIM/Camera`, `Screenshots`, `DJI Footage`) rather than syncing the entire `DCIM` root. This prevents syncing temporary cache files, hidden thumbnails, and system clutter.
+#### 📁 Sub-Step 3A: Folder Selection Strategy & Mode Configuration
+When syncing media from your source phone/PC to the Pixel, you can choose between two proven folder setup strategies depending on your workflow:
+
+* **Option 1: Complete `DCIM` Root Sync (Figure 3.1):** 
+  - Sync the entire root `DCIM` folder from your main device directly into the `DCIM` folder on the Pixel.
+  - *Best for:* Effortless "set-and-forget" automation. Everything saved inside DCIM (camera roll, screenshots, screen recordings) is automatically captured in a single sync share.
+* **Option 2: Granular / Separate Folder Syncs (Figure 3.2):** 
+  - Create distinct, separate sync shares for specific folders (e.g., `DCIM/Camera`, `Pictures/Screenshots`, `DJI/Footage`, `Raw_Media`).
+  - *Best for:* Precision control. Lets you cherry-pick exactly what gets backed up to Google Photos while preventing cache files, temporary media, or app junk from consuming Pixel buffer space.
+
+**Key Settings for Both Strategies:**
 * **Disable Selective Sync:** Ensure files download completely and immediately upon receipt.
 * **⚠️ Mandatory "Receive Only" Mode on Pixel:** In Resilio Sync on the Pixel, tap the folder settings and set the mode to **Receive Only**.
   > *Why this is mandatory:* When Google Photos runs *Free Up Space* and deletes backed-up photos from the Pixel's internal storage, "Receive Only" prevents Resilio from registering them as "missing" and re-downloading them in an infinite loop.
@@ -386,12 +395,12 @@ Install Resilio Sync on both your source device (phone/PC) and the Pixel NAS nod
       <td width="50%" align="center" style="border: none; vertical-align: top;">
         <img src="assets/resilio_dcim.jpg" width="95%" style="border-radius: 12px; margin-bottom: 8px;" alt="DCIM Root Folder Selection" />
         <br />
-        <em><strong>Figure 3.1:</strong> Avoid syncing entire DCIM root directory</em>
+        <em><strong>Figure 3.1: Option 1 — Complete DCIM Sync</strong><br />Syncing the entire root DCIM folder for all-in-one camera &amp; screenshot ingestion</em>
       </td>
       <td width="50%" align="center" style="border: none; vertical-align: top;">
         <img src="assets/resilio_specific.jpg" width="95%" style="border-radius: 12px; margin-bottom: 8px;" alt="Specific Folder Selection" />
         <br />
-        <em><strong>Figure 3.2:</strong> Cherry-pick specific media folders (Camera, Drone, etc.)</em>
+        <em><strong>Figure 3.2: Option 2 — Granular Folder Syncs</strong><br />Creating separate sync shares for individual directories (Camera, Drone, Raw)</em>
       </td>
     </tr>
   </table>
