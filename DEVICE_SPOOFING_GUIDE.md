@@ -87,3 +87,14 @@ If you decide to experiment with spoofing, **never log into your primary Google 
 4. **Result:** The photos appear seamlessly in your main account's Google Photos library without taking up storage quota, while keeping your main account insulated from the spoofed device.
 
 > **⚠️ The Mule Risk:** If Google flags or terminates the mule account, you lose access to the source uploads. If you have already purged the original photos from your main device, those memories are lost. Always maintain a true offline 3-2-1 backup copy.
+
+---
+
+## ⚖️ Legal Disclaimer & Liability Waiver
+
+> [!WARNING]
+> **No Warranty & Zero Liability:**
+> * This repository, documentation, and technical references are shared strictly for educational, experimental, and personal archival research purposes.
+> * **I cannot and will not be held responsible or liable for any loss of data, corrupted photos/videos, Google account suspensions, permanent account bans, storage quota penalties, or hardware malfunctions** resulting from the use or misuse of any software, scripts, spoofing modules, or workflows described herein.
+> * This project documents my personal setup and continuous experimentation. I cannot vouch for third-party custom ROMs, Magisk/Zygisk/KernelSU modules, or unofficial modifications. All third-party tools mentioned are based solely on public community discussions and are subject to breaking or changing without notice.
+> * **You assume 100% of the risk and responsibility when implementing any part of this pipeline.** Always maintain independent, offline 3-2-1 backups of your critical data before modifying any device or account settings.

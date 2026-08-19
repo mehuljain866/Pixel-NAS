@@ -339,6 +339,8 @@ During large batch uploads, the Pixel 1 (Snapdragon 821) can thermally throttle,
 >
 > Spoofing a Pixel device signature directly violates [Google's Terms of Service](https://policies.google.com/terms). While community ban rates have historically been near zero, using software spoofing on an account holding years of precious memories carries serious risks: Google can terminate accounts or revoke quotas at any time, modules can silently break after Android/Photos updates (causing sudden quota exhaustion), and system-wide spoofing breaks Play Integrity for banking and security apps.
 >
+> **Liability & Risk Waiver:** This project documents my own personal setup, experiments, and ongoing learnings. I cannot vouch for third-party software spoofing methods or unofficial modules; information is based strictly on public community discussions and documentation. **I cannot and will not be held responsible for any loss of photos, account suspensions, bans, or data corruption.** Proceed entirely at your own risk.
+>
 > **The physical hardware approach (a genuine Pixel 1–5 node) remains the only 100% legal, zero-maintenance, zero-ban-risk method.**
 
 While physical hardware is the safest approach, it is technically possible to spoof a Google Pixel 1/XL identity on non-Pixel Android phones using custom ROMs (such as **crDroid** or **Evolution X**), root modules (**Magisk / Zygisk / KernelSU** via Pixelify or GPhotosUnlimited), or even by converting an old, battery-less laptop into a perpetual **Android-x86 / Bliss OS** backup node.
@@ -747,9 +749,11 @@ For most users, the Pixel-NAS pipeline is an excellent pragmatic balance — the
 
 ---
 
-## License & Author
+## License, Author & Disclaimer
 
-**Author:** Mehul Jain
+**Author:** Mehul Jain (`mehuljain866`)  
 **License:** MIT License (Code) / Creative Commons BY-NC 4.0 (Documentation).
+
+> **Disclaimer:** This project is an independent open-source research and documentation project. It is not affiliated with, endorsed by, or associated with Google LLC, Alphabet Inc., or Resilio Inc. All product names, logos, and brands are property of their respective owners. The author assumes no responsibility or liability for any data loss, account penalties, or hardware issues resulting from the use of the workflows described herein.
 
 *Built out of necessity. If this helps preserve your digital memories—mission accomplished.*
