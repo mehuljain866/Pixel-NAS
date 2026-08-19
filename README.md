@@ -190,6 +190,45 @@ To eliminate the need to constantly open Android Settings or terminal sessions j
 
 ---
 
+## Real-World Battery Endurance & Thermal Telemetry (Unplugged Benchmark)
+
+To verify the energy efficiency and thermal profile of the Pixel 2 XL acting as an autonomous node, we conducted an extended, real-world **unplugged drain test** from **August 17 to August 19, 2026**:
+
+### 📊 Benchmark Conditions & Operational Load
+* **Initial State:** Charged to **97%** on Monday, Aug 17 at 11:07 PM.
+* **Duration:** **41.1 Hours (~1.7 Days)** continuously unplugged from the wall.
+* **Ending State:** **37% Battery** remaining on Wednesday, Aug 19 at 4:13 PM.
+* **Active Background Load:**
+  - 🌙 **Always-On Display (AOD):** Kept active 24/7 (clock, date, Now Playing music detection).
+  - 📶 **Wi-Fi & P2P Connectivity:** Always-on LAN socket for Resilio Sync listening.
+  - ☁️ **Google Photos Cloud Sync:** Background indexing and cloud uploading.
+  - 📈 **On-Screen Telemetry Widgets:** Live visual rendering of storage capacity and battery discharge graphs.
+  - 🧹 **Active Buffer Purge:** Buffer filled up to 58.4 GB (~97% full) during the test and was safely purged back down to 23.2 GB without interrupting node operation.
+
+### 📈 Discharge & Thermal Metrics
+
+| Metric | Measured Value | Operational Insight |
+| :--- | :--- | :--- |
+| **Total Runtime (Unplugged)** | **41.1 Hours** | 97% → 37% (60% consumed) |
+| **Average Hourly Drain** | **~1.46% / hour** | ~35% battery consumed per 24 hours |
+| **Projected Total Battery Life** | **~68–72 Hours (~3 Full Days)** | Can survive multi-day power outages easily |
+| **Idle Thermal Profile (AC active)** | **67°F – 69°F (~19.4°C – 20.5°C)** | Sub-ambient cooling with room AC blasting |
+| **Standard Thermal Profile** | **77°F (~25.0°C)** | Nominal room temperature during active sync |
+
+<div align="center">
+  <!-- Progression of the 41-hour unplugged drain test -->
+  <img src="assets/battery_test_day1_97pct.png" width="31%" style="border-radius: 12px; margin: 4px;" alt="Day 1 Start: 97% Battery (Aug 17, 11:07 PM)" />
+  <img src="assets/battery_test_day2_79pct.png" width="31%" style="border-radius: 12px; margin: 4px;" alt="Day 2 Midpoint: 79% Battery (Aug 18, 3:04 PM)" />
+  <img src="assets/battery_test_day3_37pct.png" width="31%" style="border-radius: 12px; margin: 4px;" alt="Day 3 Ending: 37% Battery with Storage Purged (Aug 19, 4:13 PM)" />
+</div>
+<div align="center">
+  <!-- Thermal Telemetry Evidence -->
+  <img src="assets/battery_temp_67f_ac_blast.png" width="47%" style="border-radius: 12px; margin: 5px;" alt="Thermal readout: 67°F with AC blasting" />
+  <img src="assets/battery_temp_77f_lockscreen.png" width="47%" style="border-radius: 12px; margin: 5px;" alt="Thermal readout: 77°F nominal room temperature" />
+</div>
+
+---
+
 ## Hardware Bill of Materials
 
 ### 📱 Choosing the Right Pixel (Which generation to buy?)
