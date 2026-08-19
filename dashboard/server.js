@@ -59,7 +59,7 @@ const fetchTelemetry = async () => {
         const dfOutput = await runCommand('df /sdcard | tail -1');
         const dfParts = dfOutput.replace(/\s+/g, ' ').split(' ');
         if (dfParts.length >= 4) {
-            // df outputs 1K-blocks by default. We want GB.
+            // df outputs 1K-blocks by default; convert to GB.
             const total = parseInt(dfParts[1], 10) / 1024 / 1024;
             const used = parseInt(dfParts[2], 10) / 1024 / 1024;
             lastData.storageTotalGB = Math.round(total);
@@ -67,15 +67,15 @@ const fetchTelemetry = async () => {
         }
 
         // 3. Backup Status (Improved Heuristics)
-        // Since notifications are unreliable, we check for actual background upload service activity
-        // We look for Google Photos processes, specifically if they are actively doing background work.
-        // We will run a few checks:
+        // Since notifications are unreliable, check for actual background upload service activity
+        // Look for Google Photos processes, specifically if they are actively doing background work.
+        // Run checks:
         // A. Is Resilio Sync actively receiving files?
         const resilioOutput = await runCommand('top -n 1 -m 15 | grep com.resilio.sync');
         let isSyncing = !!resilioOutput;
         
         // B. Is Google Photos actively uploading? 
-        // We check if the upload service is active or if there are recent upload logs.
+        // Check if the upload service is active or if there are recent upload logs.
         // NOTE: For logcat to work, you must run: adb shell pm grant com.termux android.permission.READ_LOGS
         const logcatOutput = await runCommand('logcat -d -t 100 -s "MediaUploader","UploadTracker","Photos" | grep -i "upload"');
         const photosTopOutput = await runCommand('top -n 1 -m 15 | grep com.google.android.apps.photos');
@@ -97,7 +97,7 @@ const fetchTelemetry = async () => {
         }
 
         // 4. Storage Auto-Kill Switch (The 55GB Limit)
-        // If storage goes above 55GB, we ping MacroDroid to kill Resilio Sync.
+        // If storage goes above 55GB, ping MacroDroid to kill Resilio Sync.
         if (lastData.storageUsedGB >= 55 && lastData.status !== 'storage_full') {
             console.log("CRITICAL: Storage exceeded 55GB. Triggering MacroDroid to STOP Resilio Sync.");
             try {
@@ -107,7 +107,7 @@ const fetchTelemetry = async () => {
             lastData.status = 'storage_full';
         }
 
-        // We removed the auto-restart webhook here because the user relies on
+        // Auto-restart webhook was removed here because the setup relies on
         // existing MacroDroid hooks (like charger plug-in or Google Photos notifications)
         // to handle the restart logic natively.
         if (lastData.storageUsedGB < 50 && lastData.status === 'storage_full') {

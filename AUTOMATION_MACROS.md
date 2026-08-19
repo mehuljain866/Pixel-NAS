@@ -20,7 +20,7 @@ This document outlines the step-by-step logic required to build the automations 
 ---
 
 ## 2. The "Daisy Chain" Ghost Purge (Advanced)
-**Purpose:** For the Low-Storage Workaround, the Pixel must automatically tap "Free Up Space" after a backup completes so Resilio can resume downloading the next batch. Since Google restricts API access to this function, we use UI automation to simulate physical screen taps.
+**Purpose:** For the Low-Storage Workaround, the Pixel must automatically tap "Free Up Space" after a backup completes so Resilio can resume downloading the next batch. Since Google restricts API access to this function, this setup uses UI automation to simulate physical screen taps.
 
 ### Option A: MacroDroid
 * **Trigger:** `Device Events` ➡️ `Notification` ➡️ `Notification Received` ➡️ Select `Google Photos` ➡️ Text contains: `"Backup complete"`

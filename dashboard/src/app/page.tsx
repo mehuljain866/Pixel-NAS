@@ -10,7 +10,7 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// Types for our telemetry data
+// Types for the telemetry data
 interface StatusData {
   status: 'idle' | 'syncing' | 'uploading' | 'error';
   batteryLevel: number;
@@ -28,7 +28,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // In production, this will hit our Termux Node.js backend
+        // In production, this will hit the Termux Node.js backend
         const res = await fetch('/api/status');
         if (!res.ok) throw new Error('Failed to fetch status');
         const json = await res.json();

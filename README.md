@@ -16,7 +16,7 @@ Pixel-NAS transforms a legacy Google Pixel device into an always-on, invisible b
 
 ## The Philosophy & Evolution
 
-This project was born out of frustration. Our digital memories were scattered across old phones, SD cards, and hard drives, creating an unmanageable mess that was vulnerable to hardware failure. While cloud storage solves this, paying a permanent monthly rent to keep memories alive felt flawed.
+This project was born out of frustration. My digital memories were scattered across old phones, SD cards, and hard drives, creating an unmanageable mess that was vulnerable to hardware failure. While cloud storage solves this, paying a permanent monthly rent to keep memories alive felt flawed.
 
 ### 💸 Why Not Just Pay for Cloud Storage?
 
@@ -64,7 +64,7 @@ The evolution of Pixel-NAS spans several years, starting from early classroom id
   <br clear="all" />
 * **System Regularization & V2 (The Automation Phase - April/May 2025):** 
   <img src="assets/new_workflow.jpg" alt="V2 and V3 Setup" align="left" width="40%" style="border-radius: 12px; margin: 0 20px 15px 0;" /> 
-  Moved past the fragile Version 1 wired workflow and transitioned into a more automated, stable, and fluid system. We introduced Resilio Sync over Wi-Fi, proving the concept by effortlessly syncing 80GB of 4K drone/camera footage without any cables. *(Pictured left: Three devices wirelessly backing up to the Pixel over Wi-Fi, which then seamlessly uploads to the cloud.)*
+  Moved past the fragile Version 1 wired workflow and transitioned into a more automated, stable, and fluid system. I introduced Resilio Sync over Wi-Fi, proving the concept by effortlessly syncing 80GB of 4K drone/camera footage without any cables. *(Pictured left: Three devices wirelessly backing up to the Pixel over Wi-Fi, which then seamlessly uploads to the cloud.)*
 * **V3 (The Intervention-Free Phase & All-in-One Form Factor - Present):** 
   <img src="assets/hardware_wall_mount_plugged.jpg" alt="V3 All-in-One Plug & Play Setup" align="right" width="30%" style="border-radius: 12px; margin: 0 0 15px 20px;" />
   The current architecture and hardware form factor. Leveraging Smart Home integrations, geofencing, and advanced automation, the system now runs perpetually without human intervention. The phone, low-wattage adapter, and coiled USB-C cable are integrated into a single self-contained unit that can simply hang on a wall outlet—eliminating cable mess and clearing desk space entirely.
@@ -157,7 +157,7 @@ Production usage statistics gathered over extended operational testing show the 
 
 ## Automation & Smart Home Triggers (V3)
 
-The beauty of V3 is that the Pixel-NAS only works when it needs to. Using Smart Plugs and Automation apps, we control the power and sync cycles dynamically.
+The beauty of V3 is that the Pixel-NAS only works when it needs to. Using Smart Plugs and Automation apps, I control the power and sync cycles dynamically.
 
 > 💡 **Detailed Automation Guide:** For step-by-step instructions on how to build these automations in MacroDroid and Tasker, see the [AUTOMATION_MACROS.md](AUTOMATION_MACROS.md) guide.
 
@@ -190,7 +190,7 @@ The physical build transforms the salvaged Pixel 2 XL into a completely self-con
   - 🎵 **"Now Playing" Song Identification:** Leverages Pixel's native on-device ambient music recognition to display whatever song is playing in the room.
   - ⏰ **Always-On Display & Night Clock:** Shows live time, date, weather, and battery health at a glance.
   - 🎧 **Spotify Connect Controller:** Acts as a dedicated room controller for audio playback across connected speakers.
-  - ⚡ **Local Termux Node:** Runs our background Node.js telemetry server for the PWA dashboard.
+  - ⚡ **Local Termux Node:** Runs a background Node.js telemetry server for the PWA dashboard.
 
 <div align="center">
   <!-- Prioritized Hero Views: Active Screen & Mounting -->
@@ -228,7 +228,7 @@ To eliminate the need to constantly open Android Settings or terminal sessions j
 
 ## Real-World Battery Endurance & Thermal Telemetry (Unplugged Benchmark)
 
-To verify the energy efficiency and thermal profile of the Pixel 2 XL acting as an autonomous node, we conducted an extended, real-world **unplugged drain test** from **August 17 to August 19, 2026**:
+To verify the energy efficiency and thermal profile of the Pixel 2 XL acting as an autonomous node, I conducted an extended, real-world **unplugged drain test** from **August 17 to August 19, 2026**:
 
 ### 📊 Benchmark Conditions & Operational Load
 * **Initial State:** Charged to **97%** on Monday, Aug 17 at 11:07 PM.
@@ -523,7 +523,7 @@ Google Photos hasn't finished indexing which files are safely in the cloud. Clea
 
 ## Advanced: Arbitrary File Backup (BitStream)
 
-Pixel-NAS handles media natively. For documents, code, and zip files, we use [BitStream](https://github.com/mehuljain866/BitStream).
+Pixel-NAS handles media natively. For documents, code, and zip files, I use [BitStream](https://github.com/mehuljain866/BitStream).
 BitStream losslessly encodes any arbitrary file into an FFV1 `.AVI` video file.
 1. Compress your files.
 2. Run BitStream to turn the ZIP into a Video.
@@ -587,7 +587,7 @@ This creates an autonomous, self-cleaning pipeline that can trickle terabytes of
 
 ## Pixel-NAS Dashboard (New!)
 
-We have recently introduced a **Progressive Web App (PWA) Dashboard** to monitor the live telemetry of your Pixel-NAS! Since standard Android background notifications for Google Photos uploads can be highly unreliable, the dashboard queries actual Android logs (`logcat`) via a Termux background server to track backup status and battery levels with 100% accuracy.
+I have recently introduced a **Progressive Web App (PWA) Dashboard** to monitor the live telemetry of the Pixel-NAS! Since standard Android background notifications for Google Photos uploads can be highly unreliable, the dashboard queries actual Android logs (`logcat`) via a Termux background server to track backup status and battery levels with 100% accuracy.
 
 Check out the source code and setup instructions in the [`dashboard/`](dashboard/) directory.
 
