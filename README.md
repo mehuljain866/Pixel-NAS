@@ -200,9 +200,10 @@ The physical build transforms the salvaged Pixel 2 XL into a completely self-con
 
 To eliminate the need to constantly open Android Settings or terminal sessions just to check node health, the Pixel 2 XL home screen is configured with dedicated live widgets:
 
-* **Live Storage Bar:** Provides an instant visual gauge of buffer capacity (ensuring storage never nears the dangerous 55GB+ zone).
-* **Battery & Temperature Widget:** Displays real-time battery percentage, charging duration, discharge estimation, and live hardware temperature in Celsius (🌡️). *(Essential for monitoring thermal buildup during heavy 10GB+ bulk ingestions).*
-* **Hardware Screen Compensation:** Salvaged Pixel 2 XL OLED panels often develop minor artifacts around the top status bar icons; a large center-screen battery widget ensures percentage legibility at all times.
+* **🔋 Battery & Temperature Widget ([Battery Widget Reborn 2026](https://play.google.com/store/apps/details?id=net.hubalek.android.apps.reborn.pro)):** Displays real-time battery percentage, charging duration, discharge estimation, and live hardware temperature in Fahrenheit and Celsius (🌡️). *(Essential for monitoring thermal buildup during heavy 10GB+ bulk ingestions).*
+* **💾 Live Storage Bar (Storage Gauge):** Provides an instant visual gauge of buffer capacity (ensuring storage never nears the dangerous 55GB+ zone).
+* **🛡️ Ad-Free Operation via NetGuard:** Both utility widgets run with zero ads or tracking by using NetGuard to cut off their internet access entirely while leaving Google Photos unhindered.
+* **📱 Hardware Screen Compensation:** Salvaged Pixel 2 XL OLED panels often develop minor artifacts around the top status bar icons; a large center-screen battery widget ensures percentage legibility at all times.
 
 <div align="center">
   <!-- Primary Home Screen Dashboard View -->
@@ -222,8 +223,8 @@ To verify the energy efficiency and thermal profile of the Pixel 2 XL acting as 
 
 ### 📊 Benchmark Conditions & Operational Load
 * **Initial State:** Charged to **97%** on Monday, Aug 17 at 11:07 PM.
-* **Duration:** **45.3 Hours (~1.9 Days)** continuously unplugged from the wall.
-* **Ending State:** **12% Battery** remaining on Wednesday, Aug 19 at 8:26 PM (holding steady at 12% in post-burst idle).
+* **Duration:** **45.3+ Hours (~1.9 Days)** continuously unplugged from the wall.
+* **Ending State:** **12% Battery** remaining on Wednesday, Aug 19 at 8:44 PM (concluded test; plugged in with ~5h 51m estimated idle life remaining).
 * **Active Background Load:**
   - 🌙 **Always-On Display (AOD):** Kept active 24/7 (clock, date, Now Playing music detection).
   - 📶 **Wi-Fi & P2P Connectivity:** Always-on LAN socket for Resilio Sync listening.
@@ -233,18 +234,18 @@ To verify the energy efficiency and thermal profile of the Pixel 2 XL acting as 
 * **⚡ Ambient Sync vs. Heavy Burst Video Ingestion:**
   - **Ambient Sync (Hours 0 – 41):** Routine photo batches (~500MB – 1GB) show up as tiny, subtle dips along a very gentle baseline drain curve (~1.46%/hr).
   - **Massive Video Ingestion Burst (Hours 41.1 – 43.75):** Recorded and synced an unbroken **~30-minute 1080p 30fps video (~6.4 GB)** plus a 42-second clip (~170 MB), totalling **~6.57 GB of continuous burst ingestion**. The simultaneous high-bandwidth Wi-Fi transfer, rapid flash NAND writes, and intensive Google Photos video processing caused a steep, visible discharge from **37% down to 12%** in ~2.65 hours.
-  - **Post-Burst Deep Idle (Hours 43.75 – 45.3):** Once the large video finished processing and cloud uploading, the node immediately returned to low-power idle, flatlining at **12% battery** from 6:52 PM to 8:26 PM with zero further drop.
+  - **The 15% Resilio Safety Cut-off & Idle Flatline (Hours 43.75 – 45.3+):** Resilio Sync's built-in battery saver halts sync whenever battery drops below **15%**. This is a deliberate design choice that prevents sudden device brownouts, avoids corrupting Google Photos indexing queues, and allows the node to maintain deep standby for hours (flatlining at **12% battery** with ~6 hours of remaining standby).
 
 ### 📈 Discharge & Thermal Metrics
 
 | Metric | Measured Value | Operational Insight |
 | :--- | :--- | :--- |
-| **Total Runtime (Unplugged)** | **45.3 Hours** | 97% → 12% (85% consumed over ~1.9 days under mixed idle + burst load) |
+| **Total Runtime (Unplugged)** | **45.3+ Hours** | 97% → 12% (85% consumed over ~1.9 days under mixed idle + burst load) |
 | **Baseline Idle / Ambient Drain** | **~1.46% / hour** | ~35% battery consumed per 24 hours under standard background sync |
 | **Heavy Video Ingestion Drain** | **~9.4% / hour** | Continuous 6.5GB+ video Wi-Fi sync, local flash writes, and cloud upload |
 | **Projected Total Battery Life** | **~50–70 Hours (~2–3 Days)** | Easily withstands extended power outages even with active data ingestion |
 | **Idle Thermal Profile (AC active)** | **67°F – 69°F (~19.4°C – 20.5°C)** | Sub-ambient thermal dissipation with room AC active |
-| **Standard Thermal Profile** | **77°F (~25.0°C)** | Nominal room temperature during active ingestion |
+| **Standard Thermal Profile** | **77°F – 79°F (~25.0°C – 26.1°C)** | Nominal room temperature during active ingestion and conclusion |
 
 ### 📊 Plotted Battery Discharge Curve
 
@@ -264,7 +265,7 @@ To verify the energy efficiency and thermal profile of the Pixel 2 XL acting as 
 | **Wed, Aug 19 · 09:31 AM** | 34.4 hrs | **45%** | 23.1 GB (38%) | — | 🧹 **Storage Purged:** 35.3 GB cleared via Google Photos Free Up Space |
 | **Wed, Aug 19 · 04:13 PM** | 41.1 hrs | **37%** | 23.2 GB (38%) | — | 📱 Routine ambient sync baseline before video burst |
 | **Wed, Aug 19 · 06:52 PM** | 43.75 hrs | **12%** | ~29.8 GB (49%) | — | 📹 **Heavy Video Burst:** Ingested **6.57 GB** (30-min 1080p video); steep 25% drain |
-| **Wed, Aug 19 · 08:26 PM** | 45.3 hrs | **12%** | ~29.8 GB (49%) | — | 💤 **Post-Burst Idle Flatline:** Upload finished; battery stabilized at 12% |
+| **Wed, Aug 19 · 08:26 PM** | 45.3 hrs | **12%** | ~29.8 GB (49%) | **79°F (26.1°C)** | 💤 **Test Concluded:** 15% Resilio safety cut-off halts sync; battery flatlines at 12% (~6h remaining) |
 
 <div align="center">
   <!-- Progression of the 41-hour unplugged drain test -->
@@ -390,21 +391,29 @@ If you are comfortable rooting with Magisk (or KernelSU/APatch), Zygisk-based mo
   - Path: Profile → Backup → Backup quality
 - Turn on the **30-day auto-purge** for the trash.
 
-**3. Setup Resilio Sync**
+**3. Setup Resilio Sync (Optimal Node Configuration)**
 
-Install Resilio on both the source device and the Pixel. Cherry-pick specific folders rather than the entire `DCIM` root — this avoids syncing cache files, thumbnails, and other junk. **Disable Selective Sync** so files transfer immediately, and enable **LAN Sync** for maximum speed.
+Install Resilio Sync on both the source device and the Pixel. Cherry-pick specific folders rather than the entire `DCIM` root — this avoids syncing cache files, thumbnails, and other junk. **Disable Selective Sync** so files transfer immediately, and enable **LAN Sync** for maximum speed.
 
-**Critical Resilio settings on the Pixel:**
+**Critical Resilio Settings on the Pixel:**
 
-> **⚠️ Set folder to "Receive Only":** In Resilio Sync on the Pixel, set the synced folder mode to **Receive Only**. This is non-negotiable. Without it, when Google Photos runs "Free Up Space" and deletes backed-up files from local storage, Resilio detects them as "missing" and re-downloads them from your source — an infinite loop that continuously refills the Pixel's storage.
-
-> **⚠️ Set battery to "Unrestricted":** Go to Android Settings → Apps → Resilio Sync → Battery → set to **Unrestricted**. On Android 14+, the system can kill Resilio via aggressive Doze mode, and on Android 15, it hits a strict 6-hour foreground service wall. The app may appear connected while silently not syncing anything. Unrestricted battery + keeping the foreground notification visible prevents this.
-
-> **⚠️ Disable Resilio Auto-Sleep:** Inside Resilio Sync settings, find **Auto-sleep** and turn it off (or set a short wakeup interval of 15–30 minutes). Auto-Sleep hibernates the app between transfers. For an always-on node, this means newly arrived files won't be detected until the app wakes up — which could be hours later.
+* **⚠️ Set folder mode to "Receive Only":** In Resilio Sync on the Pixel, set the synced folder mode to **Receive Only**. This is non-negotiable. Without it, when Google Photos runs "Free Up Space" and deletes backed-up files from local storage, Resilio detects them as "missing" and re-downloads them from your source — an infinite loop that continuously refills the Pixel's storage.
+* **🛡️ Battery Saver (<15% Threshold = ON):** In `Resilio Sync → Settings → General`, keep **Battery saver** enabled (*"Stop syncing if battery lower than 15%"*). This protects the device from sudden shutdowns during active database indexing or file transfers, preventing Google Photos sync corruption.
+* **⏱️ Auto-Sleep Configuration:** Keep **Auto-sleep** enabled with **30-minute activity checks** on battery, and **5-minute activity checks** while charging. This keeps the app hyper-responsive when plugged into power while saving precious energy during unplugged operation.
+* **🔔 Notification Bar Icon = ON:** In `Resilio Sync → Settings → Notifications`, enable **Show notification bar icon**. This maintains Android foreground service priority so the OS never silently kills Resilio during large multi-gigabyte transfers.
+* **🔋 Android Battery Optimization = Unrestricted:** Go to `Android Settings → Apps → Resilio Sync → Battery → Set to Unrestricted`.
 
 <div align="center">
-  <img src="assets/resilio_dcim.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="DCIM setup" />
-  <img src="assets/resilio_specific.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="Specific folders setup" />
+  <!-- Verified Resilio In-App Configuration Screens -->
+  <img src="assets/resilio_settings_general.jpg" width="31%" style="border-radius: 12px; margin: 4px;" alt="Resilio General Settings (Battery Saver <15%)" />
+  <img src="assets/resilio_settings_autosleep.jpg" width="31%" style="border-radius: 12px; margin: 4px;" alt="Resilio Auto-Sleep Settings (30m / 5m checks)" />
+  <img src="assets/resilio_settings_notifications.jpg" width="31%" style="border-radius: 12px; margin: 4px;" alt="Resilio Notification Settings (Bar Icon Active)" />
+</div>
+
+<div align="center">
+  <!-- Folder Selection Guides -->
+  <img src="assets/resilio_dcim.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="DCIM setup" />
+  <img src="assets/resilio_specific.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Specific folders setup" />
 </div>
 
 **4. The Hardware Hack**
