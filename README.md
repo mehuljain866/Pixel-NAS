@@ -222,29 +222,33 @@ To verify the energy efficiency and thermal profile of the Pixel 2 XL acting as 
 
 ### 📊 Benchmark Conditions & Operational Load
 * **Initial State:** Charged to **97%** on Monday, Aug 17 at 11:07 PM.
-* **Duration:** **41.1 Hours (~1.7 Days)** continuously unplugged from the wall.
-* **Ending State:** **37% Battery** remaining on Wednesday, Aug 19 at 4:13 PM.
+* **Duration:** **43.75 Hours (~1.8 Days)** continuously unplugged from the wall.
+* **Ending State:** **12% Battery** remaining on Wednesday, Aug 19 at 6:52 PM.
 * **Active Background Load:**
   - 🌙 **Always-On Display (AOD):** Kept active 24/7 (clock, date, Now Playing music detection).
   - 📶 **Wi-Fi & P2P Connectivity:** Always-on LAN socket for Resilio Sync listening.
-  - ☁️ **Google Photos Cloud Sync:** Background indexing and cloud uploading.
+  - ☁️ **Google Photos Cloud Sync:** Background indexing, video encoding, and cloud uploading.
   - 📈 **On-Screen Telemetry Widgets:** Live visual rendering of storage capacity and battery discharge graphs.
   - 🧹 **Active Buffer Purge:** Buffer filled up to 58.4 GB (~97% full) during the test and was safely purged back down to 23.2 GB without interrupting node operation.
+* **⚡ Ambient Sync vs. Heavy Burst Video Ingestion:**
+  - **Ambient Sync (Hours 0 – 41):** Routine photo batches (~500MB – 1GB) show up as tiny, subtle dips along a very gentle baseline drain curve (~1.46%/hr).
+  - **Massive Video Ingestion Burst (Hours 41.1 – 43.75):** Recorded and synced an unbroken **~30-minute 1080p 30fps video (~6.4 GB)** plus a 42-second clip (~170 MB), totalling **~6.57 GB of continuous burst ingestion**. The simultaneous high-bandwidth Wi-Fi transfer, rapid flash NAND writes, and intensive Google Photos video processing caused a steep, visible discharge from **37% down to 12%** in ~2.65 hours.
 
 ### 📈 Discharge & Thermal Metrics
 
 | Metric | Measured Value | Operational Insight |
 | :--- | :--- | :--- |
-| **Total Runtime (Unplugged)** | **41.1 Hours** | 97% → 37% (60% consumed over ~1.7 days) |
-| **Average Hourly Drain** | **~1.46% / hour** | ~35% battery consumed per 24 hours |
-| **Projected Total Battery Life** | **~68–72 Hours (~3 Full Days)** | Survives multi-day power outages with zero downtime |
+| **Total Runtime (Unplugged)** | **43.75 Hours** | 97% → 12% (85% consumed over ~1.8 days under mixed idle + burst load) |
+| **Baseline Idle / Ambient Drain** | **~1.46% / hour** | ~35% battery consumed per 24 hours under standard background sync |
+| **Heavy Video Ingestion Drain** | **~9.4% / hour** | Continuous 6.5GB+ video Wi-Fi sync, local flash writes, and cloud upload |
+| **Projected Total Battery Life** | **~50–70 Hours (~2–3 Days)** | Easily withstands extended power outages even with active data ingestion |
 | **Idle Thermal Profile (AC active)** | **67°F – 69°F (~19.4°C – 20.5°C)** | Sub-ambient thermal dissipation with room AC active |
 | **Standard Thermal Profile** | **77°F (~25.0°C)** | Nominal room temperature during active ingestion |
 
 ### 📊 Plotted Battery Discharge Curve
 
 <div align="center">
-  <img src="assets/battery_telemetry_graph.png" width="95%" style="border-radius: 12px; margin: 10px auto;" alt="Pixel 2 XL Battery Telemetry Plotted Discharge Curve (41.1-Hour Run)" />
+  <img src="assets/battery_telemetry_graph.png" width="95%" style="border-radius: 12px; margin: 10px auto;" alt="Pixel 2 XL Battery Telemetry Plotted Discharge Curve (43.75-Hour Run)" />
 </div>
 
 ### 🗓️ Key Milestone Telemetry Checkpoints
@@ -252,12 +256,13 @@ To verify the energy efficiency and thermal profile of the Pixel 2 XL acting as 
 | Checkpoint | Elapsed | Battery % | Storage Buffer | Temp | Operational Event & System Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Mon, Aug 17 · 11:07 PM** | 0.0 hrs | **97%** | 56.9 GB (95%) | — | 🔌 Unplugged from 7.5W adapter; benchmark begins |
-| **Tue, Aug 18 · 07:34 AM** | 8.5 hrs | **91%** | 56.8 GB (95%) | — | 🌙 Overnight standby with Always-On Display (0.71%/hr drain) |
+| **Tue, Aug 18 · 07:34 AM** | 8.5 hrs | **91%** | 56.8 GB (95%) | — | 🌙 Overnight standby with Always-On Display (0.71%/hr baseline) |
 | **Tue, Aug 18 · 03:04 PM** | 16.0 hrs | **79%** | 57.7 GB (96%) | — | 🔄 Background P2P LAN sync & incoming media ingestion |
 | **Tue, Aug 18 · 10:51 PM** | 23.7 hrs | **68%** | 58.4 GB (97%) | **77°F (25°C)** | ⏱️ 24-Hour Milestone: only 29% battery consumed in 1 full day |
 | **Wed, Aug 19 · 08:28 AM** | 33.4 hrs | **49%** | 58.4 GB (98%) | **67°F (19.4°C)** | ❄️ AC blasting at peak; temperature drops to sub-ambient 67°F |
 | **Wed, Aug 19 · 09:31 AM** | 34.4 hrs | **45%** | 23.1 GB (38%) | — | 🧹 **Storage Purged:** 35.3 GB cleared via Google Photos Free Up Space |
-| **Wed, Aug 19 · 04:13 PM** | 41.1 hrs | **37%** | 23.2 GB (38%) | — | 🏁 **Latest Reading:** 37% remaining (~31h projected battery remaining) |
+| **Wed, Aug 19 · 04:13 PM** | 41.1 hrs | **37%** | 23.2 GB (38%) | — | 📱 Routine ambient sync baseline before video burst |
+| **Wed, Aug 19 · 06:52 PM** | 43.75 hrs | **12%** | ~29.8 GB (49%) | — | 📹 **Heavy Video Burst:** Ingested **6.57 GB** (30-min 1080p video); steep 25% drain |
 
 <div align="center">
   <!-- Progression of the 41-hour unplugged drain test -->
