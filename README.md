@@ -369,11 +369,17 @@ If you are comfortable rooting with Magisk (or KernelSU/APatch), Zygisk-based mo
 
 ## Setup Guide
 
-**1. Prepare the Device**
-Factory reset the Pixel. Use Android Universal Debloater (ADB) to strip bloatware, maximizing the internal buffer and freeing up CPU cycles for the sync and upload tasks.
+**1. Prepare the Device & App Update Policy**
+- **Factory reset the Pixel.** Use Android Universal Debloater (ADB) to strip bloatware, maximizing the internal buffer and freeing up CPU cycles for the sync and upload tasks.
+- **Disable Global Play Store Auto-Updates (Crucial):** Open Google Play Store → Profile → **Settings → Network Preferences → Auto-update apps → Select "Don't auto-update apps"**. On an autonomous server node, you want zero unexpected background update churn or UI rewrites that could break pipeline stability.
+- **App Update Strategy:**
+  - 🔄 **Google Play Store & Play Services:** Updates automatically at the system level in the background.
+  - 📂 **Files by Google:** Manually updated to the latest stable build for fast storage health checks.
+  - 📶 **Resilio Sync:** Installed as the latest stable build directly from the Google Play Store for optimal P2P LAN performance.
+  - 📊 **Telemetry Widgets (Battery & Storage Gauges):** Installed from Play Store, then firewalled via NetGuard (Step 7).
 
-**2. Configure Google Photos (Known-Good Build)**
-- **Tested Stable Build:** Sideload **Google Photos v7.5 / 8.0.855792468 (January 2026 build)**. Newer releases introduce memory-heavy background services and UI bloat that can choke older Snapdragon processors during prolonged ingestion. Disable auto-updates in the Play Store (`Google Photos → ⋮ → Don't auto-update`).
+**2. Configure Google Photos (Version Pinning)**
+- **Tested Stable Build:** Sideload and pin **Google Photos v7.5 / 8.0.855792468 (or stable v6.5+ builds)**. Newer Android 14+ UI updates introduce memory-heavy background indexing services and UI bloat that choke older Snapdragon processors during prolonged ingestion. Ensure auto-update is explicitly disabled (`Google Photos on Play Store → ⋮ (top-right) → Uncheck "Enable auto-update"`).
 - Log in with a **dedicated backup Google account** — not your main personal account.
 - **Enable backup for ALL folders.** By default, Google Photos only backs up the device's Camera folder. Since Resilio Sync delivers files into a separate synced folder (not the camera roll), you must manually enable backup for every folder Resilio syncs into: Library → scroll down to your folder → tap the ☁️ cloud icon to enable backup for that folder.
 - **Set backup quality.** On first setup (or after a factory reset), verify the backup quality setting:
