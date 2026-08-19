@@ -331,51 +331,19 @@ During large batch uploads, the Pixel 1 (Snapdragon 821) can thermally throttle,
 
 ---
 
-## Alternative: Spoofing a Pixel (No Hardware Required)
+## Alternative: Device Spoofing & Virtual Nodes (Disclaimer)
 
-If you cannot acquire a physical Google Pixel device, you can use any spare Android phone as your backup node by "spoofing" its device signature to mimic a Pixel 1. By tricking Google's servers into believing your device is a first-generation Pixel, the Google Photos app will grant you the unlimited **Original Quality** backup entitlement.
+> [!CAUTION]
+> ### ⚠️ Crucial Disclaimer & Terms of Service Warning
+> **I do not personally use, recommend, or deploy device spoofing for my primary production pipeline (which manages an archive of 100,000+ irreplaceable family photos and videos / ~2 TB of data).**
+>
+> Spoofing a Pixel device signature directly violates [Google's Terms of Service](https://policies.google.com/terms). While community ban rates have historically been near zero, using software spoofing on an account holding years of precious memories carries serious risks: Google can terminate accounts or revoke quotas at any time, modules can silently break after Android/Photos updates (causing sudden quota exhaustion), and system-wide spoofing breaks Play Integrity for banking and security apps.
+>
+> **The physical hardware approach (a genuine Pixel 1–5 node) remains the only 100% legal, zero-maintenance, zero-ban-risk method.**
 
-There are two main ways to achieve this:
+While physical hardware is the safest approach, it is technically possible to spoof a Google Pixel 1/XL identity on non-Pixel Android phones using custom ROMs (such as **crDroid** or **Evolution X**), root modules (**Magisk / Zygisk / KernelSU** via Pixelify or GPhotosUnlimited), or even by converting an old, battery-less laptop into a perpetual **Android-x86 / Bliss OS** backup node.
 
-### 1. Custom ROMs (Built-in Spoofing)
-Many custom ROMs include Google Photos spoofing out of the box by modifying the `build.prop` file to identify the device as a Pixel XL:
-
-* **crDroid:** *Highly Recommended.* Extremely lightweight, based on LineageOS, massive device compatibility. Includes an easy toggle for unlimited Photos storage in its "Miscellaneous" settings. Ideal for older, low-spec hardware.
-* **Evolution X:** Replicates the complete Pixel software experience with spoofing by default. More feature-packed than crDroid, so slightly heavier on very old hardware.
-* **Pixel Experience (Discontinued):** Official development has ended, but archived builds are available for older devices. Includes spoofing natively.
-* **ArrowOS / LineageOS:** The lightest ROMs with the widest device support. **Do not** include built-in spoofing — must be paired with a Magisk module (see below).
-
-> **⚠️ OTA Reset:** On crDroid and Evolution X, the spoofing toggle can reset to OFF after a system (OTA) update. After every update, go back into the ROM's Miscellaneous settings and verify the toggle is still enabled.
-
-### 2. Magisk Modules (Root Required)
-If you are comfortable rooting with Magisk (or KernelSU/APatch), Zygisk-based modules inject the spoof only into the Google Photos process — leaving banking apps, Play Integrity, and the rest of your system completely untouched.
-
-> **Build.prop vs Zygisk:** Some guides suggest editing `build.prop` directly to spoof at the ROM level. Avoid this — it changes device identity system-wide and can break banking apps and Play Integrity attestation. Zygisk modules are app-isolated and safer.
-
-**Recommended modules (ranked by community preference, 2026):**
-
-| Module | Repo | Notes |
-|---|---|---|
-| GPhotosUnlimited | github.com/Rev4N1/GPhotosUnlimited | Most actively maintained, most recommended |
-| Unlimited-Photos-Storage | github.com/MeowDump/Unlimited-Photos-Storage | Strong KernelSU Next 3.0+ compatibility |
-| Unlimited-GooglePhotosBackupMod | github.com/Kolass2004/Unlimited-GooglePhotosBackupMod | Alternative fork |
-| Pixelify | github.com/Kingsman44/Pixelify | Full Pixel feature suite; includes GPhotos unlimited |
-
-> **Android 16 note:** Many modules have reported compatibility issues on Android 16 (2026). If backup breaks after an Android 16 update, a reliable workaround is to downgrade Google Photos to **v6.6** via APKMirror and disable auto-update for it.
-
-> **Module conflicts:** If you run both GPhotosUnlimited and Pixelify simultaneously, they can conflict. Fix: create a `custom.app_replace_list.txt` in `/data/adb/modules/unlimitedphotos/` to specify which module handles Google Photos exclusively.
-
-**Installation steps:**
-1. Root with Magisk / KernelSU / APatch and enable Zygisk (`Magisk Settings → Zygisk = ON`)
-2. *(KernelSU Next 3.0+ only)* Install `magic_mount_rs` or `Mountify` metamount module first, then reboot — KSU Next 3.0 removed built-in module mounting
-3. Flash the spoofing module `.zip` via Magisk Manager
-4. Clear Google Photos data: Settings → Apps → Google Photos → Storage → **Clear Storage**
-5. Reboot
-6. Verify: Photos → Profile → Backup → correct quality tier + **"doesn't count against storage"**
-
-> **Note on AI editing features:** After spoofing as Pixel 1, AI features like Magic Eraser, Magic Editor, and Photo Unblur will stop working in Google Photos — the app believes it is running on 2016 hardware with no AI chip. This is expected and not a concern: the spoofed device is used only as a backup node. AI editing features live on your daily driver, which is not spoofed.
-
-**⚠️ Disclaimer for Spoofing:** Spoofing your device signature technically violates Google's Terms of Service. Account bans are extremely rare for this specific use case, but the method relies on third-party developers maintaining modules against Google's updates. The most bulletproof, zero-maintenance method is always a physical Pixel 1.
+👉 **For the full technical breakdown, module rankings, and "Partner Sharing Mule" risk mitigation strategies, see the standalone [Device Spoofing Guide](DEVICE_SPOOFING_GUIDE.md).**
 
 ---
 
