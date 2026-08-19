@@ -77,7 +77,7 @@ The evolution of Pixel-NAS spans several years, starting from early classroom id
 
 This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or tablet securely pours data into the "Pixel Funnel" over your local Wi-Fi. The Pixel then "spoofs" the source of the data, allowing it to flow into the infinite ocean of Google Photos using its legacy unlimited backup benefit.
 
-1. **Secure Transfer:** Your phone's camera roll syncs to the Pixel via **Resilio Sync** — a P2P protocol with full End-to-End Encryption on the local transfer leg.
+1. **Secure Transfer (Local & Global WAN):** Your phone's camera roll syncs to the Pixel via **Resilio Sync** — a P2P protocol with full End-to-End Encryption (AES-128/256). **You do not even need to be on the same Wi-Fi network:** leveraging BitTorrent global trackers, DHT, NAT hole-punching, and encrypted relay servers, your devices can be anywhere in the world (hotel Wi-Fi, coffee shop, or cellular data) and still seamlessly stream photos directly to your home Pixel node.
 2. **Infinite Cloud:** Google Photos on the Pixel detects the new files and uploads them in the background using the device's legacy unlimited backup entitlement.
 3. **Auto-Purging (The Pixel Buffer):** The Pixel's internal storage acts as a temporary buffer. Android's Smart Storage automatically clears backed-up files every 30/60/90 days — it self-cleans without any user action.
 4. **Passive Confirmation:** Real-time push notifications alert your main device when a batch finishes uploading via Google Photos Partner Sharing.
@@ -185,10 +185,11 @@ The physical build transforms the salvaged Pixel 2 XL into a completely self-con
 * **Built-in Stand / Digital Photo Frame:** When placed on a flat desk or bedside table, the rear charger-and-cable bundle doubles as a sturdy kickstand, propping the phone up at an optimal viewing angle to function as an ambient digital photo frame.
 * **Camera Lens Scratch Protection:** A dedicated Velcro strip across the upper rear glass section acts as a physical riser, keeping the camera lens elevated away from rough table surfaces to prevent scratches.
 * **Ambient Smart Node Capabilities:** Beyond backing up terabytes of photos, the always-on node serves multiple passive utility functions:
+  - 🗣️ **Google Home Replacement & Voice Hub:** Dual front-facing stereo speakers and far-field microphones allow the node to act as a permanent Google Home device. Voice commands can adjust AC temperatures, control smart lights, toggle plugs, set timers, and trigger Google Home routines.
+  - 🤏 **Active Edge ("Pixel Squeeze"):** Hardware pressure sensors along the Pixel's frame allow you to activate Google Assistant or Gemini with a quick physical squeeze of the phone body—no wake words or screen taps required.
   - 🎵 **"Now Playing" Song Identification:** Leverages Pixel's native on-device ambient music recognition to display whatever song is playing in the room.
   - ⏰ **Always-On Display & Night Clock:** Shows live time, date, weather, and battery health at a glance.
   - 🎧 **Spotify Connect Controller:** Acts as a dedicated room controller for audio playback across connected speakers.
-  - 🗣️ **Google Assistant Smart Hub:** Far-field voice command control for smart plugs, routines, and alarms.
   - ⚡ **Local Termux Node:** Runs our background Node.js telemetry server for the PWA dashboard.
 
 <div align="center">
