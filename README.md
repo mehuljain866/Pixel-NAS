@@ -415,6 +415,92 @@ When syncing media from your source phone/PC to the Pixel, you can choose betwee
 
 ---
 
+#### 🛡️ Advanced: Quick Share Drops & The `Download/` Folder IgnoreList Filter
+On many Android devices (including Samsung Galaxy), **Quick Share** exhibits dual behavior: some image transfers land inside `DCIM`, while other photo/video drops land inside the generic **`/Download/`** directory.
+
+If you sync the entire `/Download/` folder to catch these Quick Share drops, you risk flooding your Pixel buffer with PDFs, APKs, ZIP archives, and work documents. Because Resilio Sync evaluates a local **`IgnoreList`** file inside every synced folder's hidden `.sync/` directory, you can configure Resilio to **blacklist non-media file types** so only photos and videos ever transfer.
+
+> [!NOTE]
+> **Resilio Sync `IgnoreList` Behavior:** Unlike `.gitignore`, Resilio Sync does not support `!` negation/whitelisting. It operates as a strict exclusion blacklist. To sync only media from `Download/`, you place an exclusion list of non-media extensions in the folder's `.sync/IgnoreList` file.
+
+**How to Set Up the `Download/` Folder Filter:**
+1. **Access the Hidden `.sync` Directory:**
+   - Open a file manager with "Show hidden files" enabled (e.g., Material Files, Solid Explorer, MiXplorer) and navigate to `/sdcard/Download/.sync/`.
+   - *Or via Termux:* Run `cd ~/storage/shared/Download/.sync && nano IgnoreList`.
+   - *Or via ADB from PC:* `adb push IgnoreList /sdcard/Download/.sync/IgnoreList`.
+2. **Populate `IgnoreList`:** Open the `IgnoreList` text file (create it if missing) and paste the following rules:
+
+```text
+# === Resilio Sync IgnoreList for Download Folder ===
+# Exclude non-media files to protect the Pixel buffer
+
+# Documents & E-books
+*.pdf
+*.PDF
+*.doc
+*.docx
+*.DOC
+*.DOCX
+*.xls
+*.xlsx
+*.XLS
+*.XLSX
+*.ppt
+*.pptx
+*.PPT
+*.PPTX
+*.txt
+*.TXT
+*.epub
+*.EPUB
+*.csv
+*.CSV
+
+# Android Packages & Compressed Archives
+*.apk
+*.APK
+*.xapk
+*.XAPK
+*.apkm
+*.APKM
+*.zip
+*.ZIP
+*.rar
+*.RAR
+*.7z
+*.7Z
+*.tar
+*.TAR
+*.gz
+*.GZ
+*.iso
+*.ISO
+
+# Executables & Web Code
+*.exe
+*.EXE
+*.msi
+*.MSI
+*.bin
+*.BIN
+*.html
+*.htm
+*.json
+*.torrent
+
+# Android System & Temp Files
+.trashed*
+.pending-*
+*.tmp
+*.temp
+*.crdownload
+```
+
+3. **Restart Resilio Sync:** Force Stop Resilio Sync on your phone and reopen it to reload the `IgnoreList` into active memory.
+4. **Result:** Any Quick Share photo (`.jpg`, `.png`, `.heic`, `.dng`) or video (`.mp4`, `.mov`, `.mkv`) in your `Download` folder instantly syncs to the Pixel, while PDFs, APKs, and documents are completely ignored.
+
+---
+
 #### ⚙️ Sub-Step 3B: In-App Power & Notification Settings
 Open `Resilio Sync → Settings` on the Pixel node and apply the verified production configuration:
 
