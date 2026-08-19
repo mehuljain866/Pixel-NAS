@@ -368,29 +368,74 @@ While physical hardware is the safest approach, it is technically possible to sp
   - Path: Profile → Backup → Backup quality
 - Turn on the **30-day auto-purge** for the trash.
 
-**3. Setup Resilio Sync (Optimal Node Configuration)**
+**3. Setup Resilio Sync (Pixel Node In-App Configuration)**
 
-Install Resilio Sync on both the source device and the Pixel. Cherry-pick specific folders rather than the entire `DCIM` root — this avoids syncing cache files, thumbnails, and other junk. **Disable Selective Sync** so files transfer immediately, and enable **LAN Sync** for maximum speed.
+Install Resilio Sync on both your source device (phone/PC) and the Pixel NAS node. To ensure maximum stability and zero-intervention operation, configure the following settings:
 
-**Critical Resilio Settings on the Pixel:**
+---
 
-* **⚠️ Set folder mode to "Receive Only":** In Resilio Sync on the Pixel, set the synced folder mode to **Receive Only**. This is non-negotiable. Without it, when Google Photos runs "Free Up Space" and deletes backed-up files from local storage, Resilio detects them as "missing" and re-downloads them from your source — an infinite loop that continuously refills the Pixel's storage.
-* **🛡️ Battery Saver (<15% Threshold = ON):** In `Resilio Sync → Settings → General`, keep **Battery saver** enabled (*"Stop syncing if battery lower than 15%"*). This protects the device from sudden shutdowns during active database indexing or file transfers, preventing Google Photos sync corruption.
-* **⏱️ Auto-Sleep Configuration:** Keep **Auto-sleep** enabled with **30-minute activity checks** on battery, and **5-minute activity checks** while charging. This keeps the app hyper-responsive when plugged into power while saving precious energy during unplugged operation.
-* **🔔 Notification Bar Icon = ON:** In `Resilio Sync → Settings → Notifications`, enable **Show notification bar icon**. This maintains Android foreground service priority so the OS never silently kills Resilio during large multi-gigabyte transfers.
-* **🔋 Android Battery Optimization = Unrestricted:** Go to `Android Settings → Apps → Resilio Sync → Battery → Set to Unrestricted`.
+#### 📁 Sub-Step 3A: Folder Selection & Mode Configuration
+* **Select Specific Media Folders:** Cherry-pick specific folders (e.g., `DCIM/Camera`, `Screenshots`, `DJI Footage`) rather than syncing the entire `DCIM` root. This prevents syncing temporary cache files, hidden thumbnails, and system clutter.
+* **Disable Selective Sync:** Ensure files download completely and immediately upon receipt.
+* **⚠️ Mandatory "Receive Only" Mode on Pixel:** In Resilio Sync on the Pixel, tap the folder settings and set the mode to **Receive Only**.
+  > *Why this is mandatory:* When Google Photos runs *Free Up Space* and deletes backed-up photos from the Pixel's internal storage, "Receive Only" prevents Resilio from registering them as "missing" and re-downloading them in an infinite loop.
 
 <div align="center">
-  <!-- Verified Resilio In-App Configuration Screens -->
-  <img src="assets/resilio_settings_general.jpg" width="31%" style="border-radius: 12px; margin: 4px;" alt="Resilio General Settings (Battery Saver <15%)" />
-  <img src="assets/resilio_settings_autosleep.jpg" width="31%" style="border-radius: 12px; margin: 4px;" alt="Resilio Auto-Sleep Settings (30m / 5m checks)" />
-  <img src="assets/resilio_settings_notifications.jpg" width="31%" style="border-radius: 12px; margin: 4px;" alt="Resilio Notification Settings (Bar Icon Active)" />
+  <table style="border-collapse: collapse; border: none; width: 100%;">
+    <tr>
+      <td width="50%" align="center" style="border: none; vertical-align: top;">
+        <img src="assets/resilio_dcim.jpg" width="95%" style="border-radius: 12px; margin-bottom: 8px;" alt="DCIM Root Folder Selection" />
+        <br />
+        <em><strong>Figure 3.1:</strong> Avoid syncing entire DCIM root directory</em>
+      </td>
+      <td width="50%" align="center" style="border: none; vertical-align: top;">
+        <img src="assets/resilio_specific.jpg" width="95%" style="border-radius: 12px; margin-bottom: 8px;" alt="Specific Folder Selection" />
+        <br />
+        <em><strong>Figure 3.2:</strong> Cherry-pick specific media folders (Camera, Drone, etc.)</em>
+      </td>
+    </tr>
+  </table>
 </div>
 
+---
+
+#### ⚙️ Sub-Step 3B: In-App Power & Notification Settings
+Open `Resilio Sync → Settings` on the Pixel node and apply the verified production configuration:
+
+1. **General Settings (`Settings → General`):**
+   * **🛡️ Battery Saver (<15% Threshold = ON):** Automatically pauses syncing when battery falls below 15%. This prevents sudden shutdowns during heavy disk writes and avoids Google Photos database corruption.
+   * **Auto-start = OFF:** Prevents unnecessary background launch upon reboot (MacroDroid/charging triggers handle this).
+   * **Auto-sleep = ON:** Puts the sync engine into low-power sleep when idle.
+
+2. **Auto-Sleep Timing Dialog (`Settings → General → Auto-sleep`):**
+   * **Check for active peers on battery: 30 minutes.** (Keeps idle standby drain at an ultra-low ~1.46%/hr).
+   * **Check for active peers on charger: 5 minutes.** (Ensures hyper-responsive pickup as soon as power is connected).
+   * **Sync when charging: Checked (ON).** (Immediately kicks off full-speed transfers upon receiving power).
+
+3. **Notification Persistence & OS Priority (`Settings → Notifications`):**
+   * **🔔 Show notification bar icon = ON:** Forces Android to treat Resilio as a high-priority foreground service, preventing the OS from silently killing multi-gigabyte ingestion tasks.
+   * **🔋 Android Battery Optimization = Unrestricted:** Navigate to `Android Settings → Apps → Resilio Sync → Battery → Set to Unrestricted`.
+
 <div align="center">
-  <!-- Folder Selection Guides -->
-  <img src="assets/resilio_dcim.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="DCIM setup" />
-  <img src="assets/resilio_specific.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Specific folders setup" />
+  <table style="border-collapse: collapse; border: none; width: 100%;">
+    <tr>
+      <td width="33%" align="center" style="border: none; vertical-align: top;">
+        <img src="assets/resilio_settings_general.jpg" width="95%" style="border-radius: 12px; margin-bottom: 8px;" alt="Resilio General Settings" />
+        <br />
+        <em><strong>Figure 3.3: General Settings</strong><br />Battery Saver (&lt;15%) enabled to protect database integrity</em>
+      </td>
+      <td width="33%" align="center" style="border: none; vertical-align: top;">
+        <img src="assets/resilio_settings_autosleep.jpg" width="95%" style="border-radius: 12px; margin-bottom: 8px;" alt="Resilio Auto-Sleep Settings" />
+        <br />
+        <em><strong>Figure 3.4: Auto-Sleep Timing</strong><br />30m on battery / 5m on charger with sync-on-charging active</em>
+      </td>
+      <td width="33%" align="center" style="border: none; vertical-align: top;">
+        <img src="assets/resilio_settings_notifications.jpg" width="95%" style="border-radius: 12px; margin-bottom: 8px;" alt="Resilio Notification Settings" />
+        <br />
+        <em><strong>Figure 3.5: Foreground Service</strong><br />Notification bar icon active to prevent Android process kills</em>
+      </td>
+    </tr>
+  </table>
 </div>
 
 **4. The Hardware Hack**
