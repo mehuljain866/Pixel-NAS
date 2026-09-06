@@ -217,6 +217,26 @@ The physical build transforms the salvaged Pixel 2 XL into a completely self-con
   <img src="assets/hardware_back_velcro_protection.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Rear velcro strips and camera protection riser" />
 </div>
 
+### 6. Primary Phone Battery Optimization & Biometric Trigger (Samsung Routines)
+
+On your primary daily driver (especially Samsung Galaxy devices running One UI), keeping Resilio Sync active 24/7 in the background often prompts system warnings (*"App draining battery in the background"*) and consumes battery due to continuous P2P socket discovery and DHT polling. Furthermore, aggressive OEM background task management frequently puts background sync processes to sleep.
+
+Rather than wrestling with OEM background restrictions or waiting for manufacturer firmware updates, two highly effective workarounds with **zero downsides** solve this completely:
+
+1. **End-of-Day Batch Sync (Samsung Modes & Routines):**
+   - Create a simple native routine scheduled at bedtime (e.g., 11:00 PM) or triggered automatically when `Charging + Connected to Home Wi-Fi`.
+   - The routine opens Resilio Sync for 5–10 seconds and then closes it (or navigates to Home).
+   - Bringing the app into the foreground immediately wakes the sync engine, handshakes with the Pixel-NAS node, and syncs the entire day's delta queue of photos and videos in a single high-speed 5GHz burst.
+   - **Why there are no downsides:** Local storage holds media safely during the day; transfers happen rapidly at night while charging; and the phone stays free from background drain and system warnings all day long.
+
+2. **Biometric Foreground Gate (Instant Fingerprint Unlock Trigger):**
+   - Leave Resilio Sync and Google Photos in your recent apps tray, with Resilio Sync as the active screen when locking the phone.
+   - When you unlock your device using **Fingerprint Biometric Authentication**, it opens straight into Resilio Sync.
+   - If any transfers are pending or the engine was asleep, the foreground launch instantly kicks off the sync pipeline on the spot.
+   - This effectively creates a biometric-gated physical sync trigger with zero passive battery overhead.
+
+> 💡 **Step-by-Step Setup Guide:** For exact trigger and action configuration in Samsung Modes & Routines, MacroDroid, and Tasker, see [AUTOMATION_MACROS.md (Sections 4 & 5)](AUTOMATION_MACROS.md).
+
 ---
 
 ## On-Device Visual Telemetry (Home Screen Widgets)
@@ -490,6 +510,9 @@ Open `Resilio Sync → Settings` on the Pixel node and apply the verified produc
   </table>
 </div>
 
+> 📱 **Primary Daily Driver Configuration Tip (Samsung Galaxy / One UI Battery Management):**
+> While the settings above optimize the always-on Pixel node, keeping Resilio Sync active 24/7 on your primary daily driver may trigger OEM background battery warnings (*"App draining battery in the background"*). On your main phone, you do not need continuous background polling—simply set up an **End-of-Day Batch Sync routine via Samsung Modes & Routines** or use the **Biometric Unlock Trigger** to sync your day's media in a single rapid burst at bedtime. See [Automation & Smart Home Triggers (Section 6)](#6-primary-phone-battery-optimization--biometric-trigger-samsung-routines) and [AUTOMATION_MACROS.md (Section 4)](AUTOMATION_MACROS.md).
+
 **4. The Hardware Hack**
 Connect: Wall Outlet → Smart Plug → 5W Charger → USB Hub → Pixel. Verify it says "Charging Slowly."
 
@@ -678,7 +701,8 @@ Check out the source code and setup instructions in the [`dashboard/`](dashboard
 - **Occasional Manual Purge:** Android Smart Storage won't delete files newer than 30 days, even if they're backed up. If the Pixel fills up faster than the auto-purge cycle, manually trigger "Free up space" on the Pixel (Google Photos → Library → Free up space). This is the only recurring manual task for heavy users.
 - **Google Photos Version Stability (The Golden Build):** Newer Google Photos updates can introduce severe memory leaks and background synchronization freezes on legacy Snapdragon 835 hardware. Through extensive testing, **Google Photos v7.5 / 8.0.855792468 (January 2026 build)** has been proven to be the most rock-solid release for continuous high-volume ingestion. Disable auto-updates via Play Store → Google Photos → ⋮ → Don't auto-update.
 - **Battery Degradation (Without Hack):** Without the smart plug + USB hub trickle charging setup, the battery will degrade from continuous 100% charging, eventually risking battery swelling.
-- **App "Naps":** Android background management may put Resilio Sync to sleep despite Unrestricted battery settings. Occasional manual refresh or a MacroDroid watchdog trigger can recover this.
+- **App "Naps" & OEM Background Restrictions:** Android background management may put Resilio Sync to sleep despite Unrestricted battery settings. Occasional manual refresh or a MacroDroid watchdog trigger can recover this.
+- **Client-Side Background Battery Warnings (Samsung One UI / Aggressive OEM Doze):** On primary daily drivers (especially Samsung Galaxy devices), Device Care will frequently flag Resilio Sync with notifications claiming *"App draining battery in the background"*. Because P2P file-sharing protocols maintain persistent TCP/UDP listening sockets and DHT nodes, Samsung's aggressive power management penalizes them even when battery optimization is set to Unrestricted. This is a manufacturer-level behavior inherent to how the OEM handles background networking; until Samsung or Resilio releases a firmware/software update modernizing background socket negotiation, running 24/7 background sync will trigger these warnings. The proven, zero-downside solution is configuring an **End-of-Day Batch Sync via Samsung Modes & Routines** or using the **Biometric Foreground Gate** (see Section 6 above and [AUTOMATION_MACROS.md](AUTOMATION_MACROS.md)), eliminating background drain all day while syncing everything in a rapid overnight burst.
 - **Hardware Quirks:** Salvaged hardware may have cracked screens or OLED green display artifacts around status bar icons. See the Headless Node and Home Screen Widgets sections for workarounds.
 - **Metadata Preservation:** Resilio Sync preserves metadata perfectly. GPS coordinates (if enabled at capture), exact timestamps, and device origin (e.g., "Shot on iPhone") survive the E2E transfer completely intact. Google Photos will confirm: *"This item doesn't take up space in your account storage."*
 - **Android System Backup (July 2026):** As of July 7, 2026, Android's device backup (SMS, call logs, app data, settings) now counts toward your 15 GB Google quota — even if your photos are uploading for free via the Pixel. Manage via Android Settings → Google → Backup. The data is mostly text-based and typically under 1 GB, but check it if you notice unexpected storage consumption.
