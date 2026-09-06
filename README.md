@@ -217,23 +217,21 @@ The physical build transforms the salvaged Pixel 2 XL into a completely self-con
   <img src="assets/hardware_back_velcro_protection.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Rear velcro strips and camera protection riser" />
 </div>
 
-### 6. Primary Phone Battery Optimization & Biometric Trigger (Samsung Routines)
+### 6. Primary Phone Battery Optimization & The Pixel Biometric Trigger
 
-On your primary daily driver (especially Samsung Galaxy devices running One UI), keeping Resilio Sync active 24/7 in the background often prompts system warnings (*"App draining battery in the background"*) and consumes battery due to continuous P2P socket discovery and DHT polling. Furthermore, aggressive OEM background task management frequently puts background sync processes to sleep.
+To balance 24/7 reliability with zero battery anxiety, two hardware and automation workflows solve background limitations across both devices with **zero downsides**:
 
-Rather than wrestling with OEM background restrictions or waiting for manufacturer firmware updates, two highly effective workarounds with **zero downsides** solve this completely:
-
-1. **End-of-Day Batch Sync (Samsung Modes & Routines):**
-   - Create a simple native routine scheduled at bedtime (e.g., 11:00 PM) or triggered automatically when `Charging + Connected to Home Wi-Fi`.
+1. **Client Phone Battery Saver — End-of-Day Batch Sync (Samsung Modes & Routines):**
+   - On your primary daily driver (especially Samsung Galaxy devices on One UI), leaving Resilio Sync running 24/7 can trigger system warnings (*"App draining battery in the background"*).
+   - *The Fix:* Create a native Samsung Routine scheduled at bedtime (e.g., 11:00 PM) or triggered automatically when `Charging + Connected to Home Wi-Fi`.
    - The routine opens Resilio Sync for 5–10 seconds and then closes it (or navigates to Home).
-   - Bringing the app into the foreground immediately wakes the sync engine, handshakes with the Pixel-NAS node, and syncs the entire day's delta queue of photos and videos in a single high-speed 5GHz burst.
-   - **Why there are no downsides:** Local storage holds media safely during the day; transfers happen rapidly at night while charging; and the phone stays free from background drain and system warnings all day long.
+   - Bringing the app into the foreground immediately wakes the sync engine, handshakes with the Pixel-NAS node, and pushes the entire day's delta queue of photos and videos in a single high-speed 5GHz burst without any daytime background drain.
 
-2. **Biometric Foreground Gate (Instant Fingerprint Unlock Trigger):**
-   - Leave Resilio Sync and Google Photos in your recent apps tray, with Resilio Sync as the active screen when locking the phone.
-   - When you unlock your device using **Fingerprint Biometric Authentication**, it opens straight into Resilio Sync.
-   - If any transfers are pending or the engine was asleep, the foreground launch instantly kicks off the sync pipeline on the spot.
-   - This effectively creates a biometric-gated physical sync trigger with zero passive battery overhead.
+2. **Pixel Node Hardware Workflow — The Biometric Wake-and-Sync Gate (Rear Fingerprint Trigger):**
+   - On the **Google Pixel 2 XL node**, keep Resilio Sync and Google Photos in the recent apps tray, with Resilio active before the screen turns off.
+   - **Wall-Mounted Mode:** When the Pixel is hanging from an outlet via the All-in-One velcro build, simply reach down and touch the rear fingerprint sensor (*Pixel Imprint*). The phone unlocks directly into Resilio Sync.
+   - **Desk-Stand Mode:** When propped up on a desk or nightstand with the charger kickstand, casually reach behind the phone to touch the rear fingerprint sensor.
+   - **Instant Wake & Lock:** Unlocking into Resilio immediately pulls the sync daemon into the active foreground, forcing a peer handshake and resuming transfers even if Android Doze had paused it. Because the buttons remain clearly exposed, a light tap on the side power button immediately locks the screen while background sync continues running uninterrupted.
 
 > 💡 **Step-by-Step Setup Guide:** For exact trigger and action configuration in Samsung Modes & Routines, MacroDroid, and Tasker, see [AUTOMATION_MACROS.md (Sections 4 & 5)](AUTOMATION_MACROS.md).
 
