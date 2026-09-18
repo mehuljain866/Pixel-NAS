@@ -227,11 +227,13 @@ To balance 24/7 reliability with zero battery anxiety, two hardware and automati
    - The routine opens Resilio Sync for 5–10 seconds and then closes it (or navigates to Home).
    - Bringing the app into the foreground immediately wakes the sync engine, handshakes with the Pixel-NAS node, and pushes the entire day's delta queue of photos and videos in a single high-speed 5GHz burst without any daytime background drain.
 
-2. **Pixel Node Hardware Workflow — The Biometric Wake-and-Sync Gate (Rear Fingerprint Trigger):**
+2. **Pixel Node Biometric Wake-and-Sync Gate (Rear Fingerprint Trigger — Zero Extra Hardware):**
    - On the **Google Pixel 2 XL node**, keep Resilio Sync and Google Photos in the recent apps tray, with Resilio active before the screen turns off.
+   - **Zero Extra Hardware Required:** Works anywhere without needing smart plugs, hubs, or accessories.
+   - **An Emergent "Behavioral Feature":** While all scheduled background automations and automatic time-to-time syncs continue running persistently on their own, this acts as an intuitive physical shortcut whenever you want to trigger or check on a sync instantly.
    - **Wall-Mounted Mode:** When the Pixel is hanging from an outlet via the All-in-One velcro build, simply reach down and touch the rear fingerprint sensor (*Pixel Imprint*). The phone unlocks directly into Resilio Sync.
-   - **Desk-Stand Mode:** When propped up on a desk or nightstand with the charger kickstand, casually reach behind the phone to touch the rear fingerprint sensor.
-   - **Instant Wake & Lock:** Unlocking into Resilio immediately pulls the sync daemon into the active foreground, forcing a peer handshake and resuming transfers even if Android Doze had paused it. Because the buttons remain clearly exposed, a light tap on the side power button immediately locks the screen while background sync continues running uninterrupted.
+   - **Desk-Stand Mode (or Standalone):** When propped up on a desk or nightstand with the charger kickstand, casually reach behind the phone to touch the rear fingerprint sensor.
+   - **Instant Wake & Lock:** Unlocking into Resilio immediately pulls the sync daemon into the active foreground, forcing an instantaneous peer handshake and resuming transfers even if Android Doze had throttled background tasks. Because the buttons remain clearly exposed, a light tap on the side power button immediately locks the screen while background sync continues running uninterrupted.
 
 > 💡 **Step-by-Step Setup Guide:** For exact trigger and action configuration in Samsung Modes & Routines, MacroDroid, and Tasker, see [AUTOMATION_MACROS.md (Sections 4 & 5)](AUTOMATION_MACROS.md).
 

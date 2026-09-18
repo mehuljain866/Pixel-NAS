@@ -91,17 +91,21 @@ Rather than letting Resilio run continuously and burn battery, this automation t
 ---
 
 ## 5. The Pixel Node Biometric Wake-and-Sync Gate (Rear Fingerprint Trigger)
-**Purpose:** A physical, zero-swipe ergonomic routine designed specifically for the **Google Pixel node** to instantly wake the sync engine and guarantee peer handshakes with zero navigation.
+**Purpose:** A physical, zero-swipe ergonomic routine designed specifically for the **Google Pixel node** to instantly wake the sync engine and guarantee peer handshakes with zero navigation—**requiring zero additional hardware**.
+
+### Why It's an Emergent "Behavioral Feature":
+While all the scheduled background automations, Wi-Fi watchdogs, and periodic time-to-time sync routines continue running persistently on their own, this workflow acts as a natural, intuitive human-in-the-loop trigger. Whenever you want to immediately kick off or verify a sync without waiting for an automated cycle, you don't need to plug in extra accessories, open companion apps, or navigate settings menus. All you have to do is rest your fingerprint on the sensor.
 
 ### The Physical Workflow:
 1. **Frontmost App Preparation:** Leave **Resilio Sync** (and Google Photos) open in your recent apps tray on the Pixel, with Resilio Sync active on screen before the display times out or locks.
-2. **Physical Ergonomics & Hardware Form Factor:**
+2. **Physical Ergonomics & Hardware Form Factor (Zero Extra Hardware):**
    * **Wall-Mounted Mode (Suspended on Socket):** When the Pixel 2 XL is hanging from a wall outlet using the All-in-One velcro-charger build, you can casually reach down and rest your index finger on the rear fingerprint sensor (*Pixel Imprint*). The phone unlocks instantly straight into Resilio Sync.
-   * **Desk-Stand Mode (Charger Kickstand):** When propped upright on a table or nightstand, reach behind the phone to touch the rear fingerprint scanner. The side buttons remain fully accessible—simply tap lightly on the power button (on the right edge) to turn the screen back off once sync begins.
+   * **Desk-Stand Mode (Charger Kickstand or Standalone):** When propped upright on a table or nightstand, reach behind the phone to touch the rear fingerprint scanner. The side buttons remain fully accessible—simply tap lightly on the power button (on the right edge) to turn the screen back off once sync begins.
+   * **Any Standalone Location:** Works anywhere the phone is placed—no smart plugs, hubs, or accessories required.
 3. **Immediate Foreground Wake:** Unlocking directly into the open Resilio Sync app pulls the P2P daemon to the active foreground. If syncing was idle, paused, or throttled by Android's background Doze mode, this foreground transition immediately triggers peer discovery and begins ingesting queued photos from your client devices.
 4. **Instant Screen-Off:** Because the side lock/power button is always clearly exposed in both the suspended and stand positions, a light tap immediately turns the screen off while the active transfer continues running uninterrupted in the background.
 
-> 💡 **Why this is powerful:** It turns the Pixel's rear fingerprint sensor into a tactile, physical "sync switch." You never have to swipe through menus, type PINs, or navigate apps—just reach, touch the fingerprint sensor to wake the sync pipeline, and click the power button to lock.
+> 💡 **Why this is powerful:** It layers seamlessly on top of all automated background schedules. It turns the Pixel's rear fingerprint sensor into a tactile, physical "sync switch" with zero extra hardware. You never have to swipe through menus, type PINs, or navigate apps—just reach, touch the fingerprint sensor to wake the sync pipeline, and click the power button to lock.
 
 ---
 
