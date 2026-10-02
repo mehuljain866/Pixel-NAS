@@ -693,6 +693,24 @@ Check out the source code and setup instructions in the [`dashboard/`](dashboard
 
 > **Critical rule:** The free unlimited quota **only** applies to files uploaded directly from the physical Pixel's Google Photos app. Uploading via browser, a different phone, or desktop — even to the same Google account — **will count against your 15 GB quota.**
 
+### 🛡️ Longevity & Obsolescence Defense: The Android 4.2.2 Benchmark
+
+A frequent question regarding this architecture is: **"Android 11 on the Pixel 2 XL is already out of official OS updates. Won't Google Photos eventually stop working when Google cuts off API support for older Android versions?"**
+
+While the Pixel 2 XL can still install modern Google Photos updates from the Play Store today (I intentionally pin it to a stable v7.5 / 8.0 build for thermal and RAM stability), real-world testing proves that Google's backend compatibility lasts far longer than most people realize:
+
+* **The Empirical Proof (Samsung Galaxy Tab 3 Neo on Android 4.2.2):** 
+  To test the absolute lower limits of Google Photos' backend longevity, I tested an ancient **Samsung Galaxy Tab 3 Neo** running **Android 4.2.2 (Jelly Bean)** — an operating system released over a decade ago (~2014) and **seven major Android generations older than Android 11**.
+  - It runs a legacy pre-2020 build of Google Photos (from back when the app still featured the original sharp, geometric pinwheel logo prior to the rounded redesign).
+  - Given that my account holds **over 100,000 photos and videos (~2 TB)**, the tablet's aging hardware takes hours to load and index the massive remote catalog in the UI.
+  - **Yet, the core upload pipeline still works:** The app successfully authenticates with Google's servers, reads local media, and uploads photos to Google Photos in 2026.
+  - If Google continues to maintain backend API compatibility for an Android 4.2.2 client from 2014, **Android 11 on the Pixel 2 XL has an enormous operational runway ahead** — easily many years before legacy upload endpoints are deprecated.
+
+* **Why Google Cannot Simply "Patch" or Detect Offloaded Media:**
+  - **Legitimate Ingestion Flow:** Android users legitimately transfer media onto their phones every day: receiving vacation photos over WhatsApp or Telegram, dropping DSLR/mirrorless RAW files from a laptop or Mac via USB, or importing drone clips. To the Android media scanner and Google Photos app, files residing in local storage are genuine user media. There is no reliable heuristic for Google to distinguish between an image captured by the Pixel's camera sensor versus media transferred over Wi-Fi without breaking basic functionality for legitimate users.
+  - **The "Lifetime" Contract & Public Backlash:** Google explicitly sold early Pixels with a marketing guarantee of "lifetime unlimited backup." Unlike third-party OEM cloud promotions (such as old Samsung or Dropbox promotions that had stated expiry dates), revoking an advertised hardware entitlement on Pixel devices would trigger catastrophic public, legal, and regulatory backlash.
+  - **Past Archives Are Permanent:** Google has never retroactively deducted storage quota or purged archives uploaded under the unlimited perk. Everything backed up through the Pixel funnel is permanent.
+
 ---
 
 ## Known Limitations & Heads-Ups
