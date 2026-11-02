@@ -4,11 +4,11 @@
 
 Pixel-NAS transforms a legacy Google Pixel device into an always-on, invisible backup node. It silently syncs photos, videos, and files from your daily devices directly to Google Photos' infinite cloud storage—for free. No monthly subscriptions, no expensive NAS hardware, and zero manual maintenance.
 
-*Currently managing an active archive of **100,826 photos and videos (~1.8–2.0 TB)** across multiple devices seamlessly, with archives going back to the 2007–2008 era and older.*
-*(Calculated volume based on empirical data: A real-world sample of 5,722 items represented 91.74 GB [~16.03 MB/item] due to high-resolution phone media, RAW camera captures, and long 1080p/DJI video footage, projecting to ~1.6–2.0 TB for 100,000 items).* (as of August 19th 2026)
+*Currently managing an active archive of **107,854 photos and videos (~1.9–2.1 TB)** across multiple devices seamlessly, with archives going back to the 2007–2008 era and older.*
+*(Calculated volume based on empirical data: A real-world sample of 5,722 items represented 91.74 GB [~16.03 MB/item] due to high-resolution phone media, RAW camera captures, and long 1080p/DJI video footage, projecting to ~1.7–2.1 TB for 107,000+ items).* (as of November 2nd 2026)
 
 <div align="center">
-  <img src="assets/stats_100k.jpg" width="45%" style="border-radius: 12px; margin: 10px auto;" alt="Proof of 100,826 photos and videos backed up (August 19, 2026)" />
+  <img src="assets/stats_107k.png" width="45%" style="border-radius: 12px; margin: 10px auto;" alt="Proof of 107,854 photos and videos backed up (November 2, 2026)" />
 </div>
 <br clear="all" />
 
@@ -163,7 +163,7 @@ Production usage statistics gathered over extended operational testing show the 
 | Metric | Value | Operational Details |
 | :--- | :--- | :--- |
 | **Continuous Operational Runtime** | **18+ months** | Ongoing production operation across multiple daily devices |
-| **Total Verified Backups** | **100,826 photos/videos (~1.8–2.0 TB)** | Empirical volume includes 4K/1080p video, RAW camera captures, and photos |
+| **Total Verified Backups** | **107,854 photos/videos (~1.9–2.1 TB)** | Empirical volume includes 4K/1080p video, RAW camera captures, and photos (as of November 2026) |
 | **Edge-Case Storage Lockdowns** | **4 full factory resets** | Historical incidents where storage overfilled to 23 KB before implementing the 55GB auto-kill switch |
 | **Full Disaster Recovery Time** | **~30–45 minutes** | ~5 min for automated Termux scripts; ~25–40 min for sideloading pinned APKs (APKMirror/local backup), Android permission grants, NetGuard rules, and Resilio/Partner Sharing re-linking |
 
@@ -369,7 +369,7 @@ During large batch uploads, the Pixel 1 (Snapdragon 821) can thermally throttle,
 
 > [!CAUTION]
 > ### ⚠️ Crucial Disclaimer & Terms of Service Warning
-> **I do not personally use, recommend, or deploy device spoofing for my primary production pipeline (which manages an archive of 100,000+ irreplaceable family photos and videos / ~2 TB of data).**
+> **I do not personally use, recommend, or deploy device spoofing for my primary production pipeline (which manages an archive of 107,000+ irreplaceable family photos and videos / ~2 TB of data).**
 >
 > Spoofing a Pixel device signature directly violates [Google's Terms of Service](https://policies.google.com/terms). While community ban rates have historically been near zero, using software spoofing on an account holding years of precious memories carries serious risks: Google can terminate accounts or revoke quotas at any time, modules can silently break after Android/Photos updates (causing sudden quota exhaustion), and system-wide spoofing breaks Play Integrity for banking and security apps.
 >
@@ -702,7 +702,7 @@ While the Pixel 2 XL can still install modern Google Photos updates from the Pla
 * **The Empirical Proof (Samsung Galaxy Tab 3 Neo on Android 4.2.2):** 
   To test the absolute lower limits of Google Photos' backend longevity, I tested an ancient **Samsung Galaxy Tab 3 Neo** running **Android 4.2.2 (Jelly Bean)** — an operating system released over a decade ago (~2014) and **seven major Android generations older than Android 11**.
   - It runs a legacy pre-2020 build of Google Photos (from back when the app still featured the original sharp, geometric pinwheel logo prior to the rounded redesign).
-  - Given that my account holds **over 100,000 photos and videos (~2 TB)**, the tablet's aging hardware takes hours to load and index the massive remote catalog in the UI.
+  - Given that my account holds **over 107,000 photos and videos (~2 TB)**, the tablet's aging hardware takes hours to load and index the massive remote catalog in the UI.
   - **Yet, the core upload pipeline still works:** The app successfully authenticates with Google's servers, reads local media, and uploads photos to Google Photos in 2026.
   - If Google continues to maintain backend API compatibility for an Android 4.2.2 client from 2014, **Android 11 on the Pixel 2 XL has an enormous operational runway ahead** — easily many years before legacy upload endpoints are deprecated.
 

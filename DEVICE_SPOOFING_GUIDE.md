@@ -2,7 +2,7 @@
 
 > [!CAUTION]
 > ### ⚠️ Crucial Disclaimer & Terms of Service Warning
-> **I do not personally use, recommend, or deploy device spoofing for my primary production pipeline (which manages an archive of 100,000+ irreplaceable family photos and videos / ~2 TB of data).**
+> **I do not personally use, recommend, or deploy device spoofing for my primary production pipeline (which manages an archive of 107,000+ irreplaceable family photos and videos / ~2 TB of data).**
 >
 > Spoofing a Google Pixel 1/XL device signature is an explicit violation of [Google's Terms of Service](https://policies.google.com/terms). While community ban rates have historically been near zero, using software spoofing on an account containing years of irreplaceable memories introduces severe risks:
 > 1. **Catastrophic Account Risk:** Google reserves the right to terminate or suspend accounts violating device attestation rules. If your primary Google account gets flagged, you risk losing access not just to Google Photos, but to Gmail, Google Drive, Google Play purchases, and Android backups.
