@@ -8,7 +8,7 @@ Pixel-NAS transforms a legacy Google Pixel device into an always-on, invisible b
 *(Calculated volume based on empirical data: A real-world sample of 5,722 items represented 91.74 GB [~16.03 MB/item] due to high-resolution phone media, RAW camera captures, and long 1080p/DJI video footage, projecting to ~1.8–2.2 TB for 111,000+ items).* (as of November 10th 2026)
 
 <div align="center">
-  <img src="assets/stats_111k.jpg" width="45%" style="border-radius: 12px; margin: 10px auto;" alt="Proof of 111,556 photos and videos backed up (November 10, 2026)" />
+  <img src="assets/stats_111k.jpg" width="45%" style="border-radius: 12px; margin: 10px auto;" alt="Proof of 112,253 photos and videos backed up (November 10, 2026)" />
 </div>
 <br clear="all" />
 
