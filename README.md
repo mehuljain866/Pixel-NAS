@@ -43,6 +43,94 @@ The complete engineering, operational, and historical documentation is organized
 | 🤖 [**Macro Action Recipes**](AUTOMATION_MACROS.md) | Ready-to-import step-by-step MacroDroid action logic and XML configuration blocks. |
 | 🧪 [**Device Spoofing Guide**](DEVICE_SPOOFING_GUIDE.md) | Research and critical warnings regarding virtual/spoofed nodes and account safety. |
 
+### 📂 Explore Topics & Deep-Dive (Click to Expand Dropdowns)
+
+<details>
+<summary>🛠️ <b>Setup & Configuration Guide</b> — <i>Step-by-step installation, folders, and wireless operation</i></summary>
+
+<br>
+
+* **[Pixel Device Prep & OS Settings](docs/SETUP.md#setup-guide)**: Developer options, screen awake rules, and Termux setup.
+* **[Google Photos & Resilio Setup](docs/SETUP.md#setup-guide)**: Receive-only folder secrets and P2P pairing.
+* **[Folder Selection & IgnoreList Strategy](docs/SETUP.md#-sub-step-3a-folder-selection-strategy--mode-configuration)**: Isolating `DCIM/Camera` and excluding temp downloads.
+* **[Quick Share Drops & Filter](docs/SETUP.md#-advanced-quick-share-drops--the-download-folder-ignorelist-filter)**: Handling direct wireless transfers cleanly.
+* **[Power, Doze & Notification Settings](docs/SETUP.md#-sub-step-3b-in-app-power--notification-settings)**: Preventing OEM background kills.
+* **[Headless Node Setup (Broken Screen / scrcpy / ADB)](docs/SETUP.md#advanced-headless-node-broken-screen--no-touch-operation)**: Running without an active display.
+* **[Sync Modes (Manual vs Geofenced vs Continuous)](docs/SETUP.md#sync-modes)**: Choosing your backup frequency.
+* **[Verification: How to Confirm Backups are Working](docs/SETUP.md#how-to-verify-your-backup-is-working)**: Checking upload confirmation on web Google Photos.
+
+👉 **[Open Full Setup Guide &rarr;](docs/SETUP.md)**
+
+</details>
+
+<details>
+<summary>📱 <b>Hardware, Benchmarks & Longevity</b> — <i>Hardware buyer's guide, 150 Mbps Wi-Fi, and 24h thermal tests</i></summary>
+
+<br>
+
+* **[Choosing the Right Pixel (Generations 1 vs 2–5)](docs/HARDWARE_AND_BENCHMARKS.md#-choosing-the-right-pixel-which-generation-to-buy)**: Which model to buy and why OG Pixel 1 is king.
+* **[Hardware Bill of Materials](docs/HARDWARE_AND_BENCHMARKS.md#-hardware-list)**: Smart plugs, short cables, power adapters, and cooling pads.
+* **[Battery Safety & Warning Signs](docs/HARDWARE_AND_BENCHMARKS.md#battery-safety--warning-signs-pixel-1-is-9-years-old)**: Detecting battery swelling and degradation.
+* **[All-in-One Plug & Play 3D Printed Case](docs/HARDWARE_AND_BENCHMARKS.md#5-physical-hardware--form-factor-all-in-one-plug--play-node)**: Wall-mount aesthetic form factor.
+* **[Performance & 150 Mbps Wi-Fi Tuning](docs/HARDWARE_AND_BENCHMARKS.md#performance--speeds)**: Network benchmarking and speed optimization.
+* **[Real-World Battery & Thermal Telemetry (24h Benchmark)](docs/HARDWARE_AND_BENCHMARKS.md#real-world-battery-endurance--thermal-telemetry-unplugged-benchmark)**: Unplugged endurance and thermal curves.
+* **[The Pixel 2–5 Original Quality Upload Anomaly](docs/HARDWARE_AND_BENCHMARKS.md#the-pixel-25-original-quality-upload-anomaly)**: Handling Storage Saver vs Original Quality quirks.
+* **[Obsolescence Defense: Android 4.2.2 Galaxy Tab Benchmark](docs/HARDWARE_AND_BENCHMARKS.md#-longevity--obsolescence-defense-the-android-422-benchmark)**: Historical proof of Google Photos API longevity.
+
+👉 **[Open Full Hardware & Benchmarks Guide &rarr;](docs/HARDWARE_AND_BENCHMARKS.md)**
+
+</details>
+
+<details>
+<summary>⚡ <b>Automation, Smart Home Triggers & Daisy Chain</b> — <i>Zero-touch automation, smart plugs, and buffer recycling</i></summary>
+
+<br>
+
+* **[Geofencing Triggers (Samsung Routines / Apple Shortcuts)](docs/AUTOMATION.md#1-geofencing-samsung-routines--apple-shortcuts)**: Syncing automatically when arriving home.
+* **[Wi-Fi Network Triggers (MacroDroid)](docs/AUTOMATION.md#2-wi-fi-triggers-macrodroid)**: Starting sync only on trusted home networks.
+* **[Voice & Remote Triggers (Alexa / Google Home)](docs/AUTOMATION.md#3-voice--remote-triggers-alexa--google-home)**: Voice commands to trigger batch backups.
+* **[Hardware Battery Management](docs/AUTOMATION.md#4-hardware-battery-management)**: Cycling power between 20% and 80% to preserve lithium health.
+* **[Primary Phone Optimization & Biometric Trigger](docs/AUTOMATION.md#6-primary-phone-battery-optimization--the-pixel-biometric-trigger)**: Zero-drain background sync via unlock triggers.
+* **[On-Device Visual Telemetry (KWGT Widgets)](docs/AUTOMATION.md#on-device-visual-telemetry-home-screen-widgets)**: Real-time battery and temp on the Pixel home screen.
+* **[The "Daisy Chain" Low Storage Workaround](docs/AUTOMATION.md#advanced-the-daisy-chain-low-storage-workaround)**: How the Pixel buffer safely recycles itself.
+* **[Ready-to-Import Macro Action Recipes](AUTOMATION_MACROS.md)**: Exact MacroDroid configuration logic and XML.
+
+👉 **[Open Full Automation Guide &rarr;](docs/AUTOMATION.md)**
+
+</details>
+
+<details>
+<summary>📖 <b>Philosophy, Story & Evolution</b> — <i>The economics of cloud storage, eliminating anxiety, and project history</i></summary>
+
+<br>
+
+* **[💸 Why Not Just Pay for Cloud Storage?](docs/PHILOSOPHY.md#-why-not-just-pay-for-cloud-storage)**: Compounding subscription costs vs true data ownership.
+* **[Cloud Provider Grace Periods & Deletion Comparison](docs/PHILOSOPHY.md#-why-not-just-pay-for-cloud-storage)**: What happens when you stop paying Apple, Google, OneDrive, etc.
+* **[🧘 The Peace of Mind: Cross-Device Accessibility](docs/PHILOSOPHY.md#-the-peace-of-mind-cross-device-accessibility)**: Making hardware disposable and memories permanent.
+* **[📸 The Psychological Shift: Eliminating "Storage Anxiety"](docs/PHILOSOPHY.md#-the-psychological-shift-eliminating-storage-anxiety)**: Capturing life without rationing gigabytes.
+* **[The Journey & Project Timeline (V1 &rarr; V2 &rarr; V3 &rarr; V4)](docs/PHILOSOPHY.md#the-journey--project-timeline)**: From wired prototype nightmares to an invisible appliance.
+* **[BitStream: Arbitrary File Cloud Backup](docs/PHILOSOPHY.md#advanced-arbitrary-file-backup-bitstream)**: Backing up non-media files to Google Photos.
+* **[Future: V4 — Parallel True Data Ownership](docs/PHILOSOPHY.md#future-v4--parallel-true-data-ownership)**: Dual-homed local NAS mirrors and Immich integration.
+
+👉 **[Open Full Philosophy & Story &rarr;](docs/PHILOSOPHY.md)**
+
+</details>
+
+<details>
+<summary>🏗️ <b>Architecture, Security & Disaster Recovery</b> — <i>System internals, API authentication, and runbooks</i></summary>
+
+<br>
+
+* **[System Architecture & Telemetry Pipelines](docs/ARCHITECTURE.md)**: Watchdog states, statfs measurement, and ledger data flow.
+* **[Security & Network Hardening](docs/SECURITY.md)**: Local loopback default, bearer tokens, CORS, and permission hygiene.
+* **[Disaster Recovery Runbook](docs/RECOVERY.md)**: Step-by-step rebuild procedure, ledger backup, and restoration checklists.
+* **[V4 Reliability Engineering](docs/V4_RELIABILITY.md)**: Fail-safe storage watchdog, SHA-256 scanner, and latching behavior.
+* **[Experimental Virtual Nodes & Spoofing](DEVICE_SPOOFING_GUIDE.md)**: Magisk modules, virtual nodes, and critical account-ban warnings.
+
+👉 **[Explore Architecture &rarr;](docs/ARCHITECTURE.md)** | **[Recovery Runbook &rarr;](docs/RECOVERY.md)**
+
+</details>
+
 ---
 
 ## How It Works (The Architecture)
