@@ -2,101 +2,58 @@
 
 **A fully automated, zero-subscription, End-to-End Encrypted (E2E) cloud backup pipeline built from a salvaged Android phone.**
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D22.13.0-brightgreen.svg)](https://nodejs.org/)
+[![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20Termux-orange.svg)](https://termux.dev/)
+[![Archived](https://img.shields.io/badge/Media%20Archived-111k%2B%20Items-blueviolet.svg)](#current-scale--empirical-data)
+[![Cost](https://img.shields.io/badge/Cloud%20Cost-%240%20%2F%20mo*-success.svg)](#-why-not-just-pay-for-cloud-storage)
+
 Pixel-NAS transforms a legacy Google Pixel device into an always-on, invisible backup node. It silently syncs photos, videos, and files from your daily devices directly to Google Photos' infinite cloud storage—for free. No monthly subscriptions, no expensive NAS hardware, and zero manual maintenance.
 
-*Currently managing an active archive of **111,556 photos and videos (~1.8–2.2 TB)** across multiple devices seamlessly, with archives going back to the 2007–2008 era and older.*
-*(Calculated volume based on empirical data: A real-world sample of 5,722 items represented 91.74 GB [~16.03 MB/item] due to high-resolution phone media, RAW camera captures, and long 1080p/DJI video footage, projecting to ~1.8–2.2 TB for 111,000+ items).* (as of November 10th 2026)
+---
+
+### Current Scale & Empirical Data
+
+*Currently managing an active archive of **111,556 photos and videos (~1.8–2.2 TB)** across multiple devices seamlessly, with archives dating back to 2007–2008 and earlier.*
+
+*(Calculated volume based on empirical data: A real-world sample of 5,722 items represented 91.74 GB [~16.03 MB/item] due to high-resolution phone media, RAW camera captures, and long 1080p/DJI video footage, projecting to ~1.8–2.2 TB for 111,000+ items, as of November 10th, 2026).*
 
 <div align="center">
   <img src="assets/stats_111k.jpg" width="45%" style="border-radius: 12px; margin: 10px auto;" alt="Proof of 112,253 photos and videos backed up (November 10, 2026)" />
 </div>
+
 <br clear="all" />
 
 ---
 
-## The Philosophy & Evolution
+## 📚 Documentation Hub
 
-This project was born out of frustration. My digital memories were scattered across old phones, SD cards, and hard drives, creating an unmanageable mess that was vulnerable to hardware failure. While cloud storage solves this, paying a permanent monthly rent to keep memories alive felt flawed.
+The complete engineering, operational, and historical documentation is organized into focused sub-guides:
 
-### 💸 Why Not Just Pay for Cloud Storage?
-
-The obvious question: **Why build all of this instead of just paying ₹1,300/month for Google One 2TB?**
-
-The answer is simple — **subscriptions don't protect your data, they rent access to it.** The moment you stop paying, the clock starts ticking on the deletion of your irreplaceable memories. You don't own the storage, and you never will.
-
-Here's what actually happens when you stop paying across every major cloud provider:
-
-| Provider | Free Tier | Grace Period Before Data is **Permanently Deleted** | What Breaks Immediately |
-| :--- | :--- | :--- | :--- |
-| **Google One** | 15 GB | **2 years** (most generous) | Gmail stops receiving mail; Photos/Drive uploads blocked |
-| **Apple iCloud+** | 5 GB | **No guaranteed grace period** (180 days for device backups) | Sync halts instantly; email bounces; backups stop |
-| **Microsoft OneDrive** | 5 GB | **6 months** (frozen read-only) | Uploads/sync/editing blocked; account frozen |
-| **Amazon Photos** | 5 GB | **6 months** (deletes **newest photos first**) | Uploads and sharing disabled |
-| **Dropbox** | 2 GB | **~12 months inactivity** (deletes **least-used files first**) | Sync stops immediately |
-| **pCloud** | 10 GB | **45 days** | Over-quota files trashed at 30 days, purged at 45 |
-| **Backblaze B2** | 10 GB | **44–45 days** | Full API/download access blocked at 30 days |
-
-> **The worst offenders:** pCloud and Backblaze give you barely **6 weeks** before permanent deletion. Apple iCloud doesn't even legally guarantee a grace period — their Terms of Service reserve the right to purge excess data at any time after your billing cycle ends.
-
-**The fundamental problem is this:** You are paying an indefinite, compounding bill for photos you took years ago. Your wedding photos, childhood memories, family videos — content you may not look at for months or years, but would be devastated to lose — are held hostage behind a recurring payment. **Miss a few payments during a tough month, forget to update an expired card, or simply decide the cost isn't worth it anymore, and the countdown to deletion begins.**
-
-Over a 10-year horizon, a 2TB Google One plan costs approximately **₹1,56,000+ (~$1,800+ USD)**. For that money, you could buy multiple enterprise-grade NAS devices and hard drives that you actually *own*. And unlike a subscription, a hard drive doesn't delete your photos if you stop paying it.
-
-**Pixel-NAS eliminates this entirely.** By exploiting Google's own legacy unlimited backup policy through a physical Pixel device, your data flows into the same Google Photos infrastructure — but without the subscription. No monthly bill, no grace periods, no deletion countdowns. The photos are simply *there*, forever, on Google's servers, backed by the same infrastructure that serves billions of users.
-
-### 🧘 The Peace of Mind: Cross-Device Accessibility
-
-Beyond the financial argument, there's a quieter benefit that only becomes obvious once you've lived with it: **you stop worrying about your devices.**
-
-Because every device in your life — phone, laptop, tablet — funnels its media into the same Pixel-NAS backup node, every photo, screenshot, and video you capture on *any* device is automatically accessible from *every* device. Take a screenshot on your laptop? It shows up on your phone. Record a video on your tablet? It's on your laptop. Capture a memory on your phone? It's everywhere.
-
-This means you are no longer tethered to any single piece of hardware. If your phone breaks, gets lost, or needs a factory reset — your memories are safe. If your laptop dies — your screenshots and downloads are safe. **The physical device becomes disposable; the memories are permanent.** You carry less anxiety about your hardware because you know that everything important has already been silently funnelled to the cloud through the Pixel, without you lifting a finger.
-
-### 📸 The Psychological Shift: Eliminating "Storage Anxiety"
-
-Most smartphone users live with constant **storage anxiety**. We are trained by modern hardware pricing tiers to treat device storage as a scarce, rationed resource:
-* Deleting older videos before going on vacation.
-* Hesitating to record in 4K 60fps because *"it eats up too much space."*
-* Getting interrupted mid-moment by a *"Storage Almost Full"* system warning.
-
-**Pixel-NAS completely rewrites this relationship with your devices.**
-
-Because every captured file is autonomously funnelled to an infinite cloud repository, local phone storage transforms from a rigid bottleneck into a **temporary, self-clearing scratchpad**:
-* **Zero-Hesitation Capture:** You record life as it happens. When you know a video or photo will bring a smile to your face 5 years down the line, you capture it without ever worrying whether you have room for it today.
-* **Storage Abundance in Practice:** On a 256 GB daily driver, local storage can surge from 130 GB to over 200 GB in a single week of heavy shooting (burning through 40+ GB of 4K clips, photos, and project renders) with zero stress. Once a project or shooting session is done, a single tap of *"Free Up Space"* safely purges tens of gigabytes in seconds because everything is already securely archived in the cloud.
-* **No Manual Babysitting:** No manual transfers to external drives, no cable dongles, and no micromanaging gallery folders. Storage becomes an invisible, solved problem.
-
-### The Journey & Project Timeline
-
-The evolution of Pixel-NAS spans several years, starting from early classroom ideas to a fully production-ready automated backup pipeline:
-
-* **The Seeds (Class 9 / 2022–2023):** Initial interest in building an independent cloud/local backup solution started during Class 9.
-* **Initial Concept Stage (November 2023 – January 2024):** The project origin and initial experiments occurred, realizing older Google Pixel devices could be repurposed to exploit the legacy "unlimited storage" loopholes.
-* **V1 (The Cumbersome Phase - February – April 2024):** 
-  <img src="assets/old_workflow.jpg" alt="The bleak reality of the V1 wired nightmare" align="right" width="35%" style="border-radius: 12px; margin: 0 0 15px 20px;" />
-  Developed the first working prototype using a salvaged, boot-looped Pixel 2 XL and configuring Resilio Sync as the data relay. Backing up was an agonizingly manual and monotonous chore. It required tethering the main phone to a laptop, manually indexing and moving files, and then trickling them down to the Pixel. Because the legacy Pixels only have **USB 2.0 ports**, transferring files meant suffering through abysmal USB 2.0 speeds *twice* (Phone → Laptop → Pixel). This turned a simple backup into an unreliable, hours-long headache that heavily relied on pristine cables. Furthermore, using pen drives or external hard drives for these extended transfer sessions caused them to overheat and severely throttle. The system required constant human babysitting and was essentially an "expensive paperweight." *(Pictured right: The bleak, wired reality of V1—a laptop connected to a mouse and a Pixel sitting on a desk.)*
-  <br clear="all" />
-* **System Regularization & V2 (The Automation Phase - April/May 2025):** 
-  <img src="assets/new_workflow.jpg" alt="V2 and V3 Setup" align="left" width="40%" style="border-radius: 12px; margin: 0 20px 15px 0;" /> 
-  Moved past the fragile Version 1 wired workflow and transitioned into a more automated, stable, and fluid system. I introduced Resilio Sync over Wi-Fi, proving the concept by effortlessly syncing 80GB of 4K drone/camera footage without any cables. *(Pictured left: Three devices wirelessly backing up to the Pixel over Wi-Fi, which then seamlessly uploads to the cloud.)*
-* **V3 (The Intervention-Free Phase & All-in-One Form Factor - Present):** 
-  <img src="assets/hardware_wall_mount_plugged.jpg" alt="V3 All-in-One Plug & Play Setup" align="right" width="30%" style="border-radius: 12px; margin: 0 0 15px 20px;" />
-  The current architecture and hardware form factor. Leveraging Smart Home integrations, geofencing, and advanced automation, the system now runs perpetually without human intervention. The phone, low-wattage adapter, and coiled USB-C cable are integrated into a single self-contained unit that can simply hang on a wall outlet—eliminating cable mess and clearing desk space entirely.
-<br clear="all" />
-
+| Guide | What's Covered |
+| :--- | :--- |
+| 🛠️ [**Setup & Configuration Guide**](docs/SETUP.md) | Complete step-by-step installation: Termux, Resilio Sync, Google Photos, headless ADB mode, and verification. |
+| 📱 [**Hardware, Benchmarks & Longevity**](docs/HARDWARE_AND_BENCHMARKS.md) | Pixel 1 vs 2–5 buyer's guide, 150 Mbps Wi-Fi setup, 24-hr unplugged thermal/discharge tests, and Android 4.2.2 longevity proof. |
+| ⚡ [**Automation, Triggers & Daisy Chain**](docs/AUTOMATION.md) | Geofencing, MacroDroid automation, smart plug battery cycling (20–80%), KWGT telemetry widgets, and buffer recycling. |
+| 📖 [**Philosophy, Story & Evolution**](docs/PHILOSOPHY.md) | Why not paid cloud?, psychological freedom from storage anxiety, project timeline (V1–V4), and BitStream arbitrary backup. |
+| 🏗️ [**System Architecture**](docs/ARCHITECTURE.md) | Ingestion telemetry pipelines, SQLite ledger states, and watchdog dataflow. |
+| 🛡️ [**Security & Network Hardening**](docs/SECURITY.md) | Local loopback binding, bearer token authentication, CORS restrictions, and Android permissions. |
+| 🔄 [**Disaster Recovery Runbook**](docs/RECOVERY.md) | Step-by-step node recovery instructions, ledger restoration, and restore verification checklists. |
+| 📊 [**V4 Reliability Hardening**](docs/V4_RELIABILITY.md) | Technical summary of V4 reliability updates, fail-safe storage guard, and SHA-256 ingestion scanner. |
+| 🤖 [**Macro Action Recipes**](AUTOMATION_MACROS.md) | Ready-to-import step-by-step MacroDroid action logic and XML configuration blocks. |
+| 🧪 [**Device Spoofing Guide**](DEVICE_SPOOFING_GUIDE.md) | Research and critical warnings regarding virtual/spoofed nodes and account safety. |
 
 ---
 
 ## How It Works (The Architecture)
 
-This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or tablet securely pours data into the "Pixel Funnel" over your local Wi-Fi. The Pixel then "spoofs" the source of the data, allowing it to flow into the infinite ocean of Google Photos using its legacy unlimited backup benefit.
+This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or tablet securely pours data into the "Pixel Funnel" over your local Wi-Fi. The Pixel then ingests the media, allowing it to flow into Google Photos using its grandfathered original-quality unlimited backup benefit.
 
-1. **Secure Transfer (Local & Global WAN):** Your phone's camera roll syncs to the Pixel via **Resilio Sync** — a P2P protocol with full End-to-End Encryption (AES-128/256). **You do not even need to be on the same Wi-Fi network:** leveraging BitTorrent global trackers, DHT, NAT hole-punching, and encrypted relay servers, your devices can be anywhere in the world (hotel Wi-Fi, coffee shop, or cellular data) and still seamlessly stream photos directly to your home Pixel node.
-2. **Infinite Cloud:** Google Photos on the Pixel detects the new files and uploads them in the background using the device's legacy unlimited backup entitlement.
-3. **Auto-Purging (The Pixel Buffer):** The Pixel's internal storage acts as a temporary buffer. Android's Smart Storage automatically clears backed-up files every 30/60/90 days — it self-cleans without any user action.
+1. **Secure Transfer (Local & Global WAN):** Your phone's camera roll syncs to the Pixel via **Resilio Sync** — a P2P protocol with full End-to-End Encryption (AES-128/256). Devices can sync on local Wi-Fi or globally across the internet via encrypted BitTorrent relays.
+2. **Infinite Cloud Ingestion:** Google Photos on the Pixel detects the new files and uploads them in the background using the device's legacy unlimited original-quality entitlement.
+3. **Auto-Purging (The Pixel Buffer):** The Pixel's internal storage acts as a temporary buffer. Automated space reclamation (or Android Smart Storage) purges backed-up files so new batches can stream in.
 4. **Passive Confirmation:** Real-time push notifications alert your main device when a batch finishes uploading via Google Photos Partner Sharing.
-5. **Freeing Up Main Device Space:** Because your photos are safely in the cloud, you can open Google Photos on your *main daily driver* and manually tap **"Free up space"** to reclaim gigabytes of local storage.
-   - *Real-world benchmark:* A single cleanup session safely reclaimed **91.74 GB of storage** (purging 5,722 items in batches of 2,000 / 2,000 / 1,722), reducing the primary daily driver's storage from 253.3 GB (98% full) down to 161.1 GB (63% used).
+5. **Freeing Up Main Device Space:** Because your photos are safely in the cloud, you can open Google Photos on your *main daily driver* and manually tap **"Free up space"** to reclaim local gigabytes.
 
 <div align="center">
   <img src="assets/cleanup_91gb.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="91.74 GB freed in a single session" />
@@ -104,7 +61,8 @@ This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or 
   <img src="assets/free_space_regular.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Regular free up space" />
 </div>
 
-> **Important distinction:** Step 3 (auto-purge) happens automatically on the Pixel buffer only. Your **main phone's** Google Photos cannot auto-delete — that always requires a manual tap from you. This is intentional — auto-deleting photos from your primary device would be dangerous.
+> [!IMPORTANT]
+> **The 3-2-1 Retention Boundary:** The Pixel is an *ingestion bridge*, not your only master archive. Retain original media on source devices, PCs, or an independent offline drive until items are independently verified in Google Photos web.
 
 ### The Pipeline Flowchart
 
@@ -113,701 +71,75 @@ This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or 
           │
           │ (1. New media captured)
           ▼
-          ├─► [ ⚡ Optional: Geofencing/Wi-Fi/Voice triggers Smart Plug to power Pixel-NAS ]
+          ├─► [ ⚡ Optional: Geofencing/Wi-Fi triggers Smart Plug to power Pixel-NAS ]
           │
-          │ (2. Wi-Fi / Resilio Sync — E2E Encrypted Transfer)
+          │ (2. Wi-Fi / Resilio Sync — E2E Encrypted P2P Transfer)
           ▼
-[ 📱 Pixel-NAS Internal Buffer (64GB/128GB) ]
+[ 📱 Pixel-NAS Ingestion Buffer (32GB/128GB) ]
           │
-          │ (3. Google Photos App detects new media)
+          │ (3. Google Photos detects media & Termux V4 Ledger hashes stable files)
           ▼
-[ ☁️ Google Photos Cloud (Unlimited Upload) ]
+[ ☁️ Google Photos Cloud (Original Quality Upload) ]
           │
-          │ (4. Upload finishes)
-          ├─► [ 🗑️ Pixel Auto-purges buffer on schedule — automatic ]
+          │ (4. Upload verified by Google Photos cloud servers)
+          ├─► [ 🗑️ Pixel buffer reclaimed via "Free Up Space" — automated ]
           │
           │ (5. Partner Sharing Notification)
           ▼
-[ 📱 Main Phone ] (Receives notification that backup is complete)
+[ 📱 Main Phone ] (Receives notification that cloud backup is complete)
 ```
 
 ---
 
-## Performance & Speeds
+## Quick Start (15 Minutes)
 
-Through rigorous pipeline optimization, wireless syncing is now effectively as fast as a wired connection.
-
-* **Average Speeds:** 30 Mbps to 70 Mbps.
-* **Peak Speeds:** Up to 150 Mbps.
-
-### Real-World Transfer Benchmarks
-
-| Files | Total Size | Transfer Time |
-| :--- | :--- | :--- |
-| **500** | 4 GB | 3 min |
-| **10,000** | 85 GB | 42 min |
-
-### How to Achieve 150 Mbps:
-1. **5GHz Wi-Fi:** Both the source device and the Pixel-NAS must be connected to a clean 5GHz network.
-2. **Direct Connection:** Ensure Resilio Sync is using "LAN Sync" and a direct P2P connection (no relay servers).
-3. **Advanced Tweaks:** For trusted local networks, disabling `lan_encrypt_data` in Resilio's advanced settings reduces CPU overhead, allowing the devices to focus purely on disk I/O and transfer speed.
-
-> **VPN & DNS Note:** Turn off your VPN entirely during sync sessions. VPN interferes with both Resilio Sync's local peer discovery *and* Google Photos' device identity verification — both require a direct connection. Custom DNS servers (e.g., 1.1.1.1, 8.8.8.8) are fine and do not break the pipeline.
+1. **Prepare the Pixel:**
+   Install Termux, set screen timeout to never sleep while charging, and ensure Termux has storage permissions (`termux-setup-storage`). See [docs/SETUP.md](docs/SETUP.md).
+2. **Install & Configure Resilio Sync:**
+   Set up camera roll sync using a **Read-Only / Receive-Only secret** on the Pixel node.
+3. **Launch the V4 Operations Dashboard:**
+   ```bash
+   cd ~/
+   git clone https://github.com/mehuljain866/Pixel-NAS.git
+   cd Pixel-NAS/dashboard
+   bash install.sh
+   npm start
+   ```
+4. **Set Up Smart Power Management:**
+   Plug the Pixel into a smart plug cycling power between 20% and 80% battery to prevent battery swelling. See [docs/HARDWARE_AND_BENCHMARKS.md](docs/HARDWARE_AND_BENCHMARKS.md).
 
 ---
 
-## Reliability & Operational Metrics
+## Pixel-NAS V4 Dashboard
 
-Production usage statistics gathered over extended operational testing show the robustness of the automated V3 pipeline:
+The built-in Termux operations dashboard provides real-time observability and fail-safe hardware guards:
 
-| Metric | Value | Operational Details |
-| :--- | :--- | :--- |
-| **Continuous Operational Runtime** | **18+ months** | Ongoing production operation across multiple daily devices |
-| **Total Verified Backups** | **111,556 photos/videos (~1.8–2.2 TB)** | Empirical volume includes 4K/1080p video, RAW camera captures, and photos (as of November 2026) |
-| **Edge-Case Storage Lockdowns** | **4 full factory resets** | Historical incidents where storage overfilled to 23 KB before implementing the 55GB auto-kill switch |
-| **Full Disaster Recovery Time** | **~30–45 minutes** | ~5 min for automated Termux scripts; ~25–40 min for sideloading pinned APKs (APKMirror/local backup), Android permission grants, NetGuard rules, and Resilio/Partner Sharing re-linking |
-
----
-
-## Automation & Smart Home Triggers (V3)
-
-The beauty of V3 is that the Pixel-NAS only works when it needs to. Using Smart Plugs and Automation apps, I control the power and sync cycles dynamically.
-
-> 💡 **Detailed Automation Guide:** For step-by-step instructions on how to build these automations in MacroDroid and Tasker, see the [AUTOMATION_MACROS.md](AUTOMATION_MACROS.md) guide.
-
-### 1. Geofencing (Samsung Routines / Apple Shortcuts)
-When you enter a ~15-meter radius of your home, a location-based routine triggers your Smart Plug to turn on. The Pixel receives power, wakes up, and immediately begins pulling the day's photos over Wi-Fi. No manual tapping required.
-
-### 2. Wi-Fi Triggers (MacroDroid)
-Using an automation app like **MacroDroid**, you can configure the Pixel to force-launch the sync protocol the exact moment it detects your home Wi-Fi SSID, ensuring background processes haven't put Resilio Sync to sleep.
-
-### 3. Voice & Remote Triggers (Alexa / Google Home)
-If a sync stalls, or if you need to force a backup remotely, you can map the smart plug to a voice command (e.g., *"Alexa, turn on Pixel NAS"*). Because the plug is connected to your smart home ecosystem, you can trigger backups from anywhere in the world.
-
-### 4. Hardware Battery Management
-Leaving a phone plugged in 24/7 destroys the battery. V3 uses a **5W (1A) charger** routed through a **4-port USB hub**. The hub acts as a resistor, creating a permanent "Charging Slowly" state. The battery stabilizes at ~45–50% and holds there indefinitely without heat cycles or swelling.
-
-For users without smart home integration, a simpler approach works well: manually plug the Pixel in for **30 minutes to 1 hour per day**. That is enough to keep it running while protecting battery health. A Wi-Fi smart plug (Google Home / Alexa / Apple Home compatible) with a scheduled on/off routine is the recommended upgrade — it makes this fully automatic.
-
-* **Advanced Home Assistant Integration:** Power users can link their smart plug to **Home Assistant** and configure an automation based on the Pixel's actual battery percentage (e.g., turn plug ON at 20%, OFF at 80%) rather than relying on a static time schedule.
-
-### 5. Physical Hardware & Form Factor ("All-in-One Plug & Play Node")
-
-The physical build transforms the salvaged Pixel 2 XL into a completely self-contained, modular appliance:
-
-* **All-in-One Portability & Zero Desk Footprint:** Heavy-duty Velcro strips securely bond the Pixel 2 XL, a low-wattage 7.5W charging adapter, and a coiled USB-C cable into a single integrated unit. It can be thrown anywhere or plugged into any wall socket. Even in rooms with no desk or shelf near the outlet, the entire assembly hangs securely suspended from the wall plug itself.
-* **Built-in Stand / Digital Photo Frame:** When placed on a flat desk or bedside table, the rear charger-and-cable bundle doubles as a sturdy kickstand, propping the phone up at an optimal viewing angle to function as an ambient digital photo frame.
-* **Camera Lens Scratch Protection:** A dedicated Velcro strip across the upper rear glass section acts as a physical riser, keeping the camera lens elevated away from rough table surfaces to prevent scratches.
-* **Ambient Smart Node Capabilities:** Beyond backing up terabytes of photos, the always-on node serves multiple passive utility functions:
-  - 🗣️ **Google Home Replacement & Voice Hub:** Dual front-facing stereo speakers and far-field microphones allow the node to act as a permanent Google Home device. Voice commands can adjust AC temperatures, control smart lights, toggle plugs, set timers, and trigger Google Home routines.
-  - 🤏 **Active Edge ("Pixel Squeeze"):** Hardware pressure sensors along the Pixel's frame allow you to activate Google Assistant or Gemini with a quick physical squeeze of the phone body—no wake words or screen taps required.
-  - 🎵 **"Now Playing" Song Identification:** Leverages Pixel's native on-device ambient music recognition to display whatever song is playing in the room.
-  - ⏰ **Always-On Display & Night Clock:** Shows live time, date, weather, and battery health at a glance.
-  - 🎧 **Spotify Connect Controller:** Acts as a dedicated room controller for audio playback across connected speakers.
-  - ⚡ **Local Termux Node:** Runs a background Node.js telemetry server for the PWA dashboard.
+* **Live Telemetry:** Reads battery status, charging state, and filesystem capacity via native Node `fs.statfs` (no shell parsing).
+* **Storage Watchdog:** Issues a warning at **48 GB** and triggers a latched stop-webhook to MacroDroid at **55 GB** (`PIXEL_NAS_STORAGE_PAUSE_GB`), preventing internal storage saturation and system bootloops.
+* **Optional SQLite Ledger:** Automatically tracks observed files, calculates SHA-256 for stable media, and logs local staging history without blocking transfer I/O.
+* **Network Hardened:** Binds to `127.0.0.1` by default; requires a 24+ character bearer token for remote LAN access.
 
 <div align="center">
-  <!-- Prioritized Hero Views: Active Screen & Mounting -->
-  <img src="assets/hardware_stand_photo_frame.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Angled stand mode as ambient photo frame (Screen active)" />
-  <img src="assets/hardware_plugged_backing_up.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Device suspended on wall socket actively backing up" />
-</div>
-<div align="center">
-  <!-- Hardware Construction & Protection Details -->
-  <img src="assets/hardware_charger_velcro_cable.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Velcro attachment on charger and coiled cable" />
-  <img src="assets/hardware_back_velcro_protection.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Rear velcro strips and camera protection riser" />
+  <img src="assets/pixel_homescreen_widgets.png" width="45%" style="border-radius: 12px; margin: 10px auto;" alt="Pixel-NAS Home Screen Widgets" />
 </div>
 
-### 6. Primary Phone Battery Optimization & The Pixel Biometric Trigger
-
-To balance 24/7 reliability with zero battery anxiety, two hardware and automation workflows solve background limitations across both devices with **zero downsides**:
-
-1. **Client Phone Battery Saver — End-of-Day Batch Sync (Samsung Modes & Routines):**
-   - On your primary daily driver (especially Samsung Galaxy devices on One UI), leaving Resilio Sync running 24/7 can trigger system warnings (*"App draining battery in the background"*).
-   - *The Fix:* Create a native Samsung Routine scheduled at bedtime (e.g., 11:00 PM) or triggered automatically when `Charging + Connected to Home Wi-Fi`.
-   - The routine opens Resilio Sync for 5–10 seconds and then closes it (or navigates to Home).
-   - Bringing the app into the foreground immediately wakes the sync engine, handshakes with the Pixel-NAS node, and pushes the entire day's delta queue of photos and videos in a single high-speed 5GHz burst without any daytime background drain.
-
-2. **Pixel Node Biometric Wake-and-Sync Gate (Rear Fingerprint Trigger — Zero Extra Hardware):**
-   - On the **Google Pixel 2 XL node**, keep Resilio Sync and Google Photos in the recent apps tray, with Resilio active before the screen turns off.
-   - **Zero Extra Hardware Required:** Works anywhere without needing smart plugs, hubs, or accessories.
-   - **An Emergent "Behavioral Feature":** While all scheduled background automations and automatic time-to-time syncs continue running persistently on their own, this acts as an intuitive physical shortcut whenever you want to trigger or check on a sync instantly.
-   - **Wall-Mounted Mode:** When the Pixel is hanging from an outlet via the All-in-One velcro build, simply reach down and touch the rear fingerprint sensor (*Pixel Imprint*). The phone unlocks directly into Resilio Sync.
-   - **Desk-Stand Mode (or Standalone):** When propped up on a desk or nightstand with the charger kickstand, casually reach behind the phone to touch the rear fingerprint sensor.
-   - **Instant Wake & Lock:** Unlocking into Resilio immediately pulls the sync daemon into the active foreground, forcing an instantaneous peer handshake and resuming transfers even if Android Doze had throttled background tasks. Because the buttons remain clearly exposed, a light tap on the side power button immediately locks the screen while background sync continues running uninterrupted.
-
-> 💡 **Step-by-Step Setup Guide:** For exact trigger and action configuration in Samsung Modes & Routines, MacroDroid, and Tasker, see [AUTOMATION_MACROS.md (Sections 4 & 5)](AUTOMATION_MACROS.md).
+For full dashboard configuration, see [dashboard/README.md](dashboard/README.md).
 
 ---
 
-## On-Device Visual Telemetry (Home Screen Widgets)
-
-To eliminate the need to constantly open Android Settings or terminal sessions just to check node health, the Pixel 2 XL home screen is configured with dedicated live widgets:
-
-* **🔋 Battery & Temperature Widget ([Battery Widget Reborn 2026](https://play.google.com/store/apps/details?id=net.hubalek.android.apps.reborn.pro)):** Displays real-time battery percentage, charging duration, discharge estimation, and live hardware temperature in Fahrenheit and Celsius (🌡️). *(Essential for monitoring thermal buildup during heavy 10GB+ bulk ingestions).*
-* **💾 Live Storage Bar (Storage Gauge):** Provides an instant visual gauge of buffer capacity (ensuring storage never nears the dangerous 55GB+ zone).
-* **🛡️ Ad-Free Operation via NetGuard:** Both utility widgets run with zero ads or tracking by using NetGuard to cut off their internet access entirely while leaving Google Photos unhindered.
-* **📱 Hardware Screen Compensation:** Salvaged Pixel 2 XL OLED panels often develop minor artifacts around the top status bar icons; a large center-screen battery widget ensures percentage legibility at all times.
-
-<div align="center">
-  <!-- Primary Home Screen Dashboard View -->
-  <img src="assets/pixel_homescreen_widgets.png" width="36%" style="border-radius: 12px; margin: 10px auto;" alt="Pixel-NAS Home Screen Widgets" />
-</div>
-<div align="center">
-  <!-- Matching Notification Shade & Charging Telemetry Cards -->
-  <img src="assets/battery_temp_widget_charge.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Battery charging and temperature telemetry" />
-  <img src="assets/battery_temp_widget_discharge.jpg" width="47%" style="border-radius: 12px; margin: 5px;" alt="Battery discharge telemetry" />
-</div>
-
----
-
-## Real-World Battery Endurance & Thermal Telemetry (Unplugged Benchmark)
-
-To verify the energy efficiency and thermal profile of the Pixel 2 XL acting as an autonomous node, I conducted an extended, real-world **unplugged drain test** from **August 17 to August 19, 2026**:
-
-### 📊 Benchmark Conditions & Operational Load
-* **Initial State:** Charged to **97%** on Monday, Aug 17 at 11:07 PM.
-* **Duration:** **45.3+ Hours (~1.9 Days)** continuously unplugged from the wall.
-* **Ending State:** **12% Battery** remaining on Wednesday, Aug 19 at 8:44 PM (concluded test; plugged in with ~5h 51m estimated idle life remaining).
-* **Active Background Load:**
-  - 🌙 **Always-On Display (AOD):** Kept active 24/7 (clock, date, Now Playing music detection).
-  - 📶 **Wi-Fi & P2P Connectivity:** Always-on LAN socket for Resilio Sync listening.
-  - ☁️ **Google Photos Cloud Sync:** Background indexing, video encoding, and cloud uploading.
-  - 📈 **On-Screen Telemetry Widgets:** Live visual rendering of storage capacity and battery discharge graphs.
-  - 🧹 **Active Buffer Purge:** Buffer filled up to 58.4 GB (~97% full) during the test and was safely purged back down to 23.2 GB without interrupting node operation.
-* **⚡ Ambient Sync vs. Heavy Burst Video Ingestion:**
-  - **Ambient Sync (Hours 0 – 41):** Routine photo batches (~500MB – 1GB) show up as tiny, subtle dips along a very gentle baseline drain curve (~1.46%/hr).
-  - **Massive Video Ingestion Burst (Hours 41.1 – 43.75):** Recorded and synced an unbroken **~30-minute 1080p 30fps video (~6.4 GB)** plus a 42-second clip (~170 MB), totalling **~6.57 GB of continuous burst ingestion**. The simultaneous high-bandwidth Wi-Fi transfer, rapid flash NAND writes, and intensive Google Photos video processing caused a steep, visible discharge from **37% down to 12%** in ~2.65 hours.
-  - **The 15% Resilio Safety Cut-off & Idle Flatline (Hours 43.75 – 45.3+):** Resilio Sync's built-in battery saver halts sync whenever battery drops below **15%**. This is a deliberate design choice that prevents sudden device brownouts, avoids corrupting Google Photos indexing queues, and allows the node to maintain deep standby for hours (flatlining at **12% battery** with ~6 hours of remaining standby).
-
-### 📈 Discharge & Thermal Metrics
-
-| Metric | Measured Value | Operational Insight |
-| :--- | :--- | :--- |
-| **Total Runtime (Unplugged)** | **45.3+ Hours** | 97% → 12% (85% consumed over ~1.9 days under mixed idle + burst load) |
-| **Baseline Idle / Ambient Drain** | **~1.46% / hour** | ~35% battery consumed per 24 hours under standard background sync |
-| **Heavy Video Ingestion Drain** | **~9.4% / hour** | Continuous 6.5GB+ video Wi-Fi sync, local flash writes, and cloud upload |
-| **Projected Total Battery Life** | **~50–70 Hours (~2–3 Days)** | Easily withstands extended power outages even with active data ingestion |
-| **Idle Thermal Profile (AC active)** | **67°F – 69°F (~19.4°C – 20.5°C)** | Sub-ambient thermal dissipation with room AC active |
-| **Standard Thermal Profile** | **77°F – 79°F (~25.0°C – 26.1°C)** | Nominal room temperature during active ingestion and conclusion |
-
-### 📊 Plotted Battery Discharge Curve
-
-<div align="center">
-  <img src="assets/battery_telemetry_graph.png" width="95%" style="border-radius: 12px; margin: 10px auto;" alt="Pixel 2 XL Battery Telemetry Plotted Discharge Curve (45.3-Hour Run)" />
-</div>
-
-### 🗓️ Key Milestone Telemetry Checkpoints
-
-| Checkpoint | Elapsed | Battery % | Storage Buffer | Temp | Operational Event & System Notes |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Mon, Aug 17 · 11:07 PM** | 0.0 hrs | **97%** | 56.9 GB (95%) | — | 🔌 Unplugged from 7.5W adapter; benchmark begins |
-| **Tue, Aug 18 · 07:34 AM** | 8.5 hrs | **91%** | 56.8 GB (95%) | — | 🌙 Overnight standby with Always-On Display (0.71%/hr baseline) |
-| **Tue, Aug 18 · 03:04 PM** | 16.0 hrs | **79%** | 57.7 GB (96%) | — | 🔄 Background P2P LAN sync & incoming media ingestion |
-| **Tue, Aug 18 · 10:51 PM** | 23.7 hrs | **68%** | 58.4 GB (97%) | **77°F (25°C)** | ⏱️ 24-Hour Milestone: only 29% battery consumed in 1 full day |
-| **Wed, Aug 19 · 08:28 AM** | 33.4 hrs | **49%** | 58.4 GB (98%) | **67°F (19.4°C)** | ❄️ AC blasting at peak; temperature drops to sub-ambient 67°F |
-| **Wed, Aug 19 · 09:31 AM** | 34.4 hrs | **45%** | 23.1 GB (38%) | — | 🧹 **Storage Purged:** 35.3 GB cleared via Google Photos Free Up Space |
-| **Wed, Aug 19 · 04:13 PM** | 41.1 hrs | **37%** | 23.2 GB (38%) | — | 📱 Routine ambient sync baseline before video burst |
-| **Wed, Aug 19 · 06:52 PM** | 43.75 hrs | **12%** | ~29.8 GB (49%) | — | 📹 **Heavy Video Burst:** Ingested **6.57 GB** (30-min 1080p video); steep 25% drain |
-| **Wed, Aug 19 · 08:26 PM** | 45.3 hrs | **12%** | ~29.8 GB (49%) | **79°F (26.1°C)** | 💤 **Test Concluded:** 15% Resilio safety cut-off halts sync; battery flatlines at 12% (~6h remaining) |
-
-<div align="center">
-  <!-- Progression of the 41-hour unplugged drain test -->
-  <img src="assets/battery_test_day1_97pct.png" width="31%" style="border-radius: 12px; margin: 4px;" alt="Day 1 Start: 97% Battery (Aug 17, 11:07 PM)" />
-  <img src="assets/battery_test_day2_79pct.png" width="31%" style="border-radius: 12px; margin: 4px;" alt="Day 2 Midpoint: 79% Battery (Aug 18, 3:04 PM)" />
-  <img src="assets/battery_test_day3_37pct.png" width="31%" style="border-radius: 12px; margin: 4px;" alt="Day 3 Ending: 37% Battery with Storage Purged (Aug 19, 4:13 PM)" />
-</div>
-<div align="center">
-  <!-- Clean Cropped Thermal Telemetry Cards -->
-  <img src="assets/battery_temp_67f_ac_blast.png" width="47%" style="border-radius: 12px; margin: 5px;" alt="Thermal readout: 67°F with AC blasting" />
-  <img src="assets/battery_temp_77f_lockscreen.png" width="47%" style="border-radius: 12px; margin: 5px;" alt="Thermal readout: 77°F nominal room temperature" />
-</div>
-
----
-
-## Hardware Bill of Materials
-
-### 📱 Choosing the Right Pixel (Which generation to buy?)
-
-If you are buying a device specifically for this project, the most straightforward and highly recommended option is the **Google Pixel 1 (128 GB)**. The 128GB model gives you a massive internal buffer to prevent "Storage Full" bottlenecks during large bulk uploads, and the Pixel 1 is the *only* generation that retains **Original Quality** backup for life.
-
-> **Storage Capacity Warning:** The Pixel's internal storage is a live buffer. If it fills up, the pipeline stalls. With a 64GB Pixel, try to keep storage usage below **55–60GB** at most — beyond that, the pipeline tends to break and requires manual intervention. Heavy users (100–300+ photos/day, regular videos) are strongly advised to get the **128GB model**, where Smart Storage's auto-purge will keep up automatically without any manual attention.
-
-Here is the exact breakdown of Google's legacy backup policies across generations:
-* **Pixel 1 (2016):** Unlimited backup at **Original Quality** (Uncompressed), forever. *(The Holy Grail).*
-* **Pixel 2 (2017) & Pixel 3 (2018):** Their Original Quality promo expired. They now offer unlimited backup at **Storage Saver (High) Quality** for life.
-* **Pixel 3a, 4, 4a, 5:** Unlimited backup at **Storage Saver (High) Quality** for life.
-* **Pixel 5a & newer (6, 7, 8, etc.):** No unlimited backup benefit. Do not buy these for this project.
-
-### 🛠️ Hardware List
-
-| Component | Recommendation | Purpose |
-|---|---|---|
-| **Google Pixel** | **Pixel 1 (128GB)** | The ultimate backup engine (Original Quality for life). |
-| **Power Supply** | 5W (1A) Charger | Low-wattage charging for battery stability. |
-| **Resistance Hub** | 4-Port USB Hub | Adds electrical resistance for trickle charging. |
-| **Smart Plug** | Google Home/Alexa compatible | Required for Geofencing & Voice triggers. |
-| **Cooling** | Aluminum Foil / Heat Sink | Passive heat dissipation across the back glass for 80GB+ bulk uploads. |
-
-*Estimated cost from scratch: $15–$30 (mostly the smart plug). The Pixel itself can often be sourced for $30–$50 on eBay or salvaged for free.*
-
-#### Battery Safety — Warning Signs (Pixel 1 is ~9 years old)
-The Pixel 1's battery is aging hardware. If you observe any of the following, **power off and disconnect the device immediately**:
-- Screen lifting away from the frame at any corner
-- Back cover visibly bulging outward
-- Unusual heat at idle (not during a sync — just sitting there warm)
-
-Run the phone in a well-ventilated, visible location. Never in a closed box, drawer, or shelf compartment. Check it physically once a week.
-
-#### Cooling for Heavy Loads
-During large batch uploads, the Pixel 1 (Snapdragon 821) can thermally throttle, which slows uploads or pauses Google Photos backup entirely. Beyond the aluminum foil heat sink, additional options:
-- **Active gaming cooler** — a clip-on Peltier/fan cooler attached to the back during heavy sync sessions
-- **Fan automation** — add a second smart plug controlling a desk fan; when the Pixel's charging smart plug turns ON, the fan also turns ON via a smart home routine. Fully automatic, zero effort.
-
----
-
-## Alternative: Device Spoofing & Virtual Nodes (Disclaimer)
-
-> [!CAUTION]
-> ### ⚠️ Crucial Disclaimer & Terms of Service Warning
-> **I do not personally use, recommend, or deploy device spoofing for my primary production pipeline (which manages an archive of 111,000+ irreplaceable family photos and videos / ~2 TB of data).**
->
-> Spoofing a Pixel device signature directly violates [Google's Terms of Service](https://policies.google.com/terms). While community ban rates have historically been near zero, using software spoofing on an account holding years of precious memories carries serious risks: Google can terminate accounts or revoke quotas at any time, modules can silently break after Android/Photos updates (causing sudden quota exhaustion), and system-wide spoofing breaks Play Integrity for banking and security apps.
->
-> **Liability & Risk Waiver:** This project documents my own personal setup, experiments, and ongoing learnings. I cannot vouch for third-party software spoofing methods or unofficial modules; information is based strictly on public community discussions and documentation. **I cannot and will not be held responsible for any loss of photos, account suspensions, bans, or data corruption.** Proceed entirely at your own risk.
->
-> **The physical hardware approach (a genuine Pixel 1–5 node) remains the only 100% legal, zero-maintenance, zero-ban-risk method.**
-
-While physical hardware is the safest approach, it is technically possible to spoof a Google Pixel 1/XL identity on non-Pixel Android phones using custom ROMs (such as **crDroid** or **Evolution X**), root modules (**Magisk / Zygisk / KernelSU** via Pixelify or GPhotosUnlimited), or even by converting an old, battery-less laptop into a perpetual **Android-x86 / Bliss OS** backup node.
-
-👉 **For the full technical breakdown, module rankings, and "Partner Sharing Mule" risk mitigation strategies, see the standalone [Device Spoofing Guide](DEVICE_SPOOFING_GUIDE.md).**
-
----
-
-## Setup Guide
-
-**1. Prepare the Device & App Update Policy**
-- **Factory reset the Pixel.** Use Android Universal Debloater (ADB) to strip bloatware, maximizing the internal buffer and freeing up CPU cycles for the sync and upload tasks.
-- **Disable Global Play Store Auto-Updates (Crucial):** Open Google Play Store → Profile → **Settings → Network Preferences → Auto-update apps → Select "Don't auto-update apps"**. On an autonomous server node, you want zero unexpected background update churn or UI rewrites that could break pipeline stability.
-- **App Update Strategy:**
-  - 🔄 **Google Play Store & Play Services:** Updates automatically at the system level in the background.
-  - 📂 **Files by Google:** Manually updated to the latest stable build for fast storage health checks.
-  - 📶 **Resilio Sync:** Installed as the latest stable build directly from the Google Play Store for optimal P2P LAN performance.
-  - 📊 **Telemetry Widgets (Battery & Storage Gauges):** Installed from Play Store, then firewalled via NetGuard (Step 7).
-
-**2. Configure Google Photos (Version Pinning)**
-- **Tested Stable Build:** Sideload and pin **Google Photos v7.5 / 8.0.855792468 (or stable v6.5+ builds)**. Newer Android 14+ UI updates introduce memory-heavy background indexing services and UI bloat that choke older Snapdragon processors during prolonged ingestion. Ensure auto-update is explicitly disabled (`Google Photos on Play Store → ⋮ (top-right) → Uncheck "Enable auto-update"`).
-- Log in with a **dedicated backup Google account** — not your main personal account.
-- **Enable backup for ALL folders.** By default, Google Photos only backs up the device's Camera folder. Since Resilio Sync delivers files into a separate synced folder (not the camera roll), you must manually enable backup for every folder Resilio syncs into: Library → scroll down to your folder → tap the ☁️ cloud icon to enable backup for that folder.
-- **Set backup quality.** On first setup (or after a factory reset), verify the backup quality setting:
-  - Pixel 1: leave at **"Original quality"** — this is the whole point.
-  - Pixel 2–5: switch to **"Storage Saver"** — it still receives the free unlimited perk, just compressed. Once set, it does not revert on its own.
-  - Path: Profile → Backup → Backup quality
-- Turn on the **30-day auto-purge** for the trash.
-
-**3. Setup Resilio Sync (Pixel Node In-App Configuration)**
-
-Install Resilio Sync on both your source device (phone/PC) and the Pixel NAS node. To ensure maximum stability and zero-intervention operation, configure the following settings:
-
----
-
-#### 📁 Sub-Step 3A: Folder Selection Strategy & Mode Configuration
-When syncing media from your source phone/PC to the Pixel, you can choose between two proven folder setup strategies depending on your workflow:
-
-* **Option 1: Complete `DCIM` Root Sync (Figure 3.1):** 
-  - Sync the entire root `DCIM` folder from your main device directly into the `DCIM` folder on the Pixel.
-  - *Best for:* Effortless "set-and-forget" automation. Everything saved inside DCIM (camera roll, screenshots, screen recordings) is automatically captured in a single sync share.
-* **Option 2: Granular / Separate Folder Syncs (Figure 3.2):** 
-  - Create distinct, separate sync shares for specific folders (e.g., `DCIM/Camera`, `Pictures/Screenshots`, `DJI/Footage`, `Raw_Media`).
-  - *Best for:* Precision control. Lets you cherry-pick exactly what gets backed up to Google Photos while preventing cache files, temporary media, or app junk from consuming Pixel buffer space.
-
-**Key Settings for Both Strategies:**
-* **Disable Selective Sync:** Ensure files download completely and immediately upon receipt.
-* **⚠️ Mandatory "Receive Only" Mode on Pixel:** In Resilio Sync on the Pixel, tap the folder settings and set the mode to **Receive Only**.
-  > *Why this is mandatory:* When Google Photos runs *Free Up Space* and deletes backed-up photos from the Pixel's internal storage, "Receive Only" prevents Resilio from registering them as "missing" and re-downloading them in an infinite loop.
-
-<div align="center">
-  <table style="border-collapse: collapse; border: none; width: 100%;">
-    <tr>
-      <td width="50%" align="center" style="border: none; vertical-align: top;">
-        <img src="assets/resilio_dcim.jpg" width="95%" style="border-radius: 12px; margin-bottom: 8px;" alt="DCIM Root Folder Selection" />
-        <br />
-        <em><strong>Figure 3.1: Option 1 — Complete DCIM Sync</strong><br />Syncing the entire root DCIM folder for all-in-one camera &amp; screenshot ingestion</em>
-      </td>
-      <td width="50%" align="center" style="border: none; vertical-align: top;">
-        <img src="assets/resilio_specific.jpg" width="95%" style="border-radius: 12px; margin-bottom: 8px;" alt="Specific Folder Selection" />
-        <br />
-        <em><strong>Figure 3.2: Option 2 — Granular Folder Syncs</strong><br />Creating separate sync shares for individual directories (Camera, Drone, Raw)</em>
-      </td>
-    </tr>
-  </table>
-</div>
-
-> 💡 **What I Personally Do (The Complete Catch-All Setup):**
-> Because I want to ensure *every single memory* is safely archived, I personally use the **`DCIM` root route** as my baseline. However, from real-world testing across Android devices, many essential apps store media completely outside of `DCIM`:
-> * **Social & Messaging Apps (Instagram, Beeper, etc.):** Save photos, stories, and saved chat media inside `/Pictures/` (e.g., `Pictures/Instagram`, `Pictures/Beeper`).
-> * **Direct File Transfer Utilities (LocalSend):** Saves incoming video clips and shared media inside `/Movies/` (e.g., `Movies/LocalSend`).
-> 
-> **My Production Workflow:** In addition to syncing `DCIM`, I create two additional sync pairs in Resilio for the **`Pictures`** and **`Movies`** directories. Then, on the Pixel's Google Photos app, go to **Library → Photos on device** and ensure the ☁️ cloud backup toggle is turned **ON** for both `Pictures` and `Movies`. This ensures 100% of your camera roll, social captures, and LocalSend drops are seamlessly ingested.
-
----
-
-#### 🛡️ Advanced: Quick Share Drops & The `Download/` Folder IgnoreList Filter
-On many Android devices (including Samsung Galaxy), **Quick Share** exhibits dual behavior: some image transfers land inside `DCIM`, while other photo/video drops land inside the generic **`/Download/`** directory.
-
-If you sync the entire `/Download/` folder to catch these Quick Share drops, you risk flooding your Pixel buffer with PDFs, APKs, ZIP archives, and work documents. Because Resilio Sync evaluates a local **`IgnoreList`** file inside every synced folder's hidden `.sync/` directory, you can configure Resilio to **blacklist non-media file types** so only photos and videos ever transfer.
-
-> [!NOTE]
-> **Resilio Sync `IgnoreList` Behavior:** Unlike `.gitignore`, Resilio Sync does not support `!` negation/whitelisting. It operates as a strict exclusion blacklist. To sync only media from `Download/`, you place an exclusion list of non-media extensions in the folder's `.sync/IgnoreList` file.
-
-**How to Set Up the `Download/` Folder Filter:**
-1. **Get the Template:** Download or copy the pre-configured [**`config/IgnoreList.txt`**](config/IgnoreList.txt) template from this repository.
-2. **Place in `.sync` Directory:**
-   - Copy the file into `/sdcard/Download/.sync/IgnoreList` on your phone (ensure the filename is named exactly `IgnoreList` with no `.txt` extension).
-   - *Via File Manager:* Open an Android file manager with "Show hidden files" enabled (e.g. Material Files, Solid Explorer) and paste into `/sdcard/Download/.sync/`.
-   - *Via Termux CLI:* `curl -sL https://raw.githubusercontent.com/mehuljain866/Pixel-NAS/main/config/IgnoreList.txt -o ~/storage/shared/Download/.sync/IgnoreList`
-   - *Via ADB:* `adb push config/IgnoreList.txt /sdcard/Download/.sync/IgnoreList`
-3. **Restart Resilio Sync:** Force Stop Resilio Sync on your phone and reopen it to reload the `IgnoreList` into active memory.
-4. **Result:** Any Quick Share photo (`.jpg`, `.png`, `.heic`, `.dng`) or video (`.mp4`, `.mov`, `.mkv`) in your `Download` folder instantly syncs to the Pixel, while PDFs, APKs, and documents are completely ignored.
-
----
-
-#### ⚙️ Sub-Step 3B: In-App Power & Notification Settings
-Open `Resilio Sync → Settings` on the Pixel node and apply the verified production configuration:
-
-1. **General Settings (`Settings → General`):**
-   * **🛡️ Battery Saver (<15% Threshold = ON):** Automatically pauses syncing when battery falls below 15%. This prevents sudden shutdowns during heavy disk writes and avoids Google Photos database corruption.
-   * **Auto-start = OFF:** Prevents unnecessary background launch upon reboot (MacroDroid/charging triggers handle this).
-   * **Auto-sleep = ON:** Puts the sync engine into low-power sleep when idle.
-
-2. **Auto-Sleep Timing Dialog (`Settings → General → Auto-sleep`):**
-   * **Check for active peers on battery: 30 minutes.** (Keeps idle standby drain at an ultra-low ~1.46%/hr).
-   * **Check for active peers on charger: 5 minutes.** (Ensures hyper-responsive pickup as soon as power is connected).
-   * **Sync when charging: Checked (ON).** (Immediately kicks off full-speed transfers upon receiving power).
-
-3. **Notification Persistence & OS Priority (`Settings → Notifications`):**
-   * **🔔 Show notification bar icon = ON:** Forces Android to treat Resilio as a high-priority foreground service, preventing the OS from silently killing multi-gigabyte ingestion tasks.
-   * **🔋 Android Battery Optimization = Unrestricted:** Navigate to `Android Settings → Apps → Resilio Sync → Battery → Set to Unrestricted`.
-
-<div align="center">
-  <table style="border-collapse: collapse; border: none; width: 100%;">
-    <tr>
-      <td width="33%" align="center" style="border: none; vertical-align: top;">
-        <img src="assets/resilio_settings_general.jpg" width="95%" style="border-radius: 12px; margin-bottom: 8px;" alt="Resilio General Settings" />
-        <br />
-        <em><strong>Figure 3.3: General Settings</strong><br />Battery Saver (&lt;15%) enabled to protect database integrity</em>
-      </td>
-      <td width="33%" align="center" style="border: none; vertical-align: top;">
-        <img src="assets/resilio_settings_autosleep.jpg" width="95%" style="border-radius: 12px; margin-bottom: 8px;" alt="Resilio Auto-Sleep Settings" />
-        <br />
-        <em><strong>Figure 3.4: Auto-Sleep Timing</strong><br />30m on battery / 5m on charger with sync-on-charging active</em>
-      </td>
-      <td width="33%" align="center" style="border: none; vertical-align: top;">
-        <img src="assets/resilio_settings_notifications.jpg" width="95%" style="border-radius: 12px; margin-bottom: 8px;" alt="Resilio Notification Settings" />
-        <br />
-        <em><strong>Figure 3.5: Foreground Service</strong><br />Notification bar icon active to prevent Android process kills</em>
-      </td>
-    </tr>
-  </table>
-</div>
-
-> 📱 **Primary Daily Driver Configuration Tip (Samsung Galaxy / One UI Battery Management):**
-> While the settings above optimize the always-on Pixel node, keeping Resilio Sync active 24/7 on your primary daily driver may trigger OEM background battery warnings (*"App draining battery in the background"*). On your main phone, you do not need continuous background polling—simply set up an **End-of-Day Batch Sync routine via Samsung Modes & Routines** or use the **Biometric Unlock Trigger** to sync your day's media in a single rapid burst at bedtime. See [Automation & Smart Home Triggers (Section 6)](#6-primary-phone-battery-optimization--biometric-trigger-samsung-routines) and [AUTOMATION_MACROS.md (Section 4)](AUTOMATION_MACROS.md).
-
-**4. The Hardware Hack**
-Connect: Wall Outlet → Smart Plug → 5W Charger → USB Hub → Pixel. Verify it says "Charging Slowly."
-
-**5. Set up Automations**
-Use Samsung Routines, Apple Shortcuts, or MacroDroid to create a trigger: `IF Location = Home → THEN Turn On Smart Plug`.
-
-**6. Setup Partner Sharing (For Backup Notifications)**
-
-Partner Sharing is not a core requirement — the backup works entirely without it. Its purpose is to give you a push notification on your main phone when the Pixel finishes backing up a batch.
-
-> **Note:** Google Photos only supports **one active Partner Sharing relationship at a time.** If you already have one set up, you'll need to remove it first.
-
-* On the **Pixel NAS** (logged into its dedicated backup account), open Google Photos.
-* Go to: **Profile → Photos settings → Sharing → Partner Sharing → Get started**
-* Invite your **main Google account email** → set to share **"All photos"**
-* On your **main phone**, open Google Photos and accept the invitation
-* Enable notifications: main phone → Google Photos → Profile → Photos settings → Notifications → **Sharing = ON**
-* Also verify at system level: Settings → Apps → Google Photos → Notifications → all ON
-* **How it works:** When the Pixel backs up a new batch, those photos populate in your main phone's "Sharing" tab, and you receive a batch push notification confirming the backup cycle completed.
-* **For third-party media** (screenshots, WhatsApp photos, etc.): enable **Photos settings → Sharing → Partner Sharing → "Include content from other Android apps"** (added in early 2025).
-* *If notifications stop: remove the partner, wait 10 minutes, re-invite.*
-
-**7. NetGuard Surgical Firewall (Zero-Root Ad Blocking for Utility Widgets)**
-If using third-party Play Store widget apps for storage/battery monitoring, isolate them using **NetGuard** (open-source no-root firewall by Marcel Bokhorst / FairCode BV):
-1. Install NetGuard from GitHub / F-Droid / Play Store.
-2. In NetGuard, tap the Wi-Fi and Mobile Data icons next to the widget utility apps to turn them **RED (blocked)**.
-3. Keep Google Photos, Resilio Sync, Termux, and Google Play Services unblocked.
-4. Enable NetGuard's master switch (creates a local dummy VPN interface).
-5. *Result:* Widget apps run locally with zero ads and zero data leaks, while Google Photos maintains 100% uninhibited gigabit upload bandwidth.
-
-> **⚠️ Quick Share / Nearby Share Conflict:** Because NetGuard operates by establishing a local loopback VPN interface (`127.0.0.1` / `tun0`), Android's Wi-Fi Direct socket negotiation used by **Quick Share** can fail or drop connections. If you ever need to manually Quick Share large one-off files or test direct drops from your main phone/tablet directly to the Pixel, simply **toggle NetGuard OFF temporarily**, complete the transfer, and toggle it back ON.
-
-**Alternative Notification Method (MacroDroid / Tasker):**
-If you prefer not to use Partner Sharing, you can use automation apps like MacroDroid or Tasker directly on the Pixel. These can monitor the Google Photos app state, folder modification times, or backup status, and fire a custom webhook or push notification to your main device when the sync completes. This is often a cleaner approach, though it requires more initial setup.
-
-> **⚠️ Disconnecting Partner Sharing:** If you have auto-saved partner photos into your main account's library and then disconnect Partner Sharing, those saved copies may suddenly start counting against your 15 GB quota. Be aware of this before removing the relationship.
-
----
-
-## How to Verify Your Backup is Working
-
-You need to confirm photos are being uploaded by the **Pixel** (free, no quota used), not silently by your main phone.
-
-**Step 1 — Disable backup on your main device.** Google Photos on main phone → Profile → Backup → **Backup OFF**. This is mandatory. If both devices have backup enabled simultaneously, you cannot determine which one is actually doing the uploading.
-
-**Step 2 — Check the cloud icon.** On your main phone, open Google Photos and look at recent photos. A small **☁️ cloud icon** on or next to a photo means it has been backed up.
-
-**Step 3 — Deep verification.** Open a recently taken photo → swipe up (or tap the ⓘ info button). You should see both:
-- **"Backed up"** — it's in the cloud
-- **"This item doesn't take up space in your Google Account storage"** — this is the confirmation that it was uploaded by the Pixel's legacy entitlement, not by your main device eating your 15 GB quota
-
-<div align="center">
-  <img src="assets/photos_metadata.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Proof: item doesn't take up storage space" />
-  <img src="assets/metadata_with_loc.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Metadata preserved with GPS location" />
-  <img src="assets/metadata_without_loc.jpg" width="30%" style="border-radius: 12px; margin: 5px;" alt="Metadata preserved without GPS location" />
-</div>
-
-**Step 4 — Cross-check.** Open [photos.google.com](https://photos.google.com) in a desktop browser while logged into the backup account. Confirm recent photos are visibly present.
-
-**What backup quality should show:**
-- Pixel 1: **"Original quality"** + "doesn't count against storage" ✅
-- Pixel 2–5: **"Storage Saver"** + "doesn't count against storage" ✅ (still free, just compressed)
-- **Any device — bad state:** Any quality + "counts against storage" ❌ — something is misconfigured
-
-> **Note:** Google removed the "Unlimited storage" badge from the Google Photos home screen in 2024. Verification must be done via Profile → Backup settings, not the home screen.
-
-### The Pixel 2–5 "Original Quality" Upload Anomaly
-
-While Google's official policy dictates that Pixel 2–5 devices only receive free unlimited backup for **Storage Saver** quality (compressing photos over 16MP and videos over 1080p), real-world testing has revealed a highly beneficial anomaly. 
-
-Certain files from high-resolution external cameras or action cams can trigger an upload in **Original Quality** (uncompressed, full resolution) without consuming any Google Account storage space:
-
-* **High-Megapixel Photos & MPF Tags (The Bypass):** Photos taken on certain **Sony DSLRs** (and other high-resolution cameras) consistently bypass the 16MP Storage Saver limit. This happens because these cameras embed Multi-Picture Format (MPF) metadata tags in their JPEGs. Google Photos' compression algorithm fails to process files containing these specific tags, so it falls back to storing them at **Original Quality** for free (0 bytes of account storage used). As seen in the screenshot below, the camera model is preserved in the EXIF metadata while the file consumes 0 bytes of Google Account storage.
-* **Video Resolution Scaling & Aspect Ratios:** Unlike photos, videos are subjected to server-side transcoding, and there is no known "codec trick" to bypass this for videos under the Storage Saver tier. High-resolution videos (like 2.7K 60fps shot on a **DJI Action 2**) do not bypass Storage Saver compression to keep their original 2.7K resolution. Instead, Google Photos scales them to **1920 x 1440** (preserving the 4:3 aspect ratio rather than forcing a standard 16:9 1080p crop/scale) and maintains 60fps frame rate for free.
-* **Note on 4K & Video Bypass:** True 4K footage (3840x2160 or 4096x2160) does not bypass compression. It is either compressed down to 1080p (or an equivalent 4:3 scale) or counted against storage.
-
-<div align="center">
-  <img src="assets/pixel2xl_og_proof.jpg" width="45%" style="border-radius: 12px; margin: 5px;" alt="Proof: Original Quality free upload on Pixel 2 XL" />
-</div>
-
-**Troubleshooting — "Getting ready to backup" is stuck:**
-
-A single corrupted or incompletely transferred file can block the entire upload queue. Google Photos processes one file at a time, so one bad file stalls everything. Fix sequence:
-1. Turn Backup OFF → reboot the Pixel → turn Backup back ON
-2. Clear Google Photos cache and data (Settings → Apps → Google Photos → Storage → Clear Cache, then Clear Storage)
-3. Check the most recently added files — temporarily remove any you suspect are corrupt
-4. Keep the app open in the foreground, phone on charger, and wait 30 minutes
-
-Usually just waiting works. There is no guaranteed instant fix — sometimes it resolves on its own.
-
-**Troubleshooting — "Free up space" shows 0 items despite a large library:**
-
-Google Photos hasn't finished indexing which files are safely in the cloud. Clear Photos cache, reopen the app, wait 5 minutes. If still 0, wait 24–48 hours after a large batch upload — the count may increase the next day as indexing completes. It is annoying but harmless.
-
----
-
-## Advanced: Arbitrary File Backup (BitStream)
-
-Pixel-NAS handles media natively. For documents, code, and zip files, I use [BitStream](https://github.com/mehuljain866/BitStream).
-BitStream losslessly encodes any arbitrary file into an FFV1 `.AVI` video file.
-1. Compress your files.
-2. Run BitStream to turn the ZIP into a Video.
-3. Pixel-NAS uploads the "video" to Google Photos.
-4. Download the video later and decode it to retrieve your exact files, byte-for-byte.
-
----
-
-## Advanced: Headless Node (Broken Screen / No-Touch Operation)
-
-If your Pixel's screen is cracked, unresponsive, or you simply want to run it as a pure background node with zero physical interaction, you can control it entirely over Wi-Fi via ADB — no display or touch needed.
-
-> **Note:** Pixel 1–5 do not support DisplayPort over USB-C, so Samsung DeX-style desktop output is not possible. ADB over Wi-Fi is the alternative.
-
-**One-time setup (requires USB for the first connection only):**
-```bash
-# With Pixel connected via USB:
-adb tcpip 5555
-
-# Disconnect the USB cable. Find the Pixel's local IP in Settings → About → Status → IP address.
-adb connect <pixel-local-ip>:5555
-
-# All future control is now wireless — no USB needed.
-```
-
-**What you can do once connected:**
-- Full screen mirror + touch control via **scrcpy** (free, open source): `scrcpy --tcpip=<pixel-ip>`
-- Run any ADB command wirelessly — install APKs, toggle settings, reboot, etc.
-- Set up **Tasker** on the Pixel to auto-restart Resilio Sync or Google Photos if either crashes, keeping the node fully self-healing
-
-**Caveat:** Android blocks certain privacy-sensitive screens during remote casting (e.g., notification shade on some builds, some system settings menus). Test with scrcpy before going fully screenless to confirm all the controls you need are accessible remotely.
-
----
-
-## Advanced: The "Daisy Chain" (Low Storage Workaround)
-
-If you have a massive media library (e.g., 500GB) but your Pixel node only has 32GB or 64GB of internal storage, you cannot sync everything directly to the Pixel at once without causing a "Disk Full" crash. The theoretical but elegant solution is a "Trickle-Down Daisy Chain":
-
-**The Architecture:**
-`Source Devices` ➡️ `High Capacity Buffer (e.g., PC or NAS)` ➡️ `Low Storage Pixel` ➡️ `Google Cloud`
-
-**How it works (The Automation Loop):**
-1. **The Dump:** You send all 500GB to your High Capacity Buffer device.
-2. **The Fill:** Resilio Sync on the Buffer device starts syncing to the Pixel. Once the Pixel reaches 100% capacity (e.g., 30GB), Resilio naturally pauses because there is no more space.
-3. **The Backup:** Google Photos on the Pixel diligently backs up that 30GB batch to the cloud.
-4. **The Ghost Purge (UI Automation):** Because Google does not provide an API to trigger "Free Up Space," you must use an automation app like **MacroDroid** or **Tasker (with AutoInput)** on the Pixel. The app listens for the Google Photos "Backup Complete" notification. When it fires, the automation wakes the screen, launches Google Photos, and simulates physical screen taps (like a ghost) to click Profile ➡️ Free Up Space ➡️ Confirm. *(See [AUTOMATION_MACROS.md](AUTOMATION_MACROS.md) for the exact step-by-step build).*
-5. **The Trickle Down Resumes:** Once the 30GB is purged from the Pixel's local storage, Resilio Sync immediately detects the new free space and automatically resumes sending the next 30GB batch from the Buffer device.
-
-This creates an autonomous, self-cleaning pipeline that can trickle terabytes of data through a 32GB phone without human intervention.
-
----
-
-## Sync Modes
-
-| Mode | Behavior |
-|---|---|
-| **Buffer Mode** | Files sync to Pixel and back up to cloud. Deleting from Pixel does not affect your main device. Recommended for most users. |
-| **Mirror Mode** | Pixel mirrors your main device. Deletions on either side propagate after 30 days. Use only if you want true bidirectional sync. |
-
----
-
-## Pixel-NAS Dashboard (New!)
-
-I have recently introduced a **Progressive Web App (PWA) Dashboard** to monitor the live telemetry of the Pixel-NAS! Since standard Android background notifications for Google Photos uploads can be highly unreliable, the dashboard queries actual Android logs (`logcat`) via a Termux background server to track backup status and battery levels with 100% accuracy.
-
-Check out the source code and setup instructions in the [`dashboard/`](dashboard/) directory.
-
----
-
-## Current Status
-
-| What | Status | Notes |
-|---|---|---|
-| Pixel 1 unlimited Original Quality backup | ✅ STILL ACTIVE (July 2026) | No announced end date |
-| Pixel 2–5 unlimited Storage Saver backup | ✅ STILL ACTIVE | Compressed but free |
-| Pixel 5a+ unlimited backup | ❌ GONE | Do not use for this project |
-| Magisk spoofing modules | ⚠️ WORKS (with caveats) | Android 16 has issues; requires maintenance after updates |
-| crDroid / Evolution X built-in spoof | ✅ WORKS | Can reset after OTA update; re-enable in ROM settings |
-
-> **Critical rule:** The free unlimited quota **only** applies to files uploaded directly from the physical Pixel's Google Photos app. Uploading via browser, a different phone, or desktop — even to the same Google account — **will count against your 15 GB quota.**
-
-### 🛡️ Longevity & Obsolescence Defense: The Android 4.2.2 Benchmark
-
-A frequent question regarding this architecture is: **"Android 11 on the Pixel 2 XL is already out of official OS updates. Won't Google Photos eventually stop working when Google cuts off API support for older Android versions?"**
-
-While the Pixel 2 XL can still install modern Google Photos updates from the Play Store today (I intentionally pin it to a stable v7.5 / 8.0 build for thermal and RAM stability), real-world testing proves that Google's backend compatibility lasts far longer than most people realize:
-
-* **The Empirical Proof (Samsung Galaxy Tab 3 Neo on Android 4.2.2):** 
-  To test the absolute lower limits of Google Photos' backend longevity, I tested an ancient **Samsung Galaxy Tab 3 Neo** running **Android 4.2.2 (Jelly Bean)** — an operating system released over a decade ago (~2014) and **seven major Android generations older than Android 11**.
-  - It runs a legacy pre-2020 build of Google Photos (from back when the app still featured the original sharp, geometric pinwheel logo prior to the rounded redesign).
-  - Given that my account holds **over 111,000 photos and videos (~2 TB)**, the tablet's aging hardware takes hours to load and index the massive remote catalog in the UI.
-  - **Yet, the core upload pipeline still works:** The app successfully authenticates with Google's servers, reads local media, and uploads photos to Google Photos in 2026.
-  - If Google continues to maintain backend API compatibility for an Android 4.2.2 client from 2014, **Android 11 on the Pixel 2 XL has an enormous operational runway ahead** — easily many years before legacy upload endpoints are deprecated.
-
-* **Why Google Cannot Simply "Patch" or Detect Offloaded Media:**
-  - **Legitimate Ingestion Flow:** Android users legitimately transfer media onto their phones every day: receiving vacation photos over WhatsApp or Telegram, dropping DSLR/mirrorless RAW files from a laptop or Mac via USB, or importing drone clips. To the Android media scanner and Google Photos app, files residing in local storage are genuine user media. There is no reliable heuristic for Google to distinguish between an image captured by the Pixel's camera sensor versus media transferred over Wi-Fi without breaking basic functionality for legitimate users.
-  - **The "Lifetime" Contract & Public Backlash:** Google explicitly sold early Pixels with a marketing guarantee of "lifetime unlimited backup." Unlike third-party OEM cloud promotions (such as old Samsung or Dropbox promotions that had stated expiry dates), revoking an advertised hardware entitlement on Pixel devices would trigger catastrophic public, legal, and regulatory backlash.
-  - **Past Archives Are Permanent:** Google has never retroactively deducted storage quota or purged archives uploaded under the unlimited perk. Everything backed up through the Pixel funnel is permanent.
-
----
-
-## Known Limitations & Heads-Ups
-
-- **The 64GB Bottleneck & The 23 KB Critical Storage Lockdown:** The Pixel's internal storage is a live buffer. If storage usage exceeds 55–60GB and reaches absolute zero (e.g. **23 Kilobytes free** as reported by Google Files), Android's internal SQLite databases, MTP daemons, and background tasks lock down completely. In this state, even connecting the Pixel to a PC via USB cable fails to delete files because the MTP process crashes immediately. The only recovery is a full factory reset (which has occurred 4 times throughout pipeline R&D). This is why the **Termux Auto-Kill Switch at 55 GB** is strongly recommended.
-- **Occasional Manual Purge:** Android Smart Storage won't delete files newer than 30 days, even if they're backed up. If the Pixel fills up faster than the auto-purge cycle, manually trigger "Free up space" on the Pixel (Google Photos → Library → Free up space). This is the only recurring manual task for heavy users.
-- **Google Photos Version Stability (The Golden Build):** Newer Google Photos updates can introduce severe memory leaks and background synchronization freezes on legacy Snapdragon 835 hardware. Through extensive testing, **Google Photos v7.5 / 8.0.855792468 (January 2026 build)** has been proven to be the most rock-solid release for continuous high-volume ingestion. Disable auto-updates via Play Store → Google Photos → ⋮ → Don't auto-update.
-- **Battery Degradation (Without Hack):** Without the smart plug + USB hub trickle charging setup, the battery will degrade from continuous 100% charging, eventually risking battery swelling.
-- **App "Naps" & OEM Background Restrictions:** Android background management may put Resilio Sync to sleep despite Unrestricted battery settings. Occasional manual refresh or a MacroDroid watchdog trigger can recover this.
-- **Client-Side Background Battery Warnings (Samsung One UI / Aggressive OEM Doze):** On primary daily drivers (especially Samsung Galaxy devices), Device Care will frequently flag Resilio Sync with notifications claiming *"App draining battery in the background"*. Because P2P file-sharing protocols maintain persistent TCP/UDP listening sockets and DHT nodes, Samsung's aggressive power management penalizes them even when battery optimization is set to Unrestricted. This is a manufacturer-level behavior inherent to how the OEM handles background networking; until Samsung or Resilio releases a firmware/software update modernizing background socket negotiation, running 24/7 background sync will trigger these warnings. The proven, zero-downside solution is configuring an **End-of-Day Batch Sync via Samsung Modes & Routines** or using the **Biometric Foreground Gate** (see Section 6 above and [AUTOMATION_MACROS.md](AUTOMATION_MACROS.md)), eliminating background drain all day while syncing everything in a rapid overnight burst.
-- **Hardware Quirks:** Salvaged hardware may have cracked screens or OLED green display artifacts around status bar icons. See the Headless Node and Home Screen Widgets sections for workarounds.
-- **Metadata Preservation:** Resilio Sync preserves metadata perfectly. GPS coordinates (if enabled at capture), exact timestamps, and device origin (e.g., "Shot on iPhone") survive the E2E transfer completely intact. Google Photos will confirm: *"This item doesn't take up space in your account storage."*
-- **Android System Backup (July 2026):** As of July 7, 2026, Android's device backup (SMS, call logs, app data, settings) now counts toward your 15 GB Google quota — even if your photos are uploading for free via the Pixel. Manage via Android Settings → Google → Backup. The data is mostly text-based and typically under 1 GB, but check it if you notice unexpected storage consumption.
-
----
-
-## Future: V4 — Parallel True Data Ownership
-
-The current V3 pipeline gives you free cloud storage via Google. V4 extends this by adding a **simultaneous local copy** — true ownership that doesn't depend on Google at all.
-
-**The Architecture:**
-
-```text
-[ 📱 Main Phone / Multiple Devices ]
-            │
-            │  (Resilio Sync — sends to ALL peers simultaneously)
-            ├──────────────────────────┐
-            ▼                          ▼
-[ 📱 Pixel-NAS Buffer ]        [ 💻 Local PC / Home Server ]
-            │                          │
-            │  (Google Photos upload)   │  (Raw files — true local ownership)
-            ▼                          │
-[ ☁️ Google Cloud (Free) ] ◄───────────┘
-```
-
-**Why this is powerful:**
-- Google Photos gives you free cloud + AI search + facial recognition + editing tools — all still working
-- The local PC gives **true ownership** — if Google changes the free policy or closes your account, every photo is still safe locally
-- You can confidently run "Free up space" on your main phone knowing files exist in **two independent places**
-- Resilio Sync distributes to both destinations simultaneously, with E2E encryption on the local leg
-
-**What you need:**
-- A PC, old laptop, mini PC, or Raspberry Pi with a large external drive running Resilio Sync
-- Set the PC's folder to **"Receive Only"** — it receives files but does not propagate deletions back to source
-- Resilio share with 3 peers: Main Phone (Send), Pixel (Receive), PC (Receive)
-
-**Taking it further — Immich:**
-
-[Immich](https://immich.app) is a self-hosted, open-source Google Photos replacement that runs on your own hardware via Docker. If you already have the local PC from the V4 architecture, you can run Immich on it to get a full-featured photo management interface — face recognition, AI-powered search, mobile app, memories — all on hardware you own and control.
-
-| Feature | Google Photos (Pixel-NAS) | Immich |
-|---|---|---|
-| Cost | Free (Pixel-NAS) | Free (self-hosted) |
-| Storage | Google's servers | Your own hardware |
-| AI search & face recognition | ✅ Google's AI | ✅ Local AI |
-| Mobile app | ✅ Official Google | ✅ Immich app (iOS + Android) |
-| E2E Encryption | Google holds keys | Fully yours |
-| Requires hardware | ❌ | ✅ Docker / server |
-
-```text
-Stage 1 (Current): Pixel-NAS → Google Photos (free cloud)
-Stage 2 (Add):     Resilio also syncs to local PC → cloud + local redundancy
-Stage 3 (Future):  Immich on local PC → full Google Photos feature parity, self-hosted
-Stage 4 (Ideal):   If Google changes policy → already migrated, zero panic
-```
-
----
-
-## Privacy & Encryption
-
-**The local transfer leg (Resilio Sync → Pixel)** is fully End-to-End Encrypted using AES-256. Traffic between your devices is encrypted on the sending device and decrypted only on the receiving device. Nobody — not Resilio, not your ISP, not anyone on your local network — can read it in transit.
-
-**The cloud upload leg (Pixel → Google Photos)** is encrypted in transit (TLS/HTTPS) and encrypted at rest on Google's servers (AES-256). However, Google holds the decryption keys. This means Google's systems can technically access your photo content — and they do, intentionally, for the following features:
-
-- **Face Grouping** — grouping photos by person
-- **AI-powered search** — searching by object, location, scene, text in image
-- **Memories & highlights** — auto-generated albums and anniversary cards
-- **Gemini integration** — natural language photo queries
-
-This is by design. True End-to-End Encryption on the cloud leg would make all of these features technically impossible. Google's official position (via safety.google) is that server-side AI processing requires access to image content.
-
-**Key privacy facts from Google's own documentation:**
-- Face Groups are **private to your account only** — never shared with third parties for identification
-- Google **does not use your photos for advertising targeting**
-- You can disable Face Grouping entirely; Google states it deletes the underlying face models when you do
-
-**For users who need stricter privacy:**
-- **[Ente Photos](https://ente.io)** — E2E encrypted cloud storage for photos; self-hostable; photos are encrypted on your device before upload so even Ente cannot access them. Trade-off: no server-side AI features.
-- **[Immich](https://immich.app)** — fully self-hosted; your server, your keys, no external access at all.
-
-For most users, the Pixel-NAS pipeline is an excellent pragmatic balance — the local transfer is fully E2E encrypted, and Google's photo privacy policy is among the stronger ones in the industry.
+## Known Limitations & Reality Check
+
+* **Legacy Hardware Dependency:** The unlimited Original Quality backup entitlement is a historical benefit granted by Google specifically to the physical Google Pixel (2016). It is not an unconditional guarantee and depends on Google maintaining its legacy hardware policy.
+* **The 30-Day Retention Quirk:** Google Photos' "Free up space" feature may retain backed-up photos and videos younger than 30 days on-device. This means buffer cleanups can legitimately free less space than expected, making the 48 GB warning and 55 GB pause guard essential.
+* **Storage Saturation Guard:** If storage reaches absolute zero (e.g. 23 KB free), Android's internal SQLite databases and MTP daemons crash, requiring a factory reset. Always maintain the 55 GB storage kill-switch.
+* **Battery Safety on Aging Hardware:** The original Pixel is an aging device. Never leave it charging at 100% 24/7 on a high-wattage fast charger. Use a 5W trickle charger or a smart plug with 20–80% battery automation.
+* **Google Photos Version Stability:** Google Photos updates can introduce memory leaks on legacy hardware. **Google Photos v7.5 / 8.0 (January 2026 build)** has proven to be the most rock-solid release. Disable auto-updates in the Play Store.
 
 ---
 
 ## License, Author & Disclaimer
 
-**Author:** Mehul Jain (`mehuljain866`)  
+**Author:** Mehul Jain ([@mehuljain866](https://github.com/mehuljain866))  
 **License:** MIT License (Code) / Creative Commons BY-NC 4.0 (Documentation).
 
 > **Disclaimer:** This project is an independent open-source research and documentation project. It is not affiliated with, endorsed by, or associated with Google LLC, Alphabet Inc., or Resilio Inc. All product names, logos, and brands are property of their respective owners. The author assumes no responsibility or liability for any data loss, account penalties, or hardware issues resulting from the use of the workflows described herein.

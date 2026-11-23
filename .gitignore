@@ -5,6 +5,7 @@ handoff.md
 *review*.md
 *Data*.md
 *Setup*.md
+!docs/*.md
 
 # OS & Editor files
 .DS_Store
