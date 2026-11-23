@@ -8,13 +8,13 @@
 [![Archived](https://img.shields.io/badge/Media%20Archived-111k%2B%20Items-blueviolet.svg)](#current-scale--empirical-data)
 [![Cost](https://img.shields.io/badge/Cloud%20Cost-%240%20%2F%20mo*-success.svg)](#-why-not-just-pay-for-cloud-storage)
 
-Pixel-NAS transforms a legacy Google Pixel device into an always-on, invisible backup node. It silently syncs photos, videos, and files from your daily devices directly to Google Photos' infinite cloud storage—for free. No monthly subscriptions, no expensive NAS hardware, and zero manual maintenance.
+Pixel-NAS transforms a legacy Google Pixel device into an always-on, invisible backup node. It silently syncs photos, videos, and files from your daily devices directly to Google Photos' infinite cloud storage for free. No monthly subscriptions, no expensive NAS hardware, and zero manual maintenance.
 
 ---
 
 ### Current Scale & Empirical Data
 
-*Currently managing an active archive of **111,556 photos and videos (~1.8–2.2 TB)** across multiple devices seamlessly, with archives dating back to 2007–2008 and earlier.*
+*Currently managing an active archive of **111,556 photos and videos (~1.8–2.2 TB)** across multiple devices over Wi-Fi, with archives dating back to 2007–2008 and earlier.*
 
 *(Calculated volume based on empirical data: A real-world sample of 5,722 items represented 91.74 GB [~16.03 MB/item] due to high-resolution phone media, RAW camera captures, and long 1080p/DJI video footage, projecting to ~1.8–2.2 TB for 111,000+ items, as of November 10th, 2026).*
 
@@ -137,7 +137,7 @@ The complete engineering, operational, and historical documentation is organized
 
 This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or tablet securely pours data into the "Pixel Funnel" over your local Wi-Fi. The Pixel then ingests the media, allowing it to flow into Google Photos using its grandfathered original-quality unlimited backup benefit.
 
-1. **Secure Transfer (Local & Global WAN):** Your phone's camera roll syncs to the Pixel via **Resilio Sync** — a P2P protocol with full End-to-End Encryption (AES-128/256). Devices can sync on local Wi-Fi or globally across the internet via encrypted BitTorrent relays.
+1. **Secure Transfer (Local & Global WAN):** Your phone's camera roll syncs to the Pixel via **Resilio Sync**, an end-to-end encrypted peer-to-peer protocol (AES-128/256). Devices can sync on local Wi-Fi or globally across the internet via encrypted BitTorrent relays.
 2. **Infinite Cloud Ingestion:** Google Photos on the Pixel detects the new files and uploads them in the background using the device's legacy unlimited original-quality entitlement.
 3. **Auto-Purging (The Pixel Buffer):** The Pixel's internal storage acts as a temporary buffer. Automated space reclamation (or Android Smart Storage) purges backed-up files so new batches can stream in.
 4. **Passive Confirmation:** Real-time push notifications alert your main device when a batch finishes uploading via Google Photos Partner Sharing.
@@ -232,4 +232,4 @@ For full dashboard configuration, see [dashboard/README.md](dashboard/README.md)
 
 > **Disclaimer:** This project is an independent open-source research and documentation project. It is not affiliated with, endorsed by, or associated with Google LLC, Alphabet Inc., or Resilio Inc. All product names, logos, and brands are property of their respective owners. The author assumes no responsibility or liability for any data loss, account penalties, or hardware issues resulting from the use of the workflows described herein.
 
-*Built out of necessity. If this helps preserve your digital memories—mission accomplished.*
+*Built out of necessity. If this helps preserve your digital memories, mission accomplished.*

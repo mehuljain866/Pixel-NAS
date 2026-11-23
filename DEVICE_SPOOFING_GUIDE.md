@@ -1,7 +1,7 @@
 # Alternative: Device Spoofing & Virtual Nodes (Technical Reference)
 
 > [!CAUTION]
-> ### ⚠️ Crucial Disclaimer & Terms of Service Warning
+> ### ⚠️ Important Disclaimer & Terms of Service Warning
 > **I do not personally use, recommend, or deploy device spoofing for my primary production pipeline (which manages an archive of 111,000+ irreplaceable family photos and videos / ~2 TB of data).**
 >
 > Spoofing a Google Pixel 1/XL device signature is an explicit violation of [Google's Terms of Service](https://policies.google.com/terms). While community ban rates have historically been near zero, using software spoofing on an account containing years of irreplaceable memories introduces severe risks:
@@ -84,7 +84,7 @@ If you decide to experiment with spoofing, **never log into your primary Google 
 1. Create a **fresh, secondary "Mule" Google Account** dedicated exclusively to the spoofed node.
 2. Log into the spoofed node with this mule account and upload your media.
 3. Enable **Partner Sharing** from the mule account to your primary personal Google account with **"Automatically save all photos"** turned ON.
-4. **Result:** The photos appear seamlessly in your main account's Google Photos library without taking up storage quota, while keeping your main account insulated from the spoofed device.
+4. **Result:** The photos appear in your main account's Google Photos library without taking up storage quota, while keeping your main account insulated from the spoofed device.
 
 > **⚠️ The Mule Risk:** If Google flags or terminates the mule account, you lose access to the source uploads. If you have already purged the original photos from your main device, those memories are lost. Always maintain a true offline 3-2-1 backup copy.
 

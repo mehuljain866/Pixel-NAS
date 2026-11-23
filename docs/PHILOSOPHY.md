@@ -13,7 +13,7 @@ This project was born out of frustration. My digital memories were scattered acr
 
 The obvious question: **Why build all of this instead of just paying ₹1,300/month for Google One 2TB?**
 
-The answer is simple — **subscriptions don't protect your data, they rent access to it.** The moment you stop paying, the clock starts ticking on the deletion of your irreplaceable memories. You don't own the storage, and you never will.
+The answer is simple: **subscriptions don't protect your data, they rent access to it.** The moment you stop paying, the clock starts ticking on the deletion of your irreplaceable memories. You don't own the storage, and you never will.
 
 Here's what actually happens when you stop paying across every major cloud provider:
 
@@ -39,7 +39,7 @@ Over a 10-year horizon, a 2TB Google One plan costs approximately **₹1,56,000+
 
 Beyond the financial argument, there's a quieter benefit that only becomes obvious once you've lived with it: **you stop worrying about your devices.**
 
-Because every device in your life — phone, laptop, tablet — funnels its media into the same Pixel-NAS backup node, every photo, screenshot, and video you capture on *any* device is automatically accessible from *every* device. Take a screenshot on your laptop? It shows up on your phone. Record a video on your tablet? It's on your laptop. Capture a memory on your phone? It's everywhere.
+Because every device in your life (phone, laptop, tablet) funnels its media into the same Pixel-NAS backup node, every photo, screenshot, and video you capture on *any* device is automatically accessible from *every* device. Take a screenshot on your laptop? It shows up on your phone. Record a video on your tablet? It's on your laptop. Capture a memory on your phone? It's everywhere.
 
 This means you are no longer tethered to any single piece of hardware. If your phone breaks, gets lost, or needs a factory reset — your memories are safe. If your laptop dies — your screenshots and downloads are safe. **The physical device becomes disposable; the memories are permanent.** You carry less anxiety about your hardware because you know that everything important has already been silently funnelled to the cloud through the Pixel, without you lifting a finger.
 
@@ -65,11 +65,11 @@ The evolution of Pixel-NAS spans several years, starting from early classroom id
 * **Initial Concept Stage (November 2023 – January 2024):** The project origin and initial experiments occurred, realizing older Google Pixel devices could be repurposed to exploit the legacy "unlimited storage" loopholes.
 * **V1 (The Cumbersome Phase - February – April 2024):** 
   <img src="../assets/old_workflow.jpg" alt="The bleak reality of the V1 wired nightmare" align="right" width="35%" style="border-radius: 12px; margin: 0 0 15px 20px;" />
-  Developed the first working prototype using a salvaged, boot-looped Pixel 2 XL and configuring Resilio Sync as the data relay. Backing up was an agonizingly manual and monotonous chore. It required tethering the main phone to a laptop, manually indexing and moving files, and then trickling them down to the Pixel. Because the legacy Pixels only have **USB 2.0 ports**, transferring files meant suffering through abysmal USB 2.0 speeds *twice* (Phone → Laptop → Pixel). This turned a simple backup into an unreliable, hours-long headache that heavily relied on pristine cables. Furthermore, using pen drives or external hard drives for these extended transfer sessions caused them to overheat and severely throttle. The system required constant human babysitting and was essentially an "expensive paperweight." *(Pictured right: The bleak, wired reality of V1—a laptop connected to a mouse and a Pixel sitting on a desk.)*
+  Developed the first working prototype using a salvaged, boot-looped Pixel 2 XL and configuring Resilio Sync as the data relay. Backing up was an agonizingly manual and monotonous chore. It required tethering the main phone to a laptop, manually indexing and moving files, and then trickling them down to the Pixel. Because the legacy Pixels only have **USB 2.0 ports**, transferring files meant suffering through abysmal USB 2.0 speeds *twice* (Phone → Laptop → Pixel). This turned a simple backup into an unreliable, hours-long headache that heavily relied on pristine cables. External flash drives and portable hard drives used for these extended transfer sessions overheated and severely throttled. The system required constant human babysitting and was essentially an "expensive paperweight." *(Pictured right: The bleak, wired reality of V1—a laptop connected to a mouse and a Pixel sitting on a desk.)*
   <br clear="all" />
 * **System Regularization & V2 (The Automation Phase - April/May 2025):** 
   <img src="../assets/new_workflow.jpg" alt="V2 and V3 Setup" align="left" width="40%" style="border-radius: 12px; margin: 0 20px 15px 0;" /> 
-  Moved past the fragile Version 1 wired workflow and transitioned into a more automated, stable, and fluid system. I introduced Resilio Sync over Wi-Fi, proving the concept by effortlessly syncing 80GB of 4K drone/camera footage without any cables. *(Pictured left: Three devices wirelessly backing up to the Pixel over Wi-Fi, which then seamlessly uploads to the cloud.)*
+  Moved past the fragile Version 1 wired workflow and transitioned into a more automated, stable, and fluid system. I introduced Resilio Sync over Wi-Fi, proving the concept by effortlessly syncing 80GB of 4K drone/camera footage without any cables. *(Pictured left: Three devices wirelessly backing up to the Pixel over Wi-Fi, which then uploads directly to the cloud.)*
 * **V3 (The Intervention-Free Phase & All-in-One Form Factor - Present):** 
   <img src="../assets/hardware_wall_mount_plugged.jpg" alt="V3 All-in-One Plug & Play Setup" align="right" width="30%" style="border-radius: 12px; margin: 0 0 15px 20px;" />
   The current architecture and hardware form factor. Leveraging Smart Home integrations, geofencing, and advanced automation, the system now runs perpetually without human intervention. The phone, low-wattage adapter, and coiled USB-C cable are integrated into a single self-contained unit that can simply hang on a wall outlet—eliminating cable mess and clearing desk space entirely.

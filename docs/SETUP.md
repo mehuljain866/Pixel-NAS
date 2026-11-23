@@ -9,7 +9,7 @@
 
 **1. Prepare the Device & App Update Policy**
 - **Factory reset the Pixel.** Use Android Universal Debloater (ADB) to strip bloatware, maximizing the internal buffer and freeing up CPU cycles for the sync and upload tasks.
-- **Disable Global Play Store Auto-Updates (Crucial):** Open Google Play Store → Profile → **Settings → Network Preferences → Auto-update apps → Select "Don't auto-update apps"**. On an autonomous server node, you want zero unexpected background update churn or UI rewrites that could break pipeline stability.
+- **Disable Global Play Store Auto-Updates (Required):** Open Google Play Store → Profile → **Settings → Network Preferences → Auto-update apps → Select "Don't auto-update apps"**. On an autonomous server node, you want zero unexpected background update churn or UI rewrites that could break pipeline stability.
 - **App Update Strategy:**
   - 🔄 **Google Play Store & Play Services:** Updates automatically at the system level in the background.
   - 📂 **Files by Google:** Manually updated to the latest stable build for fast storage health checks.
@@ -69,7 +69,7 @@ When syncing media from your source phone/PC to the Pixel, you can choose betwee
 > * **Social & Messaging Apps (Instagram, Beeper, etc.):** Save photos, stories, and saved chat media inside `/Pictures/` (e.g., `Pictures/Instagram`, `Pictures/Beeper`).
 > * **Direct File Transfer Utilities (LocalSend):** Saves incoming video clips and shared media inside `/Movies/` (e.g., `Movies/LocalSend`).
 > 
-> **My Production Workflow:** In addition to syncing `DCIM`, I create two additional sync pairs in Resilio for the **`Pictures`** and **`Movies`** directories. Then, on the Pixel's Google Photos app, go to **Library → Photos on device** and ensure the ☁️ cloud backup toggle is turned **ON** for both `Pictures` and `Movies`. This ensures 100% of your camera roll, social captures, and LocalSend drops are seamlessly ingested.
+> **My Production Workflow:** In addition to syncing `DCIM`, I create two additional sync pairs in Resilio for the **`Pictures`** and **`Movies`** directories. Then, on the Pixel's Google Photos app, go to **Library → Photos on device** and ensure the ☁️ cloud backup toggle is turned **ON** for both `Pictures` and `Movies`. This ensures your camera roll, social captures, and LocalSend drops are automatically ingested.
 
 ---
 
