@@ -92,6 +92,20 @@ BitStream losslessly encodes any arbitrary file into an FFV1 `.AVI` video file.
 
 ---
 
+## Ecosystem Playback: Pixel-Streamer
+
+Pixel-NAS manages ingestion: collecting media from phones and computers and uploading it to Google Photos. To view that library on a television or tablet without signing a personal Google account into a shared device, I built [Pixel-Streamer](https://github.com/mehuljain866/Pixel-Streamer).
+
+Pixel-Streamer is a native Android TV (`com.pixelstreamer.tv`) and tablet (`com.pixelstreamer.tablet`) app that streams video and photo libraries directly from public or shared Google Photos album links.
+
+1. **Account-Free Setup**: Pair a TV or tablet using an on-screen QR code or local browser companion (`http://<device-ip>:8765`) to add shared album links without entering Google credentials.
+2. **Automated Metadata Scraping**: Parses filenames (`S01E01`, release tags), groups episodes by series, and pulls posters, logos, and synopses from IMDb, TVmaze, and Wikipedia.
+3. **Direct HTTP Range Seeking**: Built on AndroidX Media3 (ExoPlayer), streaming original 1080p and 720p files directly via HTTP 206 range requests with D-pad navigation and resume tracking.
+
+Pixel-NAS acts as the silent ingestion and storage backend, while Pixel-Streamer serves as the living-room playback client.
+
+---
+
 
 ---
 

@@ -35,7 +35,7 @@ The complete engineering, operational, and historical documentation is organized
 | 🛠️ [**Setup & Configuration Guide**](docs/SETUP.md) | Complete step-by-step installation: Termux, Resilio Sync, Google Photos, headless ADB mode, and verification. |
 | 📱 [**Hardware, Benchmarks & Longevity**](docs/HARDWARE_AND_BENCHMARKS.md) | Pixel 1 vs 2–5 buyer's guide, 150 Mbps Wi-Fi setup, 24-hr unplugged thermal/discharge tests, and Android 4.2.2 longevity proof. |
 | ⚡ [**Automation, Triggers & Daisy Chain**](docs/AUTOMATION.md) | Geofencing, MacroDroid automation, smart plug battery cycling (20–80%), KWGT telemetry widgets, and buffer recycling. |
-| 📖 [**Philosophy, Story & Evolution**](docs/PHILOSOPHY.md) | Why not paid cloud?, psychological freedom from storage anxiety, project timeline (V1–V4), and BitStream arbitrary backup. |
+| 📖 [**Philosophy, Story & Evolution**](docs/PHILOSOPHY.md) | Why not paid cloud?, psychological freedom from storage anxiety, project timeline (V1–V4), BitStream, and Pixel-Streamer. |
 | 🏗️ [**System Architecture**](docs/ARCHITECTURE.md) | Ingestion telemetry pipelines, SQLite ledger states, and watchdog dataflow. |
 | 🛡️ [**Security & Network Hardening**](docs/SECURITY.md) | Local loopback binding, bearer token authentication, CORS restrictions, and Android permissions. |
 | 🔄 [**Disaster Recovery Runbook**](docs/RECOVERY.md) | Step-by-step node recovery instructions, ledger restoration, and restore verification checklists. |
@@ -110,6 +110,7 @@ The complete engineering, operational, and historical documentation is organized
 * **[📸 The Psychological Shift: Eliminating "Storage Anxiety"](docs/PHILOSOPHY.md#-the-psychological-shift-eliminating-storage-anxiety)**: Capturing life without rationing gigabytes.
 * **[The Journey & Project Timeline (V1 &rarr; V2 &rarr; V3 &rarr; V4)](docs/PHILOSOPHY.md#the-journey--project-timeline)**: From wired prototype nightmares to an invisible appliance.
 * **[BitStream: Arbitrary File Cloud Backup](docs/PHILOSOPHY.md#advanced-arbitrary-file-backup-bitstream)**: Backing up non-media files to Google Photos.
+* **[Pixel-Streamer: Android TV & Tablet Media Player](docs/PHILOSOPHY.md#ecosystem-playback-pixel-streamer)**: Account-free living-room streaming for your backed-up media albums.
 * **[Future: V4 — Parallel True Data Ownership](docs/PHILOSOPHY.md#future-v4--parallel-true-data-ownership)**: Dual-homed local NAS mirrors and Immich integration.
 
 👉 **[Open Full Philosophy & Story &rarr;](docs/PHILOSOPHY.md)**
@@ -135,10 +136,10 @@ The complete engineering, operational, and historical documentation is organized
 
 ## How It Works (The Architecture)
 
-This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or tablet securely pours data into the "Pixel Funnel" over your local Wi-Fi. The Pixel then ingests the media, allowing it to flow into Google Photos using its grandfathered original-quality unlimited backup benefit.
+This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or tablet securely pours data into the "Pixel Funnel" over your local Wi-Fi. The Pixel then ingests the media, allowing it to flow into Google Photos using its grandfathered original-quality* unlimited backup benefit (*or Storage Saver / compressed 1080p video for any model above the original Pixel up to Pixel 5).
 
 1. **Secure Transfer (Local & Global WAN):** Your phone's camera roll syncs to the Pixel via **Resilio Sync**, an end-to-end encrypted peer-to-peer protocol (AES-128/256). Devices can sync on local Wi-Fi or globally across the internet via encrypted BitTorrent relays.
-2. **Infinite Cloud Ingestion:** Google Photos on the Pixel detects the new files and uploads them in the background using the device's legacy unlimited original-quality entitlement.
+2. **Infinite Cloud Ingestion:** Google Photos on the Pixel detects the new files and uploads them in the background using the device's legacy unlimited original-quality* entitlement (*or Storage Saver / compressed 1080p for Pixel 2 through Pixel 5).
 3. **Auto-Purging (The Pixel Buffer):** The Pixel's internal storage acts as a temporary buffer. Automated space reclamation (or Android Smart Storage) purges backed-up files so new batches can stream in.
 4. **Passive Confirmation:** Real-time push notifications alert your main device when a batch finishes uploading via Google Photos Partner Sharing.
 5. **Freeing Up Main Device Space:** Because your photos are safely in the cloud, you can open Google Photos on your *main daily driver* and manually tap **"Free up space"** to reclaim local gigabytes.
@@ -167,7 +168,7 @@ This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or 
           │
           │ (3. Google Photos detects media & Termux V4 Ledger hashes stable files)
           ▼
-[ ☁️ Google Photos Cloud (Original Quality Upload) ]
+[ ☁️ Google Photos Cloud (Original Quality* / Storage Saver Upload) ]
           │
           │ (4. Upload verified by Google Photos cloud servers)
           ├─► [ 🗑️ Pixel buffer reclaimed via "Free Up Space" — automated ]
@@ -176,6 +177,8 @@ This system acts as a **digital funnel**. Your modern phone (iPhone/Android) or 
           ▼
 [ 📱 Main Phone ] (Receives notification that cloud backup is complete)
 ```
+
+*\*Note: Unlimited Original Quality applies exclusively to the original Google Pixel 1 (2016). Pixel 2 through Pixel 5 upload at Storage Saver quality (photos compressed to 16 MP, videos compressed to 1080p).*
 
 ---
 
@@ -215,9 +218,18 @@ For full dashboard configuration, see [dashboard/README.md](dashboard/README.md)
 
 ---
 
+## Companion Projects (The Complete Pipeline)
+
+Pixel-NAS is part of a broader set of personal tools designed around Google Photos as a private storage backend:
+
+* **[Pixel-Streamer](https://github.com/mehuljain866/Pixel-Streamer)**: An Android TV and tablet client for streaming movies, shows, and photos directly from shared Google Photos album links. It eliminates the need to sign personal Google accounts into shared living-room TVs, groups multi-file uploads into seasons and episodes, queries metadata (posters, ratings, descriptions) from open APIs, and streams original 1080p and 720p files via HTTP 206 range requests.
+* **[BitStream](https://github.com/mehuljain866/BitStream)**: Arbitrary file backup utility that losslessly packages documents, codebases, and ZIP archives into FFV1 video containers, allowing non-media data to be backed up to Google Photos through Pixel-NAS.
+
+---
+
 ## Known Limitations & Reality Check
 
-* **Legacy Hardware Dependency:** The unlimited Original Quality backup entitlement is a historical benefit granted by Google specifically to the physical Google Pixel (2016). It is not an unconditional guarantee and depends on Google maintaining its legacy hardware policy.
+* **Legacy Hardware Dependency:** The unlimited Original Quality backup entitlement is a historical benefit granted by Google specifically to the physical Google Pixel (2016). Devices from Pixel 2 through Pixel 5 receive unlimited backup at Storage Saver quality (photos compressed up to 16 MP, videos compressed to 1080p). It is not an unconditional guarantee and depends on Google maintaining its legacy hardware policy.
 * **The 30-Day Retention Quirk:** Google Photos' "Free up space" feature may retain backed-up photos and videos younger than 30 days on-device. This means buffer cleanups can legitimately free less space than expected, making the 48 GB warning and 55 GB pause guard essential.
 * **Storage Saturation Guard:** If storage reaches absolute zero (e.g. 23 KB free), Android's internal SQLite databases and MTP daemons crash, requiring a factory reset. Always maintain the 55 GB storage kill-switch.
 * **Battery Safety on Aging Hardware:** The original Pixel is an aging device. Never leave it charging at 100% 24/7 on a high-wattage fast charger. Use a 5W trickle charger or a smart plug with 20–80% battery automation.
